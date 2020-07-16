@@ -16,6 +16,22 @@
 		567ADCBF24C0A1F100A23864 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 567ADCBD24C0A1F100A23864 /* LaunchScreen.storyboard */; };
 		567ADCCA24C0A1F100A23864 /* HouseTrainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCC924C0A1F100A23864 /* HouseTrainingTests.swift */; };
 		567ADCD524C0A1F100A23864 /* HouseTrainingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCD424C0A1F100A23864 /* HouseTrainingUITests.swift */; };
+		567ADCE724C0A41100A23864 /* ExercisePickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCE624C0A41100A23864 /* ExercisePickerTableViewController.swift */; };
+		567ADCEB24C0A72E00A23864 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCEA24C0A72E00A23864 /* CameraViewController.swift */; };
+		567ADCEE24C0A77500A23864 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCED24C0A77500A23864 /* GameManager.swift */; };
+		567ADCF024C0A79C00A23864 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCEF24C0A79C00A23864 /* State.swift */; };
+		567ADCF224C0A7AC00A23864 /* GameStateChangeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF124C0A7AC00A23864 /* GameStateChangeNotification.swift */; };
+		567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF324C0A7F000A23864 /* CameraFeedView.swift */; };
+		567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */; };
+		567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF824C0A87700A23864 /* PlayerStats.swift */; };
+		567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF924C0A87700A23864 /* ThrowMetrics.swift */; };
+		567ADCFF24C0A91C00A23864 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCFD24C0A91C00A23864 /* SetupViewController.swift */; };
+		567ADD0024C0A91C00A23864 /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 567ADCFE24C0A91C00A23864 /* SetupViewController.xib */; };
+		567ADD0424C0A96300A23864 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0224C0A96300A23864 /* ExerciseViewController.swift */; };
+		567ADD0524C0A96300A23864 /* ExerciseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 567ADD0324C0A96300A23864 /* ExerciseViewController.xib */; };
+		567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */; };
+		567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */; };
+		567ADD0E24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0D24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +67,22 @@
 		567ADCD024C0A1F100A23864 /* HouseTrainingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HouseTrainingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		567ADCD424C0A1F100A23864 /* HouseTrainingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseTrainingUITests.swift; sourceTree = "<group>"; };
 		567ADCD624C0A1F100A23864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		567ADCE624C0A41100A23864 /* ExercisePickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePickerTableViewController.swift; sourceTree = "<group>"; };
+		567ADCEA24C0A72E00A23864 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		567ADCED24C0A77500A23864 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		567ADCEF24C0A79C00A23864 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		567ADCF124C0A7AC00A23864 /* GameStateChangeNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateChangeNotification.swift; sourceTree = "<group>"; };
+		567ADCF324C0A7F000A23864 /* CameraFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFeedView.swift; sourceTree = "<group>"; };
+		567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerActionClassifier.swift; sourceTree = "<group>"; };
+		567ADCF824C0A87700A23864 /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
+		567ADCF924C0A87700A23864 /* ThrowMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowMetrics.swift; sourceTree = "<group>"; };
+		567ADCFD24C0A91C00A23864 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		567ADCFE24C0A91C00A23864 /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
+		567ADD0224C0A96300A23864 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
+		567ADD0324C0A96300A23864 /* ExerciseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseViewController.xib; sourceTree = "<group>"; };
+		567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
+		567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
+		567ADD0D24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ExerciseActionClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +133,14 @@
 		567ADCAE24C0A1F000A23864 /* HouseTraining */ = {
 			isa = PBXGroup;
 			children = (
-				567ADCAF24C0A1F000A23864 /* AppDelegate.swift */,
-				567ADCB124C0A1F000A23864 /* SceneDelegate.swift */,
-				567ADCB324C0A1F000A23864 /* ViewController.swift */,
-				567ADCB524C0A1F000A23864 /* Main.storyboard */,
-				567ADCBB24C0A1F100A23864 /* Assets.xcassets */,
-				567ADCBD24C0A1F100A23864 /* LaunchScreen.storyboard */,
-				567ADCC024C0A1F100A23864 /* Info.plist */,
-				567ADCB824C0A1F000A23864 /* HouseTraining.xcdatamodeld */,
+				567ADCE224C0A26B00A23864 /* App */,
+				567ADCE924C0A70400A23864 /* Camera */,
+				567ADCE524C0A2F600A23864 /* ExcersizePicker */,
+				567ADCE824C0A6D500A23864 /* ExerciseSetup */,
+				567ADD0124C0A93F00A23864 /* ExerciseViewController */,
+				567ADCEC24C0A75F00A23864 /* GameManager */,
+				567ADCE424C0A27B00A23864 /* Resources */,
+				567ADCE324C0A27200A23864 /* Model */,
 			);
 			path = HouseTraining;
 			sourceTree = "<group>";
@@ -129,6 +161,102 @@
 				567ADCD624C0A1F100A23864 /* Info.plist */,
 			);
 			path = HouseTrainingUITests;
+			sourceTree = "<group>";
+		};
+		567ADCE224C0A26B00A23864 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				567ADCAF24C0A1F000A23864 /* AppDelegate.swift */,
+				567ADCB124C0A1F000A23864 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		567ADCE324C0A27200A23864 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				567ADCF524C0A80E00A23864 /* Business */,
+				567ADCB824C0A1F000A23864 /* HouseTraining.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		567ADCE424C0A27B00A23864 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				567ADD0D24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel */,
+				567ADCB324C0A1F000A23864 /* ViewController.swift */,
+				567ADCB524C0A1F000A23864 /* Main.storyboard */,
+				567ADCBB24C0A1F100A23864 /* Assets.xcassets */,
+				567ADCBD24C0A1F100A23864 /* LaunchScreen.storyboard */,
+				567ADCC024C0A1F100A23864 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		567ADCE524C0A2F600A23864 /* ExcersizePicker */ = {
+			isa = PBXGroup;
+			children = (
+				567ADCE624C0A41100A23864 /* ExercisePickerTableViewController.swift */,
+			);
+			path = ExcersizePicker;
+			sourceTree = "<group>";
+		};
+		567ADCE824C0A6D500A23864 /* ExerciseSetup */ = {
+			isa = PBXGroup;
+			children = (
+				567ADCFD24C0A91C00A23864 /* SetupViewController.swift */,
+				567ADCFE24C0A91C00A23864 /* SetupViewController.xib */,
+			);
+			path = ExerciseSetup;
+			sourceTree = "<group>";
+		};
+		567ADCE924C0A70400A23864 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				567ADCEA24C0A72E00A23864 /* CameraViewController.swift */,
+				567ADCF324C0A7F000A23864 /* CameraFeedView.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		567ADCEC24C0A75F00A23864 /* GameManager */ = {
+			isa = PBXGroup;
+			children = (
+				567ADCED24C0A77500A23864 /* GameManager.swift */,
+				567ADCEF24C0A79C00A23864 /* State.swift */,
+				567ADCF124C0A7AC00A23864 /* GameStateChangeNotification.swift */,
+			);
+			path = GameManager;
+			sourceTree = "<group>";
+		};
+		567ADCF524C0A80E00A23864 /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				567ADCF624C0A84900A23864 /* Entities */,
+			);
+			path = Business;
+			sourceTree = "<group>";
+		};
+		567ADCF624C0A84900A23864 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */,
+				567ADCF824C0A87700A23864 /* PlayerStats.swift */,
+				567ADCF924C0A87700A23864 /* ThrowMetrics.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		567ADD0124C0A93F00A23864 /* ExerciseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */,
+				567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */,
+				567ADD0224C0A96300A23864 /* ExerciseViewController.swift */,
+				567ADD0324C0A96300A23864 /* ExerciseViewController.xib */,
+			);
+			path = ExerciseViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +362,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				567ADD0524C0A96300A23864 /* ExerciseViewController.xib in Resources */,
+				567ADD0024C0A91C00A23864 /* SetupViewController.xib in Resources */,
 				567ADCBF24C0A1F100A23864 /* LaunchScreen.storyboard in Resources */,
 				567ADCBC24C0A1F100A23864 /* Assets.xcassets in Resources */,
 				567ADCB724C0A1F000A23864 /* Main.storyboard in Resources */,
@@ -261,10 +391,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */,
+				567ADD0424C0A96300A23864 /* ExerciseViewController.swift in Sources */,
+				567ADCE724C0A41100A23864 /* ExercisePickerTableViewController.swift in Sources */,
+				567ADCF224C0A7AC00A23864 /* GameStateChangeNotification.swift in Sources */,
 				567ADCB424C0A1F000A23864 /* ViewController.swift in Sources */,
+				567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */,
+				567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */,
 				567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */,
+				567ADCFF24C0A91C00A23864 /* SetupViewController.swift in Sources */,
+				567ADCEE24C0A77500A23864 /* GameManager.swift in Sources */,
+				567ADD0E24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
+				567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */,
 				567ADCB224C0A1F000A23864 /* SceneDelegate.swift in Sources */,
+				567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */,
+				567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */,
+				567ADCEB24C0A72E00A23864 /* CameraViewController.swift in Sources */,
+				567ADCF024C0A79C00A23864 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,7 +586,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UY69P266SE;
-				INFOPLIST_FILE = HouseTraining/Info.plist;
+				INFOPLIST_FILE = HouseTraining/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,7 +605,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = UY69P266SE;
-				INFOPLIST_FILE = HouseTraining/Info.plist;
+				INFOPLIST_FILE = HouseTraining/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
