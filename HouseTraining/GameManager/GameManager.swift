@@ -40,20 +40,20 @@ class GameManager: NSObject {
         stateMachine = GKStateMachine(states: states)
     }
     
-    func reset() {
-        // Reset all stored values
-        boardRegion = .null
-        recordedVideoSource = nil
-        playerStats = PlayerStats()
-        pointToMeterMultiplier = .nan
-        // Remove all observers and enter inactive state.
-        let notificationCenter = NotificationCenter.default
-        for observer in activeObservers {
-            notificationCenter.removeObserver(observer)
-        }
-        activeObservers.removeAll()
-        stateMachine.enter(InactiveState.self)
-    }
+//    func reset() {
+//        // Reset all stored values
+//        boardRegion = .null
+//        recordedVideoSource = nil
+//        playerStats = PlayerStats()
+//        pointToMeterMultiplier = .nan
+//        // Remove all observers and enter inactive state.
+//        let notificationCenter = NotificationCenter.default
+//        for observer in activeObservers {
+//            notificationCenter.removeObserver(observer)
+//        }
+//        activeObservers.removeAll()
+//        stateMachine.enter(InactiveState.self)
+//    }
 }
 
 extension GameStateChangeObserver where Self: UIViewController {

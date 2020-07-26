@@ -12,8 +12,8 @@ enum ThrowType: String, CaseIterable {
     case overhand = "Overhand"
     case underleg = "Underleg"
     case underhand = "Underhand"
-    case jumpingJacks = "Jumping_Jacks"
-    case standingABS = "Standing_Abs_1"
+    case jumpingJacks = "Jacks"
+    case other = "Other"
     case none = "None"
 }
 
@@ -32,8 +32,14 @@ struct PlayerStats {
     var avgSpeed = 0.0
     var releaseAngle = 0.0
     var avgReleaseAngle = 0.0
-    var poseObservations = [VNRecognizedPointsObservation]()
+    private var poseObservations = [VNRecognizedPointsObservation]()
+    
     var throwPaths = [CGPath]()
+    
+    init() {
+        debugPrint("Init called")
+    }
+    
     
     mutating func reset() {
         topSpeed = 0
@@ -41,11 +47,7 @@ struct PlayerStats {
         totalScore = 0
         throwCount = 0
         releaseAngle = 0
-        poseObservations = []
-    }
-
-    mutating func resetObservations() {
-        poseObservations = []
+//        poseObservations = []
     }
 
     mutating func adjustMetrics(score: Scoring, speed: Double, releaseAngle: Double, throwType: ThrowType) {
@@ -83,16 +85,30 @@ struct PlayerStats {
     }
 
     mutating func getLastThrowType() -> ThrowType {
-        guard let actionClassifier = try? PlayerActionClassifier(configuration: MLModelConfiguration()),
-              let poseMultiArray = prepareInputWithObservations(poseObservations),
-              let predictions = try? actionClassifier.prediction(poses: poseMultiArray),
-              let throwType = ThrowType(rawValue: predictions.label.capitalized) else {
+        guard let actionClassifier = try? PlayerActionClassifier(configuration: MLModelConfiguration()) else {
+            return .none
+        }
+        guard  let poseMultiArray = prepareInputWithObservations(poseObservations) else {
+            return .none
+        }
+        
+        
+        guard  let predictions = try? actionClassifier.prediction(poses: poseMultiArray) else {
+            return .none
+        }
+             
+        debugPrint("predictions.label.capitalized ", predictions.labelProbabilities)
+
+        
+        guard  let throwType = ThrowType(rawValue: predictions.label.capitalized) else {
             return .none
         }
 
-        if throwType == .jumpingJacks || throwType == .standingABS {
+        if throwType == .jumpingJacks || throwType == .other {
             debugPrint("throwTyp ", throwType, predictions.label.capitalized)
-            resetObservations()
+//            resetObservations()
+        } else {
+            debugPrint("ELSE", predictions.label.capitalized)
         }
 
         return throwType
@@ -102,7 +118,7 @@ struct PlayerStats {
 // MARK: - Activity Classification Helpers
 func prepareInputWithObservations(_ observations: [VNRecognizedPointsObservation]) -> MLMultiArray? {
     let numAvailableFrames = observations.count
-    let observationsNeeded = 150
+    let observationsNeeded = 60
     var multiArrayBuffer = [MLMultiArray]()
 
     for frameIndex in 0 ..< min(numAvailableFrames, observationsNeeded) {
@@ -142,7 +158,7 @@ struct GameConstants {
     static let trajectoryLength = 15
     // minimumObjectSize is calculated as (radius of object to be detected / buffer width)
     static let minimumObjectSize = Float(6.0 / 1920)
-    static let maxPoseObservations = 45
+    static let maxPoseObservations = 60
     static let noObservationFrameLimit = 20
     static let maxDistanceWithCurrentTrajectory: CGFloat = 250
     static let maxTrajectoryInFlightPoseObservations = 10

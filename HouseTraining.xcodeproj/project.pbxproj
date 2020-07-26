@@ -31,7 +31,7 @@
 		567ADD0524C0A96300A23864 /* ExerciseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 567ADD0324C0A96300A23864 /* ExerciseViewController.xib */; };
 		567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */; };
 		567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */; };
-		567ADD0E24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0D24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel */; };
+		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +82,7 @@
 		567ADD0324C0A96300A23864 /* ExerciseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseViewController.xib; sourceTree = "<group>"; };
 		567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
-		567ADD0D24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = ExerciseActionClassifier.mlmodel; sourceTree = "<group>"; };
+		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,7 +184,7 @@
 		567ADCE424C0A27B00A23864 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				567ADD0D24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel */,
+				5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */,
 				567ADCB324C0A1F000A23864 /* ViewController.swift */,
 				567ADCB524C0A1F000A23864 /* Main.storyboard */,
 				567ADCBB24C0A1F100A23864 /* Assets.xcassets */,
@@ -401,7 +401,7 @@
 				567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */,
 				567ADCFF24C0A91C00A23864 /* SetupViewController.swift in Sources */,
 				567ADCEE24C0A77500A23864 /* GameManager.swift in Sources */,
-				567ADD0E24C0CD8F00A23864 /* ExerciseActionClassifier.mlmodel in Sources */,
+				5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
 				567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */,
 				567ADCB224C0A1F000A23864 /* SceneDelegate.swift in Sources */,

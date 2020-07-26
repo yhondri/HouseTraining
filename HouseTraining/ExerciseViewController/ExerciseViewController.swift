@@ -112,35 +112,49 @@ class ExerciseViewController: UIViewController, AVCaptureVideoDataOutputSampleBu
 //        }
         // Store the body pose observation in playerStats when the game is in TrackThrowsState.
         // We will use these observations for action classification once the throw is complete.
-        if gameManager.stateMachine.currentState is TrackThrowsState {
-            playerStats.storeObservation(observation)
-//            if trajectoryView.inFlight {
-//                trajectoryInFlightPoseObservations += 1
-//            }
-        }
+//        if gameManager.stateMachine.currentState is TrackThrowsState {
+//            debugPrint("StoreObservation    ")
+//            playerStats.storeObservation(observation)
+////            if trajectoryView.inFlight {
+////                trajectoryInFlightPoseObservations += 1
+////            }
+//        }
         return box
     }
     
-    private func detectPose() {
+    private var posesNeeded = 60
+    private var posesCount = 0
+    
+    private func detectPose(observation: VNRecognizedPointsObservation) {
         // Perform the trajectory request in a separate dispatch queue.
-                trajectoryQueue.async {
-                    let throwType = self.playerStats.getLastThrowType()
-                    debugPrint("ThrowType", throwType)
+//        trajectoryQueue.async {
+            self.playerStats.storeObservation(observation)
+            self.posesCount += 1
+        
+        debugPrint("Detect pose", self.posesCount)
+            
+            if self.posesCount >= self.posesNeeded {
+//                debugPrint("posesCount insede", posesCount)
 
-                    self.lastThrowMetrics.updateThrowType(throwType)
-
-    //                self.detectTrajectoryRequest.minimumObjectSize = GameConstants.minimumObjectSize
-    //                do {
-    //                    try visionHandler.perform([self.detectTrajectoryRequest])
-    //                    if let results = self.detectTrajectoryRequest.results as? [VNTrajectoryObservation] {
-    //                        DispatchQueue.main.async {
-    //                            self.processTrajectoryObservations(controller, results)
-    //                        }
-    //                    }
-    //                } catch {
-    //                    AppError.display(error, inViewController: self)
-    //                }
-                }
+                let throwType = self.playerStats.getLastThrowType()
+                //                    debugPrint("ThrowType", throwType)
+                
+                self.lastThrowMetrics.updateThrowType(throwType)
+                self.posesCount -= 1
+            }
+            
+            //                self.detectTrajectoryRequest.minimumObjectSize = GameConstants.minimumObjectSize
+            //                do {
+            //                    try visionHandler.perform([self.detectTrajectoryRequest])
+            //                    if let results = self.detectTrajectoryRequest.results as? [VNTrajectoryObservation] {
+            //                        DispatchQueue.main.async {
+            //                            self.processTrajectoryObservations(controller, results)
+            //                        }
+            //                    }
+            //                } catch {
+            //                    AppError.display(error, inViewController: self)
+            //                }
+//        }
     }
 }
 
@@ -159,9 +173,11 @@ extension ExerciseViewController: CameraViewControllerOutputDelegate {
         // Body pose request is performed on the same camera queue to ensure the highlighted joints are aligned with the player.
         // Run bodypose request for additional GameConstants.maxPostReleasePoseObservations frames after the first trajectory observation is detected.
         /**self.trajectoryView.inFlight && **/
-        if !(self.trajectoryInFlightPoseObservations >= GameConstants.maxTrajectoryInFlightPoseObservations) {
+//        if !(self.trajectoryInFlightPoseObservations >= GameConstants.maxTrajectoryInFlightPoseObservations) {
             do {
                 try visionHandler.perform([detectPlayerRequest])
+//                debugPrint("Body detected ", detectPlayerRequest.results)
+                
                 if let result = detectPlayerRequest.results?.first as? VNRecognizedPointsObservation {
                     let box = humanBoundingBox(for: result)
                     let boxView = playerBoundingBox
@@ -175,23 +191,26 @@ extension ExerciseViewController: CameraViewControllerOutputDelegate {
                             self.gameManager.stateMachine.enter(DetectedPlayerState.self)
                         }
                         
-                        self.detectPose()
+                        self.detectPose(observation: result)
 
                     }
                     
                 }
+//                else {
+//                    debugPrint("Else result detect player")
+//                }
             } catch {
                 AppError.display(error, inViewController: self)
             }
-        } else {
-            // Hide player bounding box
-            DispatchQueue.main.async {
-                if !self.playerBoundingBox.isHidden {
-                    self.playerBoundingBox.isHidden = true
-//                    self.jointSegmentView.resetView()
-                }
-            }
-        }
+//        } else {
+//            // Hide player bounding box
+//            DispatchQueue.main.async {
+//                if !self.playerBoundingBox.isHidden {
+//                    self.playerBoundingBox.isHidden = true
+////                    self.jointSegmentView.resetView()
+//                }
+//            }
+//        }
     }
 }
 
@@ -201,7 +220,7 @@ extension ExerciseViewController: GameStateChangeObserver {
         switch state {
         case is DetectedPlayerState:
             playerDetected = true
-            playerStats.reset()
+//            playerStats.reset()
 //            playerBoundingBox.perform(transition: .fadeOut, duration: 1.0)
 //            gameStatusLabel.text = "Go"
 //            gameStatusLabel.perform(transitions: [.popUp, .popOut], durations: [0.25, 0.12], delayBetween: 1) {
@@ -216,7 +235,7 @@ extension ExerciseViewController: GameStateChangeObserver {
 //            dashboardView.animateSpeedChart()
             playerStats.adjustMetrics(score: lastThrowMetrics.score, speed: lastThrowMetrics.releaseSpeed,
                                       releaseAngle: lastThrowMetrics.releaseAngle, throwType: lastThrowMetrics.throwType)
-            playerStats.resetObservations()
+//            playerStats.resetObservations()
             trajectoryInFlightPoseObservations = 0
 //            self.updateKPILabels()
 //
