@@ -9,7 +9,8 @@ import GameKit
 
 class ExerciseManager: NSObject {
     fileprivate var activeObservers = [UIViewController: NSObjectProtocol]()
-    
+    fileprivate var activeObjectsObservers = [NSObject: NSObjectProtocol]()
+
     let stateMachine: GKStateMachine
     var boardRegion = CGRect.null
     var holeRegion = CGRect.null
@@ -56,7 +57,32 @@ class ExerciseManager: NSObject {
 //    }
 }
 
-extension ExerciseStateChangeObserver where Self: UIViewController {
+//TODO: Delete this
+//extension ExerciseStateChangeObserver where Self: UIViewController {
+//    func startObservingStateChanges() {
+//        let token = NotificationCenter.default.addObserver(forName: .exerciseStateChangeNotification,
+//                                                           object: ExerciseStateChangeNotification.object,
+//                                                           queue: nil) { [weak self] (notification) in
+//            guard let note = ExerciseStateChangeNotification(notification: notification) else {
+//                return
+//            }
+//            self?.gameManagerDidEnter(state: note.newState, from: note.previousState)
+//        }
+//        let gameManager = ExerciseManager.shared
+//        gameManager.activeObservers[self] = token
+//    }
+//    
+//    func stopObservingStateChanges() {
+//        let gameManager = ExerciseManager.shared
+//        guard let token = gameManager.activeObservers[self] else {
+//            return
+//        }
+//        NotificationCenter.default.removeObserver(token)
+//        gameManager.activeObservers.removeValue(forKey: self)
+//    }
+//}
+
+extension ExerciseStateChangeObserver where Self: NSObject {
     func startObservingStateChanges() {
         let token = NotificationCenter.default.addObserver(forName: .exerciseStateChangeNotification,
                                                            object: ExerciseStateChangeNotification.object,
@@ -67,15 +93,16 @@ extension ExerciseStateChangeObserver where Self: UIViewController {
             self?.gameManagerDidEnter(state: note.newState, from: note.previousState)
         }
         let gameManager = ExerciseManager.shared
-        gameManager.activeObservers[self] = token
+        gameManager.activeObjectsObservers[self] = token
     }
     
     func stopObservingStateChanges() {
         let gameManager = ExerciseManager.shared
-        guard let token = gameManager.activeObservers[self] else {
+        guard let token = gameManager.activeObjectsObservers[self] else {
             return
         }
         NotificationCenter.default.removeObserver(token)
-        gameManager.activeObservers.removeValue(forKey: self)
+        gameManager.activeObjectsObservers.removeValue(forKey: self)
     }
 }
+

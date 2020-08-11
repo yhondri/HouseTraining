@@ -36,6 +36,7 @@
 		56B766D624E2AC9A0005330D /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D524E2AC9A0005330D /* CameraViewModel.swift */; };
 		56B766D924E2C1540005330D /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D824E2C1540005330D /* VisionHelper.swift */; };
 		56B766DB24E2C5640005330D /* ExercisePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766DA24E2C5640005330D /* ExercisePickerViewModel.swift */; };
+		56B766DD24E2C7640005330D /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766DC24E2C7640005330D /* SetupViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,7 @@
 		56B766D524E2AC9A0005330D /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		56B766D824E2C1540005330D /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
 		56B766DA24E2C5640005330D /* ExercisePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePickerViewModel.swift; sourceTree = "<group>"; };
+		56B766DC24E2C7640005330D /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 			children = (
 				567ADCFD24C0A91C00A23864 /* SetupViewController.swift */,
 				567ADCFE24C0A91C00A23864 /* SetupViewController.xib */,
+				56B766DC24E2C7640005330D /* SetupViewModel.swift */,
 			);
 			path = ExerciseSetup;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56B766DD24E2C7640005330D /* SetupViewModel.swift in Sources */,
 				56B766DB24E2C5640005330D /* ExercisePickerViewModel.swift in Sources */,
 				567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */,
 				567ADD0424C0A96300A23864 /* ExerciseViewController.swift in Sources */,

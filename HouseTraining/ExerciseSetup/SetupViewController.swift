@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class SetupViewController: UIViewController {
     //    @IBOutlet weak var closeButton: UIButton!
@@ -13,8 +14,9 @@ class SetupViewController: UIViewController {
     private var cameraViewController: CameraViewController!
     private var overlayParentView: UIView!
     private var overlayViewController: UIViewController!
-    private let gameManager = ExerciseManager.shared
-    
+    private let viewModel = SetupViewModel()
+    private var cancellables = [AnyCancellable]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         cameraViewController = CameraViewController()
@@ -34,52 +36,23 @@ class SetupViewController: UIViewController {
             overlayParentView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
         
-        startObservingStateChanges()
         // Make sure close button stays in front of other views.
         //        view.bringSubviewToFront(closeButton)
+        
+        viewModel.state.sink { state in
+            self.setupOverlayController(forState: state)
+        }
+        .store(in: &cancellables)
+
+        viewModel.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        gameManager.stateMachine.enter(SetupCameraState.self)
-        gameManager.stateMachine.enter(DetectingPlayerState.self)
+        viewModel.viewDidAppear()
     }
     
-    private func presentOverlayViewController(_ newOverlayViewController: UIViewController?, completion: (() -> Void)?) {
-        defer {
-            completion?()
-        }
-        
-        guard overlayViewController != newOverlayViewController else {
-            return
-        }
-        
-        if let currentOverlay = overlayViewController {
-            currentOverlay.willMove(toParent: nil)
-            currentOverlay.beginAppearanceTransition(false, animated: true)
-            currentOverlay.view.removeFromSuperview()
-            currentOverlay.endAppearanceTransition()
-            currentOverlay.removeFromParent()
-        }
-        
-        if let newOverlay = newOverlayViewController {
-            newOverlay.view.frame = overlayParentView.bounds
-            addChild(newOverlay)
-            newOverlay.beginAppearanceTransition(true, animated: true)
-            overlayParentView.addSubview(newOverlay.view)
-            newOverlay.endAppearanceTransition()
-            newOverlay.didMove(toParent: self)
-        }
-        
-        overlayViewController = newOverlayViewController
-    }
-}
-
-// MARK: - Handle states that require view controller transitions
-
-// This is where the overlay controllers management happens.
-extension SetupViewController: ExerciseStateChangeObserver {
-    func gameManagerDidEnter(state: State, from previousState: State?) {
+    private func setupOverlayController(forState state: State) {
         // Create an overlay view controller based on the game state
         let controllerToPresent: UIViewController
         switch state {
@@ -125,5 +98,34 @@ extension SetupViewController: ExerciseStateChangeObserver {
                 self.cameraViewController.outputDelegate = outputDelegate
             }
         }
+    }
+    
+    private func presentOverlayViewController(_ newOverlayViewController: UIViewController?, completion: (() -> Void)?) {
+        defer {
+            completion?()
+        }
+        
+        guard overlayViewController != newOverlayViewController else {
+            return
+        }
+        
+        if let currentOverlay = overlayViewController {
+            currentOverlay.willMove(toParent: nil)
+            currentOverlay.beginAppearanceTransition(false, animated: true)
+            currentOverlay.view.removeFromSuperview()
+            currentOverlay.endAppearanceTransition()
+            currentOverlay.removeFromParent()
+        }
+        
+        if let newOverlay = newOverlayViewController {
+            newOverlay.view.frame = overlayParentView.bounds
+            addChild(newOverlay)
+            newOverlay.beginAppearanceTransition(true, animated: true)
+            overlayParentView.addSubview(newOverlay.view)
+            newOverlay.endAppearanceTransition()
+            newOverlay.didMove(toParent: self)
+        }
+        
+        overlayViewController = newOverlayViewController
     }
 }
