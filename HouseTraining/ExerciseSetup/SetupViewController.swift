@@ -13,7 +13,7 @@ class SetupViewController: UIViewController {
     private var cameraViewController: CameraViewController!
     private var overlayParentView: UIView!
     private var overlayViewController: UIViewController!
-    private let gameManager = GameManager.shared
+    private let gameManager = ExerciseManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +78,7 @@ class SetupViewController: UIViewController {
 // MARK: - Handle states that require view controller transitions
 
 // This is where the overlay controllers management happens.
-extension SetupViewController: GameStateChangeObserver {
+extension SetupViewController: ExerciseStateChangeObserver {
     func gameManagerDidEnter(state: State, from previousState: State?) {
         // Create an overlay view controller based on the game state
         let controllerToPresent: UIViewController
@@ -95,7 +95,7 @@ extension SetupViewController: GameStateChangeObserver {
         }
         
         // Remove existing overlay controller (if any) from game manager listeners
-        if let currentListener = overlayViewController as? GameStateChangeObserverViewController {
+        if let currentListener = overlayViewController as? ExerciseStateChangeObserverViewController {
             currentListener.stopObservingStateChanges()
         }
         
@@ -103,7 +103,7 @@ extension SetupViewController: GameStateChangeObserver {
             //Adjust safe area insets on overlay controller to match actual video outpput area.
             if let cameraVC = self.cameraViewController {
                 let viewRect = cameraVC.view.frame
-                let videoRect = cameraVC.viewRectForVisionRect(CGRect(x: 0, y: 0, width: 1, height: 1))
+                let videoRect = VisionHelper.viewRectForVisionRect(CGRect(x: 0, y: 0, width: 1, height: 1), cameraFeedView: cameraVC.cameraFeedView)
                 let insets = controllerToPresent.view.safeAreaInsets
                 let additionalInsets = UIEdgeInsets(
                     top: videoRect.minY - viewRect.minY - insets.top,
@@ -114,7 +114,7 @@ extension SetupViewController: GameStateChangeObserver {
             }
             
             // If new overlay controller conforms to GameManagerListener, add it to the listeners.
-            if let gameManagerListener = controllerToPresent as? GameStateChangeObserverViewController {
+            if let gameManagerListener = controllerToPresent as? ExerciseStateChangeObserverViewController {
                 gameManagerListener.startObservingStateChanges()
             }
             

@@ -7,7 +7,7 @@
 
 import GameKit
 
-class GameManager: NSObject {
+class ExerciseManager: NSObject {
     fileprivate var activeObservers = [UIViewController: NSObjectProtocol]()
     
     let stateMachine: GKStateMachine
@@ -19,7 +19,7 @@ class GameManager: NSObject {
     var pointToMeterMultiplier = Double.nan
     var previewImage = UIImage()
     
-    static var shared = GameManager()
+    static var shared = ExerciseManager()
     
     private override init() {
         // Possible states with valid next states.
@@ -56,22 +56,22 @@ class GameManager: NSObject {
 //    }
 }
 
-extension GameStateChangeObserver where Self: UIViewController {
+extension ExerciseStateChangeObserver where Self: UIViewController {
     func startObservingStateChanges() {
-        let token = NotificationCenter.default.addObserver(forName: GameStateChangeNotification.name,
-                                                           object: GameStateChangeNotification.object,
+        let token = NotificationCenter.default.addObserver(forName: .exerciseStateChangeNotification,
+                                                           object: ExerciseStateChangeNotification.object,
                                                            queue: nil) { [weak self] (notification) in
-            guard let note = GameStateChangeNotification(notification: notification) else {
+            guard let note = ExerciseStateChangeNotification(notification: notification) else {
                 return
             }
             self?.gameManagerDidEnter(state: note.newState, from: note.previousState)
         }
-        let gameManager = GameManager.shared
+        let gameManager = ExerciseManager.shared
         gameManager.activeObservers[self] = token
     }
     
     func stopObservingStateChanges() {
-        let gameManager = GameManager.shared
+        let gameManager = ExerciseManager.shared
         guard let token = gameManager.activeObservers[self] else {
             return
         }

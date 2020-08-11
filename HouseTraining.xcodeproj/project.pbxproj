@@ -18,9 +18,9 @@
 		567ADCD524C0A1F100A23864 /* HouseTrainingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCD424C0A1F100A23864 /* HouseTrainingUITests.swift */; };
 		567ADCE724C0A41100A23864 /* ExercisePickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCE624C0A41100A23864 /* ExercisePickerTableViewController.swift */; };
 		567ADCEB24C0A72E00A23864 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCEA24C0A72E00A23864 /* CameraViewController.swift */; };
-		567ADCEE24C0A77500A23864 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCED24C0A77500A23864 /* GameManager.swift */; };
+		567ADCEE24C0A77500A23864 /* ExerciseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCED24C0A77500A23864 /* ExerciseManager.swift */; };
 		567ADCF024C0A79C00A23864 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCEF24C0A79C00A23864 /* State.swift */; };
-		567ADCF224C0A7AC00A23864 /* GameStateChangeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF124C0A7AC00A23864 /* GameStateChangeNotification.swift */; };
+		567ADCF224C0A7AC00A23864 /* ExerciseStateChangeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF124C0A7AC00A23864 /* ExerciseStateChangeNotification.swift */; };
 		567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF324C0A7F000A23864 /* CameraFeedView.swift */; };
 		567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */; };
 		567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF824C0A87700A23864 /* PlayerStats.swift */; };
@@ -32,6 +32,9 @@
 		567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */; };
 		567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
+		56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */; };
+		56B766D624E2AC9A0005330D /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D524E2AC9A0005330D /* CameraViewModel.swift */; };
+		56B766D924E2C1540005330D /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D824E2C1540005330D /* VisionHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,9 +72,9 @@
 		567ADCD624C0A1F100A23864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		567ADCE624C0A41100A23864 /* ExercisePickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePickerTableViewController.swift; sourceTree = "<group>"; };
 		567ADCEA24C0A72E00A23864 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		567ADCED24C0A77500A23864 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		567ADCED24C0A77500A23864 /* ExerciseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseManager.swift; sourceTree = "<group>"; };
 		567ADCEF24C0A79C00A23864 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		567ADCF124C0A7AC00A23864 /* GameStateChangeNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateChangeNotification.swift; sourceTree = "<group>"; };
+		567ADCF124C0A7AC00A23864 /* ExerciseStateChangeNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseStateChangeNotification.swift; sourceTree = "<group>"; };
 		567ADCF324C0A7F000A23864 /* CameraFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFeedView.swift; sourceTree = "<group>"; };
 		567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerActionClassifier.swift; sourceTree = "<group>"; };
 		567ADCF824C0A87700A23864 /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
@@ -83,6 +86,9 @@
 		567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
+		56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
+		56B766D524E2AC9A0005330D /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		56B766D824E2C1540005330D /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,9 +144,10 @@
 				567ADCE524C0A2F600A23864 /* ExcersizePicker */,
 				567ADCE824C0A6D500A23864 /* ExerciseSetup */,
 				567ADD0124C0A93F00A23864 /* ExerciseViewController */,
-				567ADCEC24C0A75F00A23864 /* GameManager */,
+				567ADCEC24C0A75F00A23864 /* ExerciseManager */,
 				567ADCE424C0A27B00A23864 /* Resources */,
 				567ADCE324C0A27200A23864 /* Model */,
+				56B646AB24D9CEE200C959BE /* Utils */,
 			);
 			path = HouseTraining;
 			sourceTree = "<group>";
@@ -216,18 +223,19 @@
 			children = (
 				567ADCEA24C0A72E00A23864 /* CameraViewController.swift */,
 				567ADCF324C0A7F000A23864 /* CameraFeedView.swift */,
+				56B766D524E2AC9A0005330D /* CameraViewModel.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		567ADCEC24C0A75F00A23864 /* GameManager */ = {
+		567ADCEC24C0A75F00A23864 /* ExerciseManager */ = {
 			isa = PBXGroup;
 			children = (
-				567ADCED24C0A77500A23864 /* GameManager.swift */,
+				567ADCED24C0A77500A23864 /* ExerciseManager.swift */,
 				567ADCEF24C0A79C00A23864 /* State.swift */,
-				567ADCF124C0A7AC00A23864 /* GameStateChangeNotification.swift */,
+				567ADCF124C0A7AC00A23864 /* ExerciseStateChangeNotification.swift */,
 			);
-			path = GameManager;
+			path = ExerciseManager;
 			sourceTree = "<group>";
 		};
 		567ADCF524C0A80E00A23864 /* Business */ = {
@@ -257,6 +265,23 @@
 				567ADD0324C0A96300A23864 /* ExerciseViewController.xib */,
 			);
 			path = ExerciseViewController;
+			sourceTree = "<group>";
+		};
+		56B646AB24D9CEE200C959BE /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				56B766D724E2C13B0005330D /* Helpers */,
+				56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		56B766D724E2C13B0005330D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				56B766D824E2C1540005330D /* VisionHelper.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -394,13 +419,16 @@
 				567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */,
 				567ADD0424C0A96300A23864 /* ExerciseViewController.swift in Sources */,
 				567ADCE724C0A41100A23864 /* ExercisePickerTableViewController.swift in Sources */,
-				567ADCF224C0A7AC00A23864 /* GameStateChangeNotification.swift in Sources */,
+				567ADCF224C0A7AC00A23864 /* ExerciseStateChangeNotification.swift in Sources */,
 				567ADCB424C0A1F000A23864 /* ViewController.swift in Sources */,
 				567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */,
 				567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */,
+				56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */,
+				56B766D924E2C1540005330D /* VisionHelper.swift in Sources */,
+				56B766D624E2AC9A0005330D /* CameraViewModel.swift in Sources */,
 				567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */,
 				567ADCFF24C0A91C00A23864 /* SetupViewController.swift in Sources */,
-				567ADCEE24C0A77500A23864 /* GameManager.swift in Sources */,
+				567ADCEE24C0A77500A23864 /* ExerciseManager.swift in Sources */,
 				5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
 				567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */,
