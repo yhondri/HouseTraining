@@ -24,7 +24,6 @@ class CameraViewController: UIViewController {
                                                      qos: .userInitiated,
                                                      attributes: [],
                                                      autoreleaseFrequency: .workItem)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         startObservingStateChanges()
@@ -48,23 +47,17 @@ class CameraViewController: UIViewController {
     
     private func setupCameraFeedSession() {
         // Get the interface orientaion from window scene to set proper video orientation on capture connection.
-        let videoOrientation: AVCaptureVideoOrientation
-        switch view.window?.windowScene?.interfaceOrientation {
-        case .landscapeRight:
-            videoOrientation = .landscapeRight
-        default:
-            videoOrientation = .portrait
-        }
+        let videoOrientation: AVCaptureVideoOrientation = getVideoOrientation()
         
         // Create and setup video feed view
         cameraFeedView = CameraFeedView(frame: view.bounds, session: viewModel.cameraFeedSession!, videoOrientation: videoOrientation)
         setupVideoOutputView(cameraFeedView)
         viewModel.cameraFeedSession!.startRunning()
     }
-
+    
     private func setupVideoOutputView(_ videoOutputView: UIView) {
         videoOutputView.translatesAutoresizingMaskIntoConstraints = false
-        videoOutputView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        videoOutputView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
         view.addSubview(videoOutputView)
         NSLayoutConstraint.activate([
             videoOutputView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -72,6 +65,14 @@ class CameraViewController: UIViewController {
             videoOutputView.topAnchor.constraint(equalTo: view.topAnchor),
             videoOutputView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func getVideoOrientation() -> AVCaptureVideoOrientation {
+        if UIDevice.current.orientation.isLandscape {
+            return .landscapeRight
+        } else {
+            return .portrait
+        }
     }
 }
 

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCAF24C0A1F000A23864 /* AppDelegate.swift */; };
-		567ADCB224C0A1F000A23864 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCB124C0A1F000A23864 /* SceneDelegate.swift */; };
 		567ADCB424C0A1F000A23864 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCB324C0A1F000A23864 /* ViewController.swift */; };
 		567ADCB724C0A1F000A23864 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 567ADCB524C0A1F000A23864 /* Main.storyboard */; };
 		567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCB824C0A1F000A23864 /* HouseTraining.xcdatamodeld */; };
@@ -59,7 +58,6 @@
 /* Begin PBXFileReference section */
 		567ADCAC24C0A1F000A23864 /* HouseTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HouseTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		567ADCAF24C0A1F000A23864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		567ADCB124C0A1F000A23864 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		567ADCB324C0A1F000A23864 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		567ADCB624C0A1F000A23864 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		567ADCB924C0A1F000A23864 /* HouseTraining.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HouseTraining.xcdatamodel; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				567ADCAF24C0A1F000A23864 /* AppDelegate.swift */,
-				567ADCB124C0A1F000A23864 /* SceneDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -440,7 +437,6 @@
 				5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
 				567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */,
-				567ADCB224C0A1F000A23864 /* SceneDelegate.swift in Sources */,
 				567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */,
 				567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */,
 				567ADCEB24C0A72E00A23864 /* CameraViewController.swift in Sources */,

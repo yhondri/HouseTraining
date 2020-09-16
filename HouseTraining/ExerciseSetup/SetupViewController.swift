@@ -11,14 +11,29 @@ import Combine
 class SetupViewController: UIViewController {
     //    @IBOutlet weak var closeButton: UIButton!
     
+    override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+
+    override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return UIInterfaceOrientation.portrait
+    }
+
+    override public var shouldAutorotate: Bool {
+        return true
+    }
+    
     private var cameraViewController: CameraViewController!
     private var overlayParentView: UIView!
     private var overlayViewController: UIViewController!
     private let viewModel = SetupViewModel()
     private var cancellables = [AnyCancellable]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        changeDeviceOrientation(newOrientation: .landscapeRight, interfaceOrientationMask: .landscapeRight)
+
         cameraViewController = CameraViewController()
         cameraViewController.view.frame = view.bounds
         addChild(cameraViewController)
@@ -43,13 +58,25 @@ class SetupViewController: UIViewController {
             self.setupOverlayController(forState: state)
         }
         .store(in: &cancellables)
-
+        
         viewModel.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         viewModel.viewDidAppear()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        changeDeviceOrientation(newOrientation: .portrait, interfaceOrientationMask: .portrait)
+    }
+
+    private func changeDeviceOrientation(newOrientation: UIInterfaceOrientation, interfaceOrientationMask: UIInterfaceOrientationMask) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.myOrientation = interfaceOrientationMask
+        UIDevice.current.setValue(newOrientation.rawValue, forKey: "orientation")
+        UIView.setAnimationsEnabled(true)
     }
     
     private func setupOverlayController(forState state: State) {
