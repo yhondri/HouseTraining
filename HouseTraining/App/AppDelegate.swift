@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
-        window?.rootViewController = UINavigationController(rootViewController: ExercisePickerTableViewController())
+        window?.rootViewController = WorkoutViewController() //UINavigationController(rootViewController: ExercisePickerTableViewController())
         window?.makeKeyAndVisible()
         return true
     }
