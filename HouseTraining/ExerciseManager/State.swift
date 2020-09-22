@@ -24,7 +24,7 @@ class State: GKState {
     }
     
     override func didEnter(from previousState: GKState?) {
-        let note = GameStateChangeNotification(newState: self, previousState: previousState as? State)
+        let note = ExerciseStateChangeNotification(newState: self, previousState: previousState as? State)
         note.post()
     }
 }

@@ -11,7 +11,7 @@ import AVFoundation
 
 class ExerciseViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    private let gameManager = GameManager.shared
+    private let gameManager = ExerciseManager.shared
     private let detectPlayerRequest = VNDetectHumanBodyPoseRequest()
     private var playerDetected = false
     
@@ -183,7 +183,7 @@ extension ExerciseViewController: CameraViewControllerOutputDelegate {
                     let boxView = playerBoundingBox
                     DispatchQueue.main.async {
                         let inset: CGFloat = -20.0
-                        let viewRect = controller.viewRectForVisionRect(box).insetBy(dx: inset, dy: inset)
+                        let viewRect = VisionHelper.viewRectForVisionRect(box, cameraFeedView: controller.cameraFeedView).insetBy(dx: inset, dy: inset)
                         self.updateBoundingBox(boxView, withRect: viewRect)
                         if !self.playerDetected && !boxView.isHidden {
                             //                            self.gameStatusLabel.alpha = 0
@@ -215,7 +215,7 @@ extension ExerciseViewController: CameraViewControllerOutputDelegate {
 }
 
 
-extension ExerciseViewController: GameStateChangeObserver {
+extension ExerciseViewController: ExerciseStateChangeObserver {
     func gameManagerDidEnter(state: State, from previousState: State?) {
         switch state {
         case is DetectedPlayerState:

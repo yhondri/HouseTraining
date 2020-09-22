@@ -26,7 +26,7 @@ class CameraFeedView: UIView, NormalizedGeometryConverting {
         super.init(frame: frame)
         previewLayer = layer as? AVCaptureVideoPreviewLayer
         previewLayer.session = session
-        previewLayer.videoGravity = .resizeAspect
+        previewLayer.videoGravity = .resizeAspectFill
         previewLayer.connection?.videoOrientation = videoOrientation
     }
     
@@ -63,7 +63,7 @@ class VideoRenderView: UIView, NormalizedGeometryConverting {
     override init(frame: CGRect) {
         super.init(frame: frame)
         renderLayer = layer as? AVPlayerLayer
-        renderLayer.videoGravity = .resizeAspect
+        renderLayer.videoGravity = .resizeAspectFill
     }
     
     required init?(coder: NSCoder) {

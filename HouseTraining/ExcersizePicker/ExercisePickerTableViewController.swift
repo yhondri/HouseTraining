@@ -8,23 +8,23 @@
 import UIKit
 
 class ExercisePickerTableViewController: UITableViewController {
-
-    private let reuseIdentifier = "CellReuseIdentifier"
-    private lazy var exercises = ["Jumping Jacks", "Abdominal Crunches"]
-        
+    private let viewModel = ExercisePickerViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: viewModel.reuseIdentifier)
     }
+}
 
-    // MARK: - Table view data source
+// MARK: - Table view data source
+extension ExercisePickerTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        exercises.count
+        viewModel.exercises.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        cell.textLabel?.text = exercises[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.reuseIdentifier, for: indexPath)
+        cell.textLabel?.text = viewModel.exercises[indexPath.row]
         return cell
     }
 }

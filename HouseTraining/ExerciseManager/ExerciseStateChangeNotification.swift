@@ -7,15 +7,14 @@
 
 import UIKit
 
-typealias GameStateChangeObserverViewController = UIViewController & GameStateChangeObserver
+typealias ExerciseStateChangeObserverViewController = UIViewController & ExerciseStateChangeObserver
 
-protocol GameStateChangeObserver: AnyObject {
+protocol ExerciseStateChangeObserver: AnyObject {
     func gameManagerDidEnter(state: State, from previousState: State?)
 }
 
-struct GameStateChangeNotification {
-    static let name = NSNotification.Name("GameStateChangeNotification")
-    static let object = GameManager.shared
+struct ExerciseStateChangeNotification {
+    static let object = ExerciseManager.shared
     
     let newStateKey = "newState"
     let previousStateKey = "previousState"
@@ -29,7 +28,7 @@ struct GameStateChangeNotification {
     }
     
     init?(notification: Notification) {
-        guard notification.name == Self.name, let newState = notification.userInfo?[newStateKey] as? State else {
+        guard notification.name == .exerciseStateChangeNotification, let newState = notification.userInfo?[newStateKey] as? State else {
             return nil
         }
         self.newState = newState
@@ -41,6 +40,6 @@ struct GameStateChangeNotification {
         if let previousState = previousState {
             userInfo[previousStateKey] = previousState
         }
-        NotificationCenter.default.post(name: Self.name, object: Self.object, userInfo: userInfo)
+        NotificationCenter.default.post(name: .exerciseStateChangeNotification, object: Self.object, userInfo: userInfo)
     }
 }
