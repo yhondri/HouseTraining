@@ -19,6 +19,7 @@ class WorkoutViewController: UIViewController {
     private let viewModel = WorkoutViewModel()
     //Views
     private let playerBoundingBox = BoundingBoxView()
+    private let jointSegmentView = JointSegmentView()
     private var cancellables = [AnyCancellable]()
 
     override func viewDidLoad() {
@@ -80,7 +81,7 @@ extension WorkoutViewController {
         playerBoundingBox.isHidden = true
         view.addSubview(playerBoundingBox)
         view.bringSubviewToFront(playerBoundingBox)
-//        view.addSubview(jointSegmentView)
+        view.addSubview(jointSegmentView)
 //        view.addSubview(trajectoryView)
 //        gameStatusLabel.text = "Waiting for player"
 //        // Set throw type counters
@@ -147,10 +148,10 @@ extension WorkoutViewController {
             box = normalizedBoundingBox
         }
 //        // Fetch body joints from the observation and overlay them on the player.
-//        let joints = getBodyJointsFor(observation: observation)
-//        DispatchQueue.main.async {
-//            self.jointSegmentView.joints = joints
-//        }
+        let joints = getBodyJointsFor(observation: observation)
+        DispatchQueue.main.async {
+            self.jointSegmentView.joints = joints
+        }
         // Store the body pose observation in playerStats when the game is in TrackThrowsState.
         // We will use these observations for action classification once the throw is complete.
 //        if gameManager.stateMachine.currentState is TrackThrowsState {
@@ -171,7 +172,24 @@ extension WorkoutViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                        from connection: AVCaptureConnection) {
         viewModel.cameraViewController(self, didReceiveBuffer: sampleBuffer, orientation: .up)
         DispatchQueue.main.async {
+            let normalizedFrame = CGRect(x: 0, y: 0, width: 1, height: 1)
+            self.jointSegmentView.frame = self.viewRectForVisionRect(normalizedFrame)
             self.viewModel.captureOutput()
         }
     }
+    
+    // This helper function is used to convert rects returned by Vision to the video content rect coordinates.
+    //
+    // The video content rect (camera preview or pre-recorded video)
+    // is scaled to fit into the view controller's view frame preserving the video's aspect ratio
+    // and centered vertically and horizontally inside the view.
+    //
+    // Vision coordinates have origin at the bottom left corner and are normalized from 0 to 1 for both dimensions.
+    //
+    func viewRectForVisionRect(_ visionRect: CGRect) -> CGRect {
+        let flippedRect = visionRect.applying(CGAffineTransform.verticalFlip)
+        let viewRect: CGRect = cameraFeedView.viewRectConverted(fromNormalizedContentsRect: flippedRect)
+        return viewRect
+    }
+
 }

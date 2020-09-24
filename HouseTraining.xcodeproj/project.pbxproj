@@ -34,6 +34,7 @@
 		567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */; };
 		567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
+		56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6FA30251CF9080027CBDB /* JointSegmentView.swift */; };
 		56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */; };
 		56B766D624E2AC9A0005330D /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D524E2AC9A0005330D /* CameraViewModel.swift */; };
 		56B766D924E2C1540005330D /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D824E2C1540005330D /* VisionHelper.swift */; };
@@ -92,6 +93,7 @@
 		567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
+		56A6FA30251CF9080027CBDB /* JointSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointSegmentView.swift; sourceTree = "<group>"; };
 		56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		56B766D524E2AC9A0005330D /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		56B766D824E2C1540005330D /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */,
+				56A6FA30251CF9080027CBDB /* JointSegmentView.swift */,
 				56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */,
 				56415DF4251A4D1F00B688DE /* WorkoutViewController.xib */,
 			);
@@ -443,6 +446,7 @@
 				567ADD0424C0A96300A23864 /* ExerciseViewController.swift in Sources */,
 				567ADCE724C0A41100A23864 /* ExercisePickerTableViewController.swift in Sources */,
 				567ADCF224C0A7AC00A23864 /* ExerciseStateChangeNotification.swift in Sources */,
+				56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */,
 				567ADCB424C0A1F000A23864 /* ViewController.swift in Sources */,
 				567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */,
 				567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */,
