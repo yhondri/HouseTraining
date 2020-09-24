@@ -41,6 +41,10 @@ class CameraFeedView: UIView, NormalizedGeometryConverting {
     func viewPointConverted(fromNormalizedContentsPoint normalizedPoint: CGPoint) -> CGPoint {
         return previewLayer.layerPointConverted(fromCaptureDevicePoint: normalizedPoint)
     }
+
+    func changeVideoOrientation(newOrientation: AVCaptureVideoOrientation) {
+        previewLayer.connection?.videoOrientation = newOrientation
+    }
 }
 
 // MARK: - View for rendering video file contents

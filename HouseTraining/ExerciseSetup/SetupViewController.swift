@@ -74,7 +74,7 @@ class SetupViewController: UIViewController {
 
     private func changeDeviceOrientation(newOrientation: UIInterfaceOrientation, interfaceOrientationMask: UIInterfaceOrientationMask) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.myOrientation = interfaceOrientationMask
+//        appDelegate.myOrientation = interfaceOrientationMask
         UIDevice.current.setValue(newOrientation.rawValue, forKey: "orientation")
         UIView.setAnimationsEnabled(true)
     }

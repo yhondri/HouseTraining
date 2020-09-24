@@ -12,17 +12,12 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var myOrientation: UIInterfaceOrientationMask = .portrait
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         window?.rootViewController = WorkoutViewController() //UINavigationController(rootViewController: ExercisePickerTableViewController())
         window?.makeKeyAndVisible()
         return true
-    }
-
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        myOrientation
     }
     
     // MARK: - Core Data stack

@@ -12,6 +12,8 @@ import Combine
 
 class WorkoutViewController: UIViewController {
     
+    @IBOutlet weak var workoutInfoContentView: UIView!
+    
     // Live camera feed management
     private(set) var cameraFeedView: CameraFeedView!
     private let viewModel = WorkoutViewModel()
@@ -21,6 +23,7 @@ class WorkoutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         viewModel.playerRequest.sink { result in
             self.updateHumanBodyPose(reconizedPointsObservation: result)
         }
@@ -33,6 +36,10 @@ class WorkoutViewController: UIViewController {
         } catch {
             debugPrint("Show error, session couldn't be started ", error)
         }
+        
+        workoutInfoContentView.layer.cornerRadius = 12
+        workoutInfoContentView.layer.masksToBounds = true
+        view.sendSubviewToBack(cameraFeedView)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -40,6 +47,12 @@ class WorkoutViewController: UIViewController {
         viewModel.viewDidDissapear()
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        let videoOrientation: AVCaptureVideoOrientation = getVideoOrientation()
+        cameraFeedView.changeVideoOrientation(newOrientation: videoOrientation)
+    }
+
     private func updateHumanBodyPose(reconizedPointsObservation: VNRecognizedPointsObservation) {
         let box = humanBoundingBox(for: reconizedPointsObservation)
         let boxView = playerBoundingBox
@@ -92,11 +105,22 @@ extension WorkoutViewController {
         
         // Create and setup video feed view
         cameraFeedView = CameraFeedView(frame: view.bounds, session: viewModel.cameraFeedSession!, videoOrientation: videoOrientation)
-        setupVideoOutputView(cameraFeedView)
+        
+        cameraFeedView.translatesAutoresizingMaskIntoConstraints = false
+        cameraFeedView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+        view.addSubview(cameraFeedView)
+        NSLayoutConstraint.activate([
+            cameraFeedView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            cameraFeedView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            cameraFeedView.topAnchor.constraint(equalTo: view.topAnchor),
+            cameraFeedView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
         viewModel.cameraFeedSession!.startRunning()
     }
     
     private func getVideoOrientation() -> AVCaptureVideoOrientation {
+        debugPrint("UIDevice.current.orientation.isLandscape ", UIDevice.current.orientation.isLandscape)
         if UIDevice.current.orientation.isLandscape {
             return .landscapeRight
         } else {
@@ -104,17 +128,6 @@ extension WorkoutViewController {
         }
     }
     
-    private func setupVideoOutputView(_ videoOutputView: UIView) {
-        videoOutputView.translatesAutoresizingMaskIntoConstraints = false
-        videoOutputView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-        view.addSubview(videoOutputView)
-        NSLayoutConstraint.activate([
-            videoOutputView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            videoOutputView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            videoOutputView.topAnchor.constraint(equalTo: view.topAnchor),
-            videoOutputView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-    }
     
     func humanBoundingBox(for observation: VNRecognizedPointsObservation) -> CGRect {
         var box = CGRect.zero
