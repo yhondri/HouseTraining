@@ -22,7 +22,7 @@ class ExerciseManager: NSObject {
     
     static var shared = ExerciseManager()
     
-    private override init() {
+    override init() {
         // Possible states with valid next states.
         let states = [
             InactiveState([SetupCameraState.self]),

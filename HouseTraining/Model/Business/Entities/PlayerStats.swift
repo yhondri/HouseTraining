@@ -7,6 +7,7 @@
 
 import UIKit
 import Vision
+import os.log
 
 enum ThrowType: String, CaseIterable {
     case overhand = "Overhand"
@@ -202,18 +203,33 @@ enum AppError: Error {
 }
 
 
-let jointsOfInterest: [VNRecognizedPointKey] = [VNRecognizedPointKey.bodyLandmarkKeyLeftWrist,
-    .bodyLandmarkKeyRightWrist,
-    .bodyLandmarkKeyLeftElbow,
-    .bodyLandmarkKeyRightElbow,
-    .bodyLandmarkKeyLeftShoulder,
-    .bodyLandmarkKeyRightShoulder,
-    .bodyLandmarkKeyLeftHip,
-    .bodyLandmarkKeyRightHip,
-    .bodyLandmarkKeyLeftKnee,
-    .bodyLandmarkKeyRightKnee,
-    .bodyLandmarkKeyLeftAnkle,
-    .bodyLandmarkKeyRightAnkle
+let jointsOfInterest: [VNHumanBodyPoseObservation.JointName] = [.rightWrist,
+                                                                .rightElbow,
+                                                                .rightShoulder,
+                                                                .rightHip,
+                                                                .rightKnee,
+                                                                .rightAnkle,
+                                                                .leftWrist,
+                                                                .leftElbow,
+                                                                .leftShoulder,
+                                                                .leftHip,
+                                                                .leftKnee,
+                                                                .leftAnkle
+]
+
+let humanBodyPoseJoinNameTranslator: [VNRecognizedPointKey: VNHumanBodyPoseObservation.JointName] = [
+    VNRecognizedPointKey.bodyLandmarkKeyRightWrist: VNHumanBodyPoseObservation.JointName.rightWrist,
+    VNRecognizedPointKey.bodyLandmarkKeyLeftWrist: VNHumanBodyPoseObservation.JointName.leftWrist,
+    VNRecognizedPointKey.bodyLandmarkKeyRightElbow: VNHumanBodyPoseObservation.JointName.rightElbow,
+    VNRecognizedPointKey.bodyLandmarkKeyLeftElbow: VNHumanBodyPoseObservation.JointName.leftElbow,
+    VNRecognizedPointKey.bodyLandmarkKeyRightShoulder: VNHumanBodyPoseObservation.JointName.rightShoulder,
+    VNRecognizedPointKey.bodyLandmarkKeyLeftShoulder: VNHumanBodyPoseObservation.JointName.leftShoulder,
+    VNRecognizedPointKey.bodyLandmarkKeyRightHip: VNHumanBodyPoseObservation.JointName.rightHip,
+    VNRecognizedPointKey.bodyLandmarkKeyLeftHip: VNHumanBodyPoseObservation.JointName.leftHip,
+    VNRecognizedPointKey.bodyLandmarkKeyRightKnee: VNHumanBodyPoseObservation.JointName.rightKnee,
+    VNRecognizedPointKey.bodyLandmarkKeyLeftKnee: VNHumanBodyPoseObservation.JointName.leftKnee,
+    VNRecognizedPointKey.bodyLandmarkKeyRightAnkle: VNHumanBodyPoseObservation.JointName.rightAnkle,
+    VNRecognizedPointKey.bodyLandmarkKeyLeftAnkle: VNHumanBodyPoseObservation.JointName.leftAnkle
 ]
 
 func armJoints(for observation: VNRecognizedPointsObservation) -> (CGPoint, CGPoint) {
@@ -224,10 +240,12 @@ func armJoints(for observation: VNRecognizedPointsObservation) -> (CGPoint, CGPo
         return (rightElbow, rightWrist)
     }
     for (key, point) in identifiedPoints where point.confidence > 0.1 {
-        switch key {
-        case .bodyLandmarkKeyRightElbow:
+        guard let mKey = humanBodyPoseJoinNameTranslator[key] else { continue }
+        
+        switch mKey {
+        case .rightElbow:
             rightElbow = point.location
-        case .bodyLandmarkKeyRightWrist:
+        case .rightWrist:
             rightWrist = point.location
         default:
             break
@@ -236,15 +254,16 @@ func armJoints(for observation: VNRecognizedPointsObservation) -> (CGPoint, CGPo
     return (rightElbow, rightWrist)
 }
 
-func getBodyJointsFor(observation: VNRecognizedPointsObservation) -> ([String: CGPoint]) {
-    var joints = [String: CGPoint]()
+func getBodyJointsFor(observation: VNRecognizedPointsObservation) -> ([VNHumanBodyPoseObservation.JointName: CGPoint]) {
+    var joints = [VNHumanBodyPoseObservation.JointName: CGPoint]()
     guard let identifiedPoints = try? observation.recognizedPoints(forGroupKey: .all) else {
         return joints
     }
-    for (key, point) in identifiedPoints {
-        guard point.confidence > 0.1 else { continue }
-        if jointsOfInterest.contains(key) {
-            joints[key.rawValue] = point.location
+    for (key, point) in identifiedPoints where point.confidence > 0.1 {
+        guard let mKey = humanBodyPoseJoinNameTranslator[key] else { continue }
+        
+        if jointsOfInterest.contains(mKey) {
+            joints[mKey] = point.location
         }
     }
     return joints

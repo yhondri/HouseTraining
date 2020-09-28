@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56415DF5251A4D1F00B688DE /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */; };
+		56415DF6251A4D1F00B688DE /* WorkoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56415DF4251A4D1F00B688DE /* WorkoutViewController.xib */; };
+		56415DFE251A4F1B00B688DE /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */; };
 		567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCAF24C0A1F000A23864 /* AppDelegate.swift */; };
 		567ADCB424C0A1F000A23864 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCB324C0A1F000A23864 /* ViewController.swift */; };
 		567ADCB724C0A1F000A23864 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 567ADCB524C0A1F000A23864 /* Main.storyboard */; };
@@ -31,6 +34,7 @@
 		567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */; };
 		567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
+		56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6FA30251CF9080027CBDB /* JointSegmentView.swift */; };
 		56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */; };
 		56B766D624E2AC9A0005330D /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D524E2AC9A0005330D /* CameraViewModel.swift */; };
 		56B766D924E2C1540005330D /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D824E2C1540005330D /* VisionHelper.swift */; };
@@ -56,6 +60,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
+		56415DF4251A4D1F00B688DE /* WorkoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutViewController.xib; sourceTree = "<group>"; };
+		56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
 		567ADCAC24C0A1F000A23864 /* HouseTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HouseTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		567ADCAF24C0A1F000A23864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		567ADCB324C0A1F000A23864 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +93,7 @@
 		567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
+		56A6FA30251CF9080027CBDB /* JointSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointSegmentView.swift; sourceTree = "<group>"; };
 		56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		56B766D524E2AC9A0005330D /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		56B766D824E2C1540005330D /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
@@ -118,6 +126,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		56415DF2251A4CA800B688DE /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */,
+				56A6FA30251CF9080027CBDB /* JointSegmentView.swift */,
+				56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */,
+				56415DF4251A4D1F00B688DE /* WorkoutViewController.xib */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
 		567ADCA324C0A1F000A23864 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +166,7 @@
 				567ADCE824C0A6D500A23864 /* ExerciseSetup */,
 				567ADD0124C0A93F00A23864 /* ExerciseViewController */,
 				567ADCEC24C0A75F00A23864 /* ExerciseManager */,
+				56415DF2251A4CA800B688DE /* Workout */,
 				567ADCE424C0A27B00A23864 /* Resources */,
 				567ADCE324C0A27200A23864 /* Model */,
 				56B646AB24D9CEE200C959BE /* Utils */,
@@ -390,6 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56415DF6251A4D1F00B688DE /* WorkoutViewController.xib in Resources */,
 				567ADD0524C0A96300A23864 /* ExerciseViewController.xib in Resources */,
 				567ADD0024C0A91C00A23864 /* SetupViewController.xib in Resources */,
 				567ADCBF24C0A1F100A23864 /* LaunchScreen.storyboard in Resources */,
@@ -425,6 +446,7 @@
 				567ADD0424C0A96300A23864 /* ExerciseViewController.swift in Sources */,
 				567ADCE724C0A41100A23864 /* ExercisePickerTableViewController.swift in Sources */,
 				567ADCF224C0A7AC00A23864 /* ExerciseStateChangeNotification.swift in Sources */,
+				56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */,
 				567ADCB424C0A1F000A23864 /* ViewController.swift in Sources */,
 				567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */,
 				567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */,
@@ -435,7 +457,9 @@
 				567ADCFF24C0A91C00A23864 /* SetupViewController.swift in Sources */,
 				567ADCEE24C0A77500A23864 /* ExerciseManager.swift in Sources */,
 				5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */,
+				56415DFE251A4F1B00B688DE /* WorkoutViewModel.swift in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
+				56415DF5251A4D1F00B688DE /* WorkoutViewController.swift in Sources */,
 				567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */,
 				567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */,
 				567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */,
