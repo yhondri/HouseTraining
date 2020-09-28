@@ -18,6 +18,8 @@ class WorkoutViewModel: NSObject {
     private(set) var cameraFeedSession: AVCaptureSession?
     private(set) var displayLink: CADisplayLink?
     private(set) var playerDetected = false
+    var currentCountDown = 30.0
+    var detectPlayerActivity: Bool = false
 
     //Vision
     private let detectPlayerRequest = VNDetectHumanBodyPoseRequest()
@@ -121,6 +123,10 @@ class WorkoutViewModel: NSObject {
         session.commitConfiguration()
         cameraFeedSession = session
     }
+    
+    func onEndActivity() {
+        
+    }
 }
 
 // MARK: CameraOuput manager
@@ -148,10 +154,15 @@ extension WorkoutViewModel {
             
             if let observation = detectPlayerRequest.results?.first {
                 playerRequest.send(observation)
-                detectPose(observation: observation)
-                if !playerDetected {
-                    gameManager.stateMachine.enter(DetectedPlayerState.self)
+                
+                guard detectPlayerActivity else {
+                    return
                 }
+
+                detectPose(observation: observation)
+//                if !playerDetected {
+//                    gameManager.stateMachine.enter(DetectedPlayerState.self)
+//                }
             }
             //                else {
             //                    debugPrint("Else result detect player")

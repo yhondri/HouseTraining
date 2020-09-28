@@ -12,7 +12,14 @@ import Combine
 
 class WorkoutViewController: UIViewController {
     
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var workoutInfoContentView: UIView!
+    @IBOutlet weak var heartRateLabel: UILabel!
+    @IBOutlet weak var currentActivityLabel: UILabel!
+    
+    private var timer: Timer?
+    private var countDown: Double = 0.0
     
     // Live camera feed management
     private(set) var cameraFeedView: CameraFeedView!
@@ -33,7 +40,7 @@ class WorkoutViewController: UIViewController {
         do {
             try viewModel.setupAVSession(avcaptureVideoDataOutputSampleBufferDelegate: self)
             setupCameraFeedSession()
-            setUIElements()            
+            setUIElements()
         } catch {
             debugPrint("Show error, session couldn't be started ", error)
         }
@@ -41,6 +48,9 @@ class WorkoutViewController: UIViewController {
         workoutInfoContentView.layer.cornerRadius = 12
         workoutInfoContentView.layer.masksToBounds = true
         view.sendSubviewToBack(cameraFeedView)
+        
+        let pauseGesture = UITapGestureRecognizer(target: self, action: #selector(onChangeActivityState))
+        view.addGestureRecognizer(pauseGesture)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -53,7 +63,52 @@ class WorkoutViewController: UIViewController {
         let videoOrientation: AVCaptureVideoOrientation = getVideoOrientation()
         cameraFeedView.changeVideoOrientation(newOrientation: videoOrientation)
     }
-
+    
+    @objc private func onChangeActivityState() {
+        if viewModel.detectPlayerActivity {
+            pauseActivity()
+        } else {
+           onResumeActivity()
+        }
+    }
+    
+    private func onResumeActivity() {
+        viewModel.detectPlayerActivity = true
+        invalidateTimer()
+        
+        countDown = viewModel.currentCountDown
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                     target: self,
+                                     selector: #selector(updateCountDown),
+                                     userInfo: nil, repeats: true)
+    }
+    
+    private func invalidateTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc private func pauseActivity() {
+        invalidateTimer()
+        viewModel.detectPlayerActivity = false
+        viewModel.currentCountDown = countDown
+    }
+    
+    @objc private func updateCountDown() {
+        if(countDown > 0) {
+            countDown -= 1
+            timerLabel.text = String(countDown)
+        } else {
+            onEndActivity()
+        }
+    }
+        
+    private func onEndActivity() {
+        pauseActivity()
+        viewModel.onEndActivity()
+    }
+    
     private func updateHumanBodyPose(reconizedPointsObservation: VNRecognizedPointsObservation) {
         let box = humanBoundingBox(for: reconizedPointsObservation)
         let boxView = playerBoundingBox
