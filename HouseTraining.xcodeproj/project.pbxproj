@@ -129,6 +129,7 @@
 		56415DF2251A4CA800B688DE /* Workout */ = {
 			isa = PBXGroup;
 			children = (
+				567ADCF324C0A7F000A23864 /* CameraFeedView.swift */,
 				56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */,
 				56A6FA30251CF9080027CBDB /* JointSegmentView.swift */,
 				56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */,
@@ -245,7 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				567ADCEA24C0A72E00A23864 /* CameraViewController.swift */,
-				567ADCF324C0A7F000A23864 /* CameraFeedView.swift */,
 				56B766D524E2AC9A0005330D /* CameraViewModel.swift */,
 			);
 			path = Camera;
