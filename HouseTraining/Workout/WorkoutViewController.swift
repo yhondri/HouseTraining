@@ -28,7 +28,15 @@ class WorkoutViewController: UIViewController {
     private let playerBoundingBox = BoundingBoxView()
     private let jointSegmentView = JointSegmentView()
     private var cancellables = [AnyCancellable]()
-
+    
+    init() {
+        super.init(nibName: "WorkoutViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,15 +61,31 @@ class WorkoutViewController: UIViewController {
         view.addGestureRecognizer(pauseGesture)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let maskOrientation: UIInterfaceOrientationMask
+        let interfaceOrientation: UIInterfaceOrientation
+        
+        super.viewWillAppear(animated)
+        if viewModel.orientation == .upMirrored {
+            maskOrientation = .portrait
+            interfaceOrientation = .portrait
+        } else {
+            maskOrientation = .landscapeRight
+            interfaceOrientation = .landscapeRight
+        }
+        
+        AppUtility.lockOrientation(maskOrientation, andRotateTo: interfaceOrientation)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel.viewDidDissapear()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        let videoOrientation: AVCaptureVideoOrientation = getVideoOrientation()
-        cameraFeedView.changeVideoOrientation(newOrientation: videoOrientation)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
     }
     
     @objc private func onChangeActivityState() {
@@ -159,11 +183,8 @@ extension WorkoutViewController {
 // MARK: - Camera setup
 extension WorkoutViewController {
     private func setupCameraFeedSession() {
-        // Get the interface orientaion from window scene to set proper video orientation on capture connection.
-        let videoOrientation: AVCaptureVideoOrientation = getVideoOrientation()
-        debugPrint("setupCameraFeedSession ", videoOrientation)
         // Create and setup video feed view
-        cameraFeedView = CameraFeedView(frame: view.bounds, session: viewModel.cameraFeedSession!, videoOrientation: videoOrientation)
+        cameraFeedView = CameraFeedView(frame: view.bounds, session: viewModel.cameraFeedSession!, videoOrientation: viewModel.sessionVideoOrientation)
         
         cameraFeedView.translatesAutoresizingMaskIntoConstraints = false
         cameraFeedView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
@@ -177,18 +198,6 @@ extension WorkoutViewController {
         
         viewModel.cameraFeedSession!.startRunning()
     }
-    
-    private func getVideoOrientation() -> AVCaptureVideoOrientation {
-        debugPrint("UIDevice.current.orientation.isLandscape ", UIDevice.current.orientation.isLandscape)
-        if UIDevice.current.orientation.isLandscape {
-            debugPrint("Orientation landscapeRight")
-            return .landscapeRight
-        } else {
-            debugPrint("Orientation portrait")
-            return .portrait
-        }
-    }
-    
     
     func humanBoundingBox(for observation: VNRecognizedPointsObservation) -> CGRect {
         var box = CGRect.zero
@@ -226,32 +235,10 @@ extension WorkoutViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput,
                        didOutput sampleBuffer: CMSampleBuffer,
                        from connection: AVCaptureConnection) {
-        
-        let orientation = getImageOrientation()
-                
-        viewModel.cameraViewController(self, didReceiveBuffer: sampleBuffer, orientation: orientation)
+                        
+        viewModel.cameraViewController(self, didReceiveBuffer: sampleBuffer)
         DispatchQueue.main.async {
         
         }
-    }
-    
-    func getImageOrientation() -> CGImagePropertyOrientation{
-        let curDeviceOrientation = UIDevice.current.orientation
-        let exifOrientation: CGImagePropertyOrientation
-
-        switch curDeviceOrientation {
-        case UIDeviceOrientation.portraitUpsideDown:  // Device oriented vertically, home button on the top
-            exifOrientation = .left
-        case UIDeviceOrientation.landscapeLeft:       // Device oriented horizontally, home button on the right
-            exifOrientation = .upMirrored
-        case UIDeviceOrientation.landscapeRight:      // Device oriented horizontally, home button on the left
-            exifOrientation = .down
-        case UIDeviceOrientation.portrait:            // Device oriented vertically, home button on the bottom
-            exifOrientation = .up
-        default:
-            exifOrientation = .up
-        }
-        
-        return exifOrientation
     }
 }

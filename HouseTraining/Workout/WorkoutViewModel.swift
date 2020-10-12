@@ -5,6 +5,7 @@
 //  Created by Yhondri on 22/09/2020.
 //
 
+import UIKit
 import Dispatch
 import AVFoundation
 import Vision
@@ -53,11 +54,21 @@ class WorkoutViewModel: NSObject {
         }
     }
     
+    ///  .upMirrored = LandscapeLeft. .right = Potrait camera top.
+    let orientation: CGImagePropertyOrientation = .upMirrored//.right
+    let sessionVideoOrientation: AVCaptureVideoOrientation
+    
     override init() {
         videoDataOutputQueue = DispatchQueue(label: "CameraFeedDataOutput",
                                              qos: .userInitiated,
                                              attributes: [],
                                              autoreleaseFrequency: .workItem)
+        
+        if orientation == .upMirrored {
+            sessionVideoOrientation = .portrait
+        } else {
+            sessionVideoOrientation = .landscapeRight
+        }
     }
     
     func viewDidDissapear() {
@@ -132,8 +143,7 @@ class WorkoutViewModel: NSObject {
 // MARK: CameraOuput manager
 extension WorkoutViewModel {
     func cameraViewController(_ controller: WorkoutViewController,
-                              didReceiveBuffer buffer: CMSampleBuffer,
-                              orientation: CGImagePropertyOrientation) {
+                              didReceiveBuffer buffer: CMSampleBuffer) {
         let visionHandler = VNImageRequestHandler(cmSampleBuffer: buffer, orientation: orientation, options: [:])
 //        if gameManager.stateMachine.currentState is TrackThrowsState {
 //            DispatchQueue.main.async {

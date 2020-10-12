@@ -51,7 +51,7 @@ class JointSegmentView: UIView, AnimatedTransitioning {
     }
 
     private func updatePathLayer() {
-        //With this we can flip the view to vertical.... 
+        //With this we can flip the view to vertical....
         let flipVertical = CGAffineTransform.verticalFlip
         let flipHorizontal = CGAffineTransform.horizontalFlip
         let scaleToBounds = CGAffineTransform(scaleX: bounds.width, y: bounds.height)
