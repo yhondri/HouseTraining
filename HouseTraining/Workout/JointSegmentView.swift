@@ -62,7 +62,7 @@ class JointSegmentView: UIView, AnimatedTransitioning {
         for index in 0 ..< jointsOfInterest.count {
             if let nextJoint = joints[jointsOfInterest[index]] {
                 let nextJointScaled = nextJoint
-                    .rotateToVertical()
+                    .applying(CGAffineTransform.verticalFlip)
                     .applying(scaleToBounds)
                 let nextJointPath = UIBezierPath(arcCenter: nextJointScaled,
                                                  radius: jointRadius,

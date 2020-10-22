@@ -14,14 +14,18 @@ import Combine
 class WorkoutViewModel: NSObject {
     let videoDataOutputQueue: DispatchQueue
     let playerRequest = PassthroughSubject<VNRecognizedPointsObservation, Never>()
-
+    
+    
     private let gameManager: ExerciseManager = ExerciseManager()
     private(set) var cameraFeedSession: AVCaptureSession?
     private(set) var displayLink: CADisplayLink?
     private(set) var playerDetected = false
     var currentCountDown = 30.0
     var detectPlayerActivity: Bool = false
-
+    ///  .upMirrored = LandscapeLeft. .right = Potrait camera top.
+    let orientation: CGImagePropertyOrientation = .right
+    let sessionVideoOrientation: AVCaptureVideoOrientation
+    
     //Vision
     private let detectPlayerRequest = VNDetectHumanBodyPoseRequest()
     //VNConfidence
@@ -54,17 +58,13 @@ class WorkoutViewModel: NSObject {
         }
     }
     
-    ///  .upMirrored = LandscapeLeft. .right = Potrait camera top.
-    let orientation: CGImagePropertyOrientation = .upMirrored//.right
-    let sessionVideoOrientation: AVCaptureVideoOrientation
-    
     override init() {
         videoDataOutputQueue = DispatchQueue(label: "CameraFeedDataOutput",
                                              qos: .userInitiated,
                                              attributes: [],
                                              autoreleaseFrequency: .workItem)
         
-        if orientation == .upMirrored {
+        if orientation == .right {
             sessionVideoOrientation = .portrait
         } else {
             sessionVideoOrientation = .landscapeRight
@@ -195,10 +195,10 @@ extension WorkoutViewModel {
         self.playerStats.storeObservation(observation)
         self.posesCount += 1
         
-        debugPrint("Detect pose", self.posesCount)
+//        debugPrint("Detect pose", self.posesCount)
         
         if self.posesCount >= self.posesNeeded {
-            //                debugPrint("posesCount insede", posesCount)
+                            debugPrint("posesCount insede", posesCount)
             
             let throwType = self.playerStats.getLastThrowType()
             //                    debugPrint("ThrowType", throwType)

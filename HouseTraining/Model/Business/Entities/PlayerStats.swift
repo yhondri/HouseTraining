@@ -98,7 +98,7 @@ struct PlayerStats {
             return .none
         }
              
-        debugPrint("predictions.label.capitalized ", predictions.labelProbabilities)
+//        debugPrint("predictions.label.capitalized ", predictions.labelProbabilities)
 
         
         guard  let throwType = ThrowType(rawValue: predictions.label.capitalized) else {
@@ -109,7 +109,7 @@ struct PlayerStats {
             debugPrint("throwTyp ", throwType, predictions.label.capitalized)
 //            resetObservations()
         } else {
-            debugPrint("ELSE", predictions.label.capitalized)
+//            debugPrint("ELSE", predictions.label.capitalized)
         }
 
         return throwType
@@ -285,16 +285,7 @@ extension CGPoint {
 
 extension CGAffineTransform {
     static var verticalFlip = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
-    static var horizontalFlip = CGAffineTransform(rotationAngle: CGFloat.pi/2).translatedBy(x: 0, y: -1)
-    
-}
-
-extension CGPoint {
-    func rotateToVertical() -> CGPoint {
-        self.applying(CGAffineTransform.verticalFlip)
-            .applying(CGAffineTransform.horizontalFlip)
-            .applying(CGAffineTransform.verticalFlip)
-    }
+    static var horizontalFlip = CGAffineTransform(rotationAngle: CGFloat.pi/2).translatedBy(x: 0, y: -1)    
 }
 
 extension UIBezierPath {

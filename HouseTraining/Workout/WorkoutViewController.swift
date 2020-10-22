@@ -66,7 +66,7 @@ class WorkoutViewController: UIViewController {
         let interfaceOrientation: UIInterfaceOrientation
         
         super.viewWillAppear(animated)
-        if viewModel.orientation == .upMirrored {
+        if viewModel.orientation == .right {
             maskOrientation = .portrait
             interfaceOrientation = .portrait
         } else {
