@@ -51,7 +51,6 @@ class JointSegmentView: UIView, AnimatedTransitioning {
     }
 
     private func updatePathLayer() {
-        let flipVertical = CGAffineTransform.verticalFlip
         let scaleToBounds = CGAffineTransform(scaleX: bounds.width, y: bounds.height)
         jointPath.removeAllPoints()
         jointSegmentPath.removeAllPoints()
@@ -62,9 +61,14 @@ class JointSegmentView: UIView, AnimatedTransitioning {
         // Add all joints and segments
         for index in 0 ..< jointsOfInterest.count {
             if let nextJoint = joints[jointsOfInterest[index]] {
-                let nextJointScaled = nextJoint.applying(flipVertical).applying(scaleToBounds)
-                let nextJointPath = UIBezierPath(arcCenter: nextJointScaled, radius: jointRadius,
-                                                 startAngle: CGFloat(0), endAngle: CGFloat.pi * 2, clockwise: true)
+                let nextJointScaled = nextJoint
+                    .applying(CGAffineTransform.verticalFlip)
+                    .applying(scaleToBounds)
+                let nextJointPath = UIBezierPath(arcCenter: nextJointScaled,
+                                                 radius: jointRadius,
+                                                 startAngle: CGFloat(0),
+                                                 endAngle: CGFloat.pi * 2,
+                                                 clockwise: true)
                 jointPath.append(nextJointPath)
                 
                 if index <= 5 {
@@ -96,5 +100,16 @@ class JointSegmentView: UIView, AnimatedTransitioning {
         
         jointLayer.path = jointPath.cgPath
         jointSegmentLayer.path = jointSegmentPath.cgPath
+    }
+}
+
+extension UIBezierPath {
+    func rotateAroundCenter(angle: CGFloat) {
+        let center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
+        var transform = CGAffineTransform.identity
+        transform = transform.translatedBy(x: center.x, y: center.y)
+        transform = transform.rotated(by: angle)
+        transform = transform.translatedBy(x: -center.x, y: -center.y)
+        self.apply(transform)
     }
 }

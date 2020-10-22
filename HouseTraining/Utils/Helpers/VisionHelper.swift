@@ -17,8 +17,10 @@ struct VisionHelper {
     //
     // Vision coordinates have origin at the bottom left corner and are normalized from 0 to 1 for both dimensions.
     //
-    static func viewRectForVisionRect(_ visionRect: CGRect, cameraFeedView: CameraFeedView) -> CGRect {
-        let flippedRect = visionRect.applying(CGAffineTransform.verticalFlip)
+    static func viewRectForVisionRect(_ visionRect: CGRect,
+                                      cameraFeedView: CameraFeedView,
+                                      transfrom: CGAffineTransform = CGAffineTransform.verticalFlip) -> CGRect {
+        let flippedRect = visionRect.applying(transfrom)
         return cameraFeedView.viewRectConverted(fromNormalizedContentsRect: flippedRect)
     }
     

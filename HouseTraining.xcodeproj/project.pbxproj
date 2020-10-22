@@ -34,6 +34,7 @@
 		567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */; };
 		567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
+		56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A1506C2534631F00F7F9D0 /* AppUtility.swift */; };
 		56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6FA30251CF9080027CBDB /* JointSegmentView.swift */; };
 		56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */; };
 		56B766D624E2AC9A0005330D /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D524E2AC9A0005330D /* CameraViewModel.swift */; };
@@ -93,6 +94,7 @@
 		567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
+		56A1506C2534631F00F7F9D0 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		56A6FA30251CF9080027CBDB /* JointSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointSegmentView.swift; sourceTree = "<group>"; };
 		56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		56B766D524E2AC9A0005330D /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 		56415DF2251A4CA800B688DE /* Workout */ = {
 			isa = PBXGroup;
 			children = (
+				567ADCF324C0A7F000A23864 /* CameraFeedView.swift */,
 				56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */,
 				56A6FA30251CF9080027CBDB /* JointSegmentView.swift */,
 				56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */,
@@ -196,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				567ADCAF24C0A1F000A23864 /* AppDelegate.swift */,
+				56A1506C2534631F00F7F9D0 /* AppUtility.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -245,7 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				567ADCEA24C0A72E00A23864 /* CameraViewController.swift */,
-				567ADCF324C0A7F000A23864 /* CameraFeedView.swift */,
 				56B766D524E2AC9A0005330D /* CameraViewModel.swift */,
 			);
 			path = Camera;
@@ -462,6 +465,7 @@
 				56415DF5251A4D1F00B688DE /* WorkoutViewController.swift in Sources */,
 				567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */,
 				567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */,
+				56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */,
 				567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */,
 				567ADCEB24C0A72E00A23864 /* CameraViewController.swift in Sources */,
 				567ADCF024C0A79C00A23864 /* State.swift in Sources */,

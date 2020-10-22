@@ -131,7 +131,7 @@ class ExerciseViewController: UIViewController, AVCaptureVideoDataOutputSampleBu
             self.playerStats.storeObservation(observation)
             self.posesCount += 1
         
-        debugPrint("Detect pose", self.posesCount)
+//        debugPrint("Detect pose", self.posesCount)
             
             if self.posesCount >= self.posesNeeded {
 //                debugPrint("posesCount insede", posesCount)

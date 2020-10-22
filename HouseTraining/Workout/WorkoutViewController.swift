@@ -28,7 +28,15 @@ class WorkoutViewController: UIViewController {
     private let playerBoundingBox = BoundingBoxView()
     private let jointSegmentView = JointSegmentView()
     private var cancellables = [AnyCancellable]()
-
+    
+    init() {
+        super.init(nibName: "WorkoutViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,15 +61,31 @@ class WorkoutViewController: UIViewController {
         view.addGestureRecognizer(pauseGesture)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let maskOrientation: UIInterfaceOrientationMask
+        let interfaceOrientation: UIInterfaceOrientation
+        
+        super.viewWillAppear(animated)
+        if viewModel.orientation == .right {
+            maskOrientation = .portrait
+            interfaceOrientation = .portrait
+        } else {
+            maskOrientation = .landscapeRight
+            interfaceOrientation = .landscapeRight
+        }
+        
+        AppUtility.lockOrientation(maskOrientation, andRotateTo: interfaceOrientation)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel.viewDidDissapear()
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        let videoOrientation: AVCaptureVideoOrientation = getVideoOrientation()
-        cameraFeedView.changeVideoOrientation(newOrientation: videoOrientation)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
     }
     
     @objc private func onChangeActivityState() {
@@ -100,7 +124,7 @@ class WorkoutViewController: UIViewController {
             countDown -= 1
             timerLabel.text = String(countDown)
         } else {
-            onEndActivity()
+//            onEndActivity()
         }
     }
         
@@ -116,13 +140,13 @@ class WorkoutViewController: UIViewController {
             let inset: CGFloat = -20.0
             let viewRect = VisionHelper.viewRectForVisionRect(box, cameraFeedView: self.cameraFeedView).insetBy(dx: inset, dy: inset)
             self.updateBoundingBox(boxView, withRect: viewRect)
-//            if !self.playerDetected && !boxView.isHidden {
-//                //                            self.gameStatusLabel.alpha = 0
-//                //                            self.resetTrajectoryRegions()
-//                self.gameManager.stateMachine.enter(DetectedPlayerState.self)
-//            }
             
-//            self.detectPose(observation: result)
+            // Fetch body joints from the observation and overlay them on the player.
+            let joints = getBodyJointsFor(observation: reconizedPointsObservation)
+            self.jointSegmentView.joints = joints
+            
+            let normalizedFrame = CGRect(x: 0, y: 0, width: 1, height: 1)
+            self.jointSegmentView.frame = VisionHelper.viewRectForVisionRect(normalizedFrame, cameraFeedView: self.cameraFeedView)
         }
     }
 }
@@ -133,11 +157,11 @@ extension WorkoutViewController {
 //        resetKPILabels()
         playerBoundingBox.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         playerBoundingBox.backgroundOpacity = 0
-        playerBoundingBox.isHidden = true
+//        playerBoundingBox.isHidden = true
         view.addSubview(playerBoundingBox)
-        view.bringSubviewToFront(playerBoundingBox)
         view.addSubview(jointSegmentView)
-//        view.addSubview(trajectoryView)
+
+        //        view.addSubview(trajectoryView)
 //        gameStatusLabel.text = "Waiting for player"
 //        // Set throw type counters
 //        underhandThrowView.throwType = .underhand
@@ -146,21 +170,21 @@ extension WorkoutViewController {
 //        scoreLabel.attributedText = getScoreLabelAttributedStringForScore(0)
     }
 
-    func updateBoundingBox(_ boundingBox: BoundingBoxView, withRect rect: CGRect?) {
+    func updateBoundingBox(_ view: UIView, withRect rect: CGRect?) {
         // Update the frame for player bounding box
-        boundingBox.frame = rect ?? .zero
-        boundingBox.perform(transition: (rect == nil ? .fadeOut : .fadeIn), duration: 0.1)
+        view.frame = rect ?? .zero
+        
+        if let view = view as? AnimatedTransitioning {
+            view.perform(transition: (rect == nil ? .fadeOut : .fadeIn), duration: 0.1)
+        }
     }
 }
 
 // MARK: - Camera setup
 extension WorkoutViewController {
     private func setupCameraFeedSession() {
-        // Get the interface orientaion from window scene to set proper video orientation on capture connection.
-        let videoOrientation: AVCaptureVideoOrientation = getVideoOrientation()
-        
         // Create and setup video feed view
-        cameraFeedView = CameraFeedView(frame: view.bounds, session: viewModel.cameraFeedSession!, videoOrientation: videoOrientation)
+        cameraFeedView = CameraFeedView(frame: view.bounds, session: viewModel.cameraFeedSession!, videoOrientation: viewModel.sessionVideoOrientation)
         
         cameraFeedView.translatesAutoresizingMaskIntoConstraints = false
         cameraFeedView.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
@@ -174,16 +198,6 @@ extension WorkoutViewController {
         
         viewModel.cameraFeedSession!.startRunning()
     }
-    
-    private func getVideoOrientation() -> AVCaptureVideoOrientation {
-        debugPrint("UIDevice.current.orientation.isLandscape ", UIDevice.current.orientation.isLandscape)
-        if UIDevice.current.orientation.isLandscape {
-            return .landscapeRight
-        } else {
-            return .portrait
-        }
-    }
-    
     
     func humanBoundingBox(for observation: VNRecognizedPointsObservation) -> CGRect {
         var box = CGRect.zero
@@ -202,11 +216,7 @@ extension WorkoutViewController {
         if !normalizedBoundingBox.isNull {
             box = normalizedBoundingBox
         }
-//        // Fetch body joints from the observation and overlay them on the player.
-        let joints = getBodyJointsFor(observation: observation)
-        DispatchQueue.main.async {
-            self.jointSegmentView.joints = joints
-        }
+        
         // Store the body pose observation in playerStats when the game is in TrackThrowsState.
         // We will use these observations for action classification once the throw is complete.
 //        if gameManager.stateMachine.currentState is TrackThrowsState {
@@ -225,26 +235,10 @@ extension WorkoutViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput,
                        didOutput sampleBuffer: CMSampleBuffer,
                        from connection: AVCaptureConnection) {
-        viewModel.cameraViewController(self, didReceiveBuffer: sampleBuffer, orientation: .up)
+                        
+        viewModel.cameraViewController(self, didReceiveBuffer: sampleBuffer)
         DispatchQueue.main.async {
-            let normalizedFrame = CGRect(x: 0, y: 0, width: 1, height: 1)
-            self.jointSegmentView.frame = self.viewRectForVisionRect(normalizedFrame)
-            self.viewModel.captureOutput()
+        
         }
     }
-    
-    // This helper function is used to convert rects returned by Vision to the video content rect coordinates.
-    //
-    // The video content rect (camera preview or pre-recorded video)
-    // is scaled to fit into the view controller's view frame preserving the video's aspect ratio
-    // and centered vertically and horizontally inside the view.
-    //
-    // Vision coordinates have origin at the bottom left corner and are normalized from 0 to 1 for both dimensions.
-    //
-    func viewRectForVisionRect(_ visionRect: CGRect) -> CGRect {
-        let flippedRect = visionRect.applying(CGAffineTransform.verticalFlip)
-        let viewRect: CGRect = cameraFeedView.viewRectConverted(fromNormalizedContentsRect: flippedRect)
-        return viewRect
-    }
-
 }
