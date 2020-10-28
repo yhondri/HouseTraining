@@ -47,12 +47,7 @@ class WorkoutViewController: UIViewController {
         .store(in: &cancellables)
         
         viewModel.userActionRequest.sink { action in
-            if action.type == .none {
-                self.actionQualityLabel.isHidden = true
-            } else {
-                self.actionQualityLabel.isHidden = false
-                self.actionQualityLabel.text = "Quality: \(action.probability)"
-            }
+            self.updateCurrentActivity(action: action)
         }
         .store(in: &cancellables)
         
@@ -63,6 +58,8 @@ class WorkoutViewController: UIViewController {
         } catch {
             debugPrint("Show error, session couldn't be started ", error)
         }
+        
+        updateCurrentActivity(action: Action())
         
         workoutInfoContentView.layer.cornerRadius = 12
         workoutInfoContentView.layer.masksToBounds = true
@@ -97,6 +94,17 @@ class WorkoutViewController: UIViewController {
         super.viewWillDisappear(animated)
         // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
+    }
+    
+    private func updateCurrentActivity(action: Action) {
+        if action.type == .none {
+            actionQualityLabel.isHidden = true
+            currentActivityLabel.text = "\(LocalizableKey.resting.localized)"
+        } else {
+            actionQualityLabel.isHidden = false
+            currentActivityLabel.text = viewModel.getActionName(action: action.type)
+            actionQualityLabel.text = "\(LocalizableKey.quality.localized): \(action.probability)%"
+        }
     }
     
     @objc private func onChangeActivityState() {

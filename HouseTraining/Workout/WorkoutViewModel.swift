@@ -81,6 +81,15 @@ class WorkoutViewModel: NSObject {
         displayLink?.invalidate()
     }
     
+    func getActionName(action: ActionType) -> String {
+        switch action {
+        case .jumpingJacks:
+            return LocalizableKey.jumpingJacks.localized
+        default:
+            return LocalizableKey.resting.localized
+        }
+    }
+    
     func captureOutput() {
         if gameManager.stateMachine.currentState is SetupCameraState {
             // Once we received first buffer we are ready to proceed to the next state

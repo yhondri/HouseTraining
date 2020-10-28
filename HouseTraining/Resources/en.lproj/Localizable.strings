@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  HouseTraining
+
+  Created by Yhondri on 28/10/2020.
+  
+*/
+
+// WorkoutViewController
+"workoutviewcontroler_quality" = "Calidad";
+"workoutviewcontroler_jumping_jacks" = "Jumping Jacks";
+"workoutviewcontroler_resting" = "Descansando";
