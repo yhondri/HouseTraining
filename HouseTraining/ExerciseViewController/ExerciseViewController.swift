@@ -136,10 +136,10 @@ class ExerciseViewController: UIViewController, AVCaptureVideoDataOutputSampleBu
             if self.posesCount >= self.posesNeeded {
 //                debugPrint("posesCount insede", posesCount)
 
-                let throwType = self.playerStats.getLastThrowType()
-                //                    debugPrint("ThrowType", throwType)
-                
-                self.lastThrowMetrics.updateThrowType(throwType)
+//                let throwType = self.playerStats.getLastThrowType()
+//                //                    debugPrint("ThrowType", throwType)
+//                
+//                self.lastThrowMetrics.updateThrowType(throwType)
                 self.posesCount -= 1
             }
             

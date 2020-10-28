@@ -11,10 +11,10 @@ struct ThrowMetrics {
     var score = Scoring.zero
     var releaseSpeed = 0.0
     var releaseAngle = 0.0
-    var throwType = ThrowType.none
+    var throwType = ActionType.none
     var finalBagLocation: CGPoint = .zero
 
-    mutating func updateThrowType(_ type: ThrowType) {
+    mutating func updateThrowType(_ type: ActionType) {
         throwType = type
     }
 

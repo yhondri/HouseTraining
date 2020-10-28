@@ -170,8 +170,8 @@
 				567ADD0124C0A93F00A23864 /* ExerciseViewController */,
 				567ADCEC24C0A75F00A23864 /* ExerciseManager */,
 				56415DF2251A4CA800B688DE /* Workout */,
-				567ADCE424C0A27B00A23864 /* Resources */,
 				567ADCE324C0A27200A23864 /* Model */,
+				567ADCE424C0A27B00A23864 /* Resources */,
 				56B646AB24D9CEE200C959BE /* Utils */,
 			);
 			path = HouseTraining;

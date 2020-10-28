@@ -17,6 +17,7 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var workoutInfoContentView: UIView!
     @IBOutlet weak var heartRateLabel: UILabel!
     @IBOutlet weak var currentActivityLabel: UILabel!
+    @IBOutlet weak var actionQualityLabel: UILabel!
     
     private var timer: Timer?
     private var countDown: Double = 0.0
@@ -42,6 +43,16 @@ class WorkoutViewController: UIViewController {
 
         viewModel.playerRequest.sink { result in
             self.updateHumanBodyPose(reconizedPointsObservation: result)
+        }
+        .store(in: &cancellables)
+        
+        viewModel.userActionRequest.sink { action in
+            if action.type == .none {
+                self.actionQualityLabel.isHidden = true
+            } else {
+                self.actionQualityLabel.isHidden = false
+                self.actionQualityLabel.text = "Quality: \(action.probability)"
+            }
         }
         .store(in: &cancellables)
         
@@ -237,8 +248,5 @@ extension WorkoutViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                        from connection: AVCaptureConnection) {
                         
         viewModel.cameraViewController(self, didReceiveBuffer: sampleBuffer)
-        DispatchQueue.main.async {
-        
-        }
     }
 }

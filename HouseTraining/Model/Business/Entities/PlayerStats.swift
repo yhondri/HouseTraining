@@ -9,7 +9,17 @@ import UIKit
 import Vision
 import os.log
 
-enum ThrowType: String, CaseIterable {
+struct Action {
+    let type: ActionType
+    let probability: Int
+    
+    init(type: ActionType = .none, probability: Double = 0.0) {
+        self.type = type
+        self.probability = Int(probability*100)
+    }
+}
+
+enum ActionType: String, CaseIterable {
     case overhand = "Overhand"
     case underleg = "Underleg"
     case underhand = "Underhand"
@@ -51,7 +61,7 @@ struct PlayerStats {
 //        poseObservations = []
     }
 
-    mutating func adjustMetrics(score: Scoring, speed: Double, releaseAngle: Double, throwType: ThrowType) {
+    mutating func adjustMetrics(score: Scoring, speed: Double, releaseAngle: Double, throwType: ActionType) {
         throwCount += 1
         totalScore += score.rawValue
         avgSpeed = (avgSpeed * Double(throwCount - 1) + speed) / Double(throwCount)
@@ -85,34 +95,32 @@ struct PlayerStats {
         return releaseAngle
     }
 
-    mutating func getLastThrowType() -> ThrowType {
+    mutating func getAction() -> Action {
         guard let actionClassifier = try? PlayerActionClassifier(configuration: MLModelConfiguration()) else {
-            return .none
-        }
-        guard  let poseMultiArray = prepareInputWithObservations(poseObservations) else {
-            return .none
+            return Action()
         }
         
+        guard let poseMultiArray = prepareInputWithObservations(poseObservations) else {
+            return Action()
+        }
         
-        guard  let predictions = try? actionClassifier.prediction(poses: poseMultiArray) else {
-            return .none
+        guard let predictions = try? actionClassifier.prediction(poses: poseMultiArray) else {
+            return Action()
         }
-             
-//        debugPrint("predictions.label.capitalized ", predictions.labelProbabilities)
-
         
-        guard  let throwType = ThrowType(rawValue: predictions.label.capitalized) else {
-            return .none
+        guard let actionType = ActionType(rawValue: predictions.label.capitalized) else {
+            return Action()
         }
 
-        if throwType == .jumpingJacks || throwType == .other {
-            debugPrint("throwTyp ", throwType, predictions.label.capitalized)
-//            resetObservations()
-        } else {
-//            debugPrint("ELSE", predictions.label.capitalized)
-        }
+//        if throwType == .jumpingJacks || throwType == .other {
+//            
+////            debugPrint("throwTyp ", throwType, predictions.label.capitalized)
+////            resetObservations()
+//        } else {
+////            debugPrint("ELSE", predictions.label.capitalized)
+//        }
 
-        return throwType
+        return Action(type: actionType, probability: predictions.actionProbability)
     }
 }
 

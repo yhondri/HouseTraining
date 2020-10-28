@@ -14,7 +14,8 @@ import Combine
 class WorkoutViewModel: NSObject {
     let videoDataOutputQueue: DispatchQueue
     let playerRequest = PassthroughSubject<VNRecognizedPointsObservation, Never>()
-    
+    let userActionRequest = PassthroughSubject<Action, Never>()
+
     
     private let gameManager: ExerciseManager = ExerciseManager()
     private(set) var cameraFeedSession: AVCaptureSession?
@@ -25,7 +26,9 @@ class WorkoutViewModel: NSObject {
     ///  .upMirrored = LandscapeLeft. .right = Potrait camera top.
     let orientation: CGImagePropertyOrientation = .right
     let sessionVideoOrientation: AVCaptureVideoOrientation
-    
+    ///Nos permite separar las llamadas para detectar la acción actual del usuario. En consejos para mejorar la eficiencia de la acción realizada por el usuario, los ingenieros de Apple aconsejan no hacer llamadas demasiadas veces seguidas.
+    private var detectActionTimer: Timer?
+
     //Vision
     private let detectPlayerRequest = VNDetectHumanBodyPoseRequest()
     //VNConfidence
@@ -138,6 +141,28 @@ class WorkoutViewModel: NSObject {
     func onEndActivity() {
         
     }
+        
+    private func onResumeActivity() {
+        invalidateTimer()
+        
+        guard detectActionTimer == nil else { return }
+        
+        DispatchQueue.main.async {
+            self.detectActionTimer = Timer.scheduledTimer(timeInterval: 5.0,
+                                                          target: self,
+                                                          selector: #selector(self.detectAction),
+                                                          userInfo: nil,
+                                                          repeats: true)
+        }
+    }
+    
+    private func invalidateTimer() {
+        guard detectActionTimer != nil else { return }
+        DispatchQueue.main.async {
+            self.detectActionTimer?.invalidate()
+            self.detectActionTimer = nil
+        }
+    }
 }
 
 // MARK: CameraOuput manager
@@ -145,66 +170,42 @@ extension WorkoutViewModel {
     func cameraViewController(_ controller: WorkoutViewController,
                               didReceiveBuffer buffer: CMSampleBuffer) {
         let visionHandler = VNImageRequestHandler(cmSampleBuffer: buffer, orientation: orientation, options: [:])
-//        if gameManager.stateMachine.currentState is TrackThrowsState {
-//            DispatchQueue.main.async {
-//                // Get the frame of rendered view
-//                let normalizedFrame = CGRect(x: 0, y: 0, width: 1, height: 1)
-//                self.jointSegmentView.frame = controller.viewRectForVisionRect(normalizedFrame)
-//                self.trajectoryView.frame = controller.viewRectForVisionRect(normalizedFrame)
-//            }
-//
-//        }
-        // Body pose request is performed on the same camera queue to ensure the highlighted joints are aligned with the player.
-        // Run bodypose request for additional GameConstants.maxPostReleasePoseObservations frames after the first trajectory observation is detected.
-        /**self.trajectoryView.inFlight && **/
-        //        if !(self.trajectoryInFlightPoseObservations >= GameConstants.maxTrajectoryInFlightPoseObservations) {
+        
         do {
             try visionHandler.perform([detectPlayerRequest])
-            //                debugPrint("Body detected ", detectPlayerRequest.results)
             
             if let observation = detectPlayerRequest.results?.first {
                 playerRequest.send(observation)
                 
                 guard detectPlayerActivity else {
+                    DispatchQueue.main.async {
+                        self.invalidateTimer()
+                    }
                     return
                 }
+                
+                if detectActionTimer == nil {
+                    self.onResumeActivity()
+                }
 
-                detectPose(observation: observation)
-//                if !playerDetected {
-//                    gameManager.stateMachine.enter(DetectedPlayerState.self)
-//                }
+                storeObservation(observation)
             }
-            //                else {
-            //                    debugPrint("Else result detect player")
-            //                }
         } catch {
-            //                AppError.display(error, inViewController: self)
+           debugPrint("Error - WorkoutViewModel - camera(...): ", error)
         }
-        //        } else {
-        //            // Hide player bounding box
-        //            DispatchQueue.main.async {
-        //                if !self.playerBoundingBox.isHidden {
-        //                    self.playerBoundingBox.isHidden = true
-        ////                    self.jointSegmentView.resetView()
-        //                }
-        //            }
-        //        }
     }
     
-    private func detectPose(observation: VNRecognizedPointsObservation) {
-        self.playerStats.storeObservation(observation)
-        self.posesCount += 1
-        
-//        debugPrint("Detect pose", self.posesCount)
-        
-        if self.posesCount >= self.posesNeeded {
-                            debugPrint("posesCount insede", posesCount)
-            
-            let throwType = self.playerStats.getLastThrowType()
-            //                    debugPrint("ThrowType", throwType)
-            
-            self.lastThrowMetrics.updateThrowType(throwType)
-            self.posesCount -= 1
+    private func storeObservation(_ observation: VNRecognizedPointsObservation) {
+        if observation.confidence > bodyPoseDetectionMinConfidence {
+            self.playerStats.storeObservation(observation)
+            self.posesCount += 1
         }
+    }
+    
+    @objc private func detectAction() {
+        ///Confidence to score quality of action
+        let currentAction = self.playerStats.getAction()
+        userActionRequest.send(currentAction)
+//        self.lastThrowMetrics.updateThrowType(throwType)
     }
 }

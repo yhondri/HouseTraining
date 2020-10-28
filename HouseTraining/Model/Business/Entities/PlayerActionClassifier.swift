@@ -46,6 +46,10 @@ class PlayerActionClassifierOutput : MLFeatureProvider {
         return self.provider.featureNames
     }
     
+    var actionProbability: Double {
+        labelProbabilities[label] ?? 0.0
+    }
+    
     func featureValue(for featureName: String) -> MLFeatureValue? {
         return self.provider.featureValue(for: featureName)
     }
