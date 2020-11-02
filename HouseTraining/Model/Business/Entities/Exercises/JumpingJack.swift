@@ -9,7 +9,9 @@ import Foundation
 
 protocol Exercise {
     var actionType: ActionType { get }
-    
+    var actionName: String { get }
+    var scoreValue: String { get }
+
     /**
      Actualiza las estadísticas del ejercicio que se está haciendo.
      
@@ -21,11 +23,14 @@ protocol Exercise {
 }
 
 struct JumpingJacks: Exercise {
-
-    var actionType: ActionType = .jumpingJacks
-    private var numberOfActionDetected = 0
     private var score: Double = 0.0
-
+    private var numberOfActionDetected = 0
+    var actionType: ActionType = .jumpingJacks
+    var actionName: String = "Jumping Jacks"
+    var scoreValue: String {
+        "\(score)%"
+    }
+    
     mutating func didDectectAction(action: Action) {
         numberOfActionDetected += 1
         
@@ -34,3 +39,12 @@ struct JumpingJacks: Exercise {
         }
     }
 }
+
+
+#if DEBUG
+extension JumpingJacks {
+    static func getPreview() -> JumpingJacks {
+        return JumpingJacks()
+    }
+}
+#endif

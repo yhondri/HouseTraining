@@ -184,6 +184,14 @@ class WorkoutViewModel: NSObject {
             self.detectActionTimer = nil
         }
     }
+    
+    func getSummaryData() -> WorkoutSummary {
+         WorkoutSummary(duration: 30,
+                                            successRate: 95,
+                                            heartRate: 123,
+                                            caloriesBurned: 222,
+                                            exercises: exercises)
+    }
 }
 
 // MARK: CameraOuput manager
@@ -224,5 +232,6 @@ extension WorkoutViewModel {
         ///Confidence to score quality of action
         let currentAction = self.playerStats.getAction()
         userActionRequest.send(currentAction)
+        exercises[currentActivityIndex].didDectectAction(action: currentAction)
     }
 }

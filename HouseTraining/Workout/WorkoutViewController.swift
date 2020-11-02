@@ -9,6 +9,7 @@ import UIKit
 import AVFoundation
 import Vision
 import Combine
+import SwiftUI
 
 class WorkoutViewController: UIViewController {
     
@@ -156,10 +157,17 @@ class WorkoutViewController: UIViewController {
         viewModel.onEndActivityDetection()
         
         if viewModel.didFinishRoutine {
-            debugPrint("Routine finished")
+            showSummaryView()
         } else {
             onResumeActivity()
         }
+    }
+    
+    private func showSummaryView() {
+        let workoutSummary = viewModel.getSummaryData()
+        let workoutSummaryView = WorkoutSummaryView(workoutSummary: workoutSummary)
+        let hostingController = UIHostingController(rootView: workoutSummaryView)
+        navigationController?.pushViewController(hostingController, animated: true)
     }
     
     private func updateHumanBodyPose(reconizedPointsObservation: VNRecognizedPointsObservation) {
