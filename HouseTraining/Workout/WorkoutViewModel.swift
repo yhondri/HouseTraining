@@ -15,7 +15,6 @@ class WorkoutViewModel: NSObject {
     let videoDataOutputQueue: DispatchQueue
     let playerRequest = PassthroughSubject<VNRecognizedPointsObservation, Never>()
     let userActionRequest = PassthroughSubject<Action, Never>()
-
     
     private let gameManager: ExerciseManager = ExerciseManager()
     private(set) var cameraFeedSession: AVCaptureSession?

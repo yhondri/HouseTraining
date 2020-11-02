@@ -11,11 +11,11 @@ import os.log
 
 struct Action {
     let type: ActionType
-    let probability: Int
+    let probability: Double
     
     init(type: ActionType = .none, probability: Double = 0.0) {
         self.type = type
-        self.probability = Int(probability*100)
+        self.probability = probability*100
     }
 }
 
