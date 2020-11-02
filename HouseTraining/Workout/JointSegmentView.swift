@@ -1,10 +1,3 @@
-/*
-See LICENSE folder for this sample’s licensing information.
-
-Abstract:
-View that displays a joint segment.
-*/
-
 import UIKit
 import Vision
 
