@@ -21,10 +21,11 @@ class WorkoutViewController: UIViewController {
     
     private var timer: Timer?
     private var countDown: Double = 0.0
+    private var isCounDownRunning = false
     
     // Live camera feed management
     private(set) var cameraFeedView: CameraFeedView!
-    private let viewModel = WorkoutViewModel()
+    private let viewModel = WorkoutViewModel(actions: [.jumpingJacks, .jumpingJacks])
     //Views
     private let playerBoundingBox = BoundingBoxView()
     private let jointSegmentView = JointSegmentView()
@@ -108,7 +109,7 @@ class WorkoutViewController: UIViewController {
     }
     
     @objc private func onChangeActivityState() {
-        if viewModel.detectPlayerActivity {
+        if isCounDownRunning {
             pauseActivity()
         } else {
            onResumeActivity()
@@ -116,7 +117,6 @@ class WorkoutViewController: UIViewController {
     }
     
     private func onResumeActivity() {
-        viewModel.detectPlayerActivity = true
         invalidateTimer()
         
         countDown = viewModel.currentCountDown
@@ -125,16 +125,20 @@ class WorkoutViewController: UIViewController {
                                      target: self,
                                      selector: #selector(updateCountDown),
                                      userInfo: nil, repeats: true)
+        
+        viewModel.onResumeActivityDetection()
+        
+        isCounDownRunning = true
     }
     
     private func invalidateTimer() {
         timer?.invalidate()
         timer = nil
+        isCounDownRunning = false
     }
     
     @objc private func pauseActivity() {
         invalidateTimer()
-        viewModel.detectPlayerActivity = false
         viewModel.currentCountDown = countDown
     }
     
@@ -143,13 +147,19 @@ class WorkoutViewController: UIViewController {
             countDown -= 1
             timerLabel.text = String(countDown)
         } else {
-//            onEndActivity()
+            onEndActivity()
         }
     }
         
     private func onEndActivity() {
         pauseActivity()
-        viewModel.onEndActivity()
+        viewModel.onEndActivityDetection()
+        
+        if viewModel.didFinishRoutine {
+            debugPrint("Routine finished")
+        } else {
+            onResumeActivity()
+        }
     }
     
     private func updateHumanBodyPose(reconizedPointsObservation: VNRecognizedPointsObservation) {

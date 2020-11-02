@@ -114,9 +114,9 @@
 			isa = PBXGroup;
 			children = (
 				567ADCF324C0A7F000A23864 /* CameraFeedView.swift */,
-				56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */,
 				5649352525501C05000F8A5F /* BoundingBoxView.swift */,
 				56A6FA30251CF9080027CBDB /* JointSegmentView.swift */,
+				56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */,
 				56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */,
 				56415DF4251A4D1F00B688DE /* WorkoutViewController.xib */,
 			);

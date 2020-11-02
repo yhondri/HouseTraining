@@ -19,31 +19,43 @@ class WorkoutViewModel: NSObject {
     private(set) var cameraFeedSession: AVCaptureSession?
     private(set) var displayLink: CADisplayLink?
     private(set) var playerDetected = false
-    var currentCountDown = 30.0
-    var detectPlayerActivity: Bool = false
-    ///  .upMirrored = LandscapeLeft. .right = Potrait camera top.
-    let orientation: CGImagePropertyOrientation = .right
-    let sessionVideoOrientation: AVCaptureVideoOrientation
-    ///Nos permite separar las llamadas para detectar la acción actual del usuario. En consejos para mejorar la eficiencia de la acción realizada por el usuario, los ingenieros de Apple aconsejan no hacer llamadas demasiadas veces seguidas.
-    private var detectActionTimer: Timer?
 
     //Vision
     private let detectPlayerRequest = VNDetectHumanBodyPoseRequest()
     //VNConfidence
     let bodyPoseDetectionMinConfidence: VNConfidence = 0.6
-    let trajectoryDetectionMinConfidence: VNConfidence = 0.9
     let bodyPoseRecognizedPointMinConfidence: VNConfidence = 0.1
+    
+    private var detectPlayerActivity: Bool = false
+    ///  .upMirrored = LandscapeLeft. .right = Potrait camera top.
+    let orientation: CGImagePropertyOrientation = .right
+    let sessionVideoOrientation: AVCaptureVideoOrientation
 
-    //Counters
     private var noObservationFrameCount = 0
     private var trajectoryInFlightPoseObservations = 0
     private var posesNeeded = 60
     private var posesCount = 0
+    ///Nos permite separar las llamadas para detectar la acción actual del usuario. En consejos para mejorar la eficiencia de la acción realizada por el usuario, los ingenieros de Apple aconsejan no hacer llamadas demasiadas veces seguidas.
+    private var detectActionTimer: Timer?
+    ///Guarda el tiempo restante de la actividad actual en segundos.
+    var currentCountDown: Double = 10.0
+    ///Define el tiempo de una actividad en segundos.
+    private let initialCountDown: Double = 10
+    private var isResting = true
     
     //Variables - KPIs
     private var playerStats = PlayerStats()
+    private let actions: [ActionType]
+    private lazy var exercises: [Exercise] = createRoutine()
+    private var currentActivityIndex = 0
+    
+    var didFinishRoutine: Bool {
+        currentActivityIndex >= exercises.count
+    }
+    
+    init(actions: [ActionType]) {
+        self.actions = actions
 
-    override init() {
         videoDataOutputQueue = DispatchQueue(label: "CameraFeedDataOutput",
                                              qos: .userInitiated,
                                              attributes: [],
@@ -61,6 +73,19 @@ class WorkoutViewModel: NSObject {
         cameraFeedSession?.stopRunning()
         // Invalidate display link so it's removed from run loop
         displayLink?.invalidate()
+    }
+    
+    private func createRoutine() -> [Exercise] {
+        var exercises = [Exercise]()
+        for action in actions {
+            switch action {
+            case .jumpingJacks:
+                exercises.append(JumpingJacks())
+            default:
+                fatalError("Action not implemented")
+            }
+        }
+        return exercises
     }
     
     func getActionName(action: ActionType) -> String {
@@ -121,15 +146,13 @@ class WorkoutViewModel: NSObject {
         session.commitConfiguration()
         cameraFeedSession = session
     }
-    
-    func onEndActivity() {
         
-    }
-        
-    private func onResumeActivity() {
+    func onResumeActivityDetection() {
         invalidateTimer()
         
         guard detectActionTimer == nil else { return }
+        
+        detectPlayerActivity = true
         
         DispatchQueue.main.async {
             self.detectActionTimer = Timer.scheduledTimer(timeInterval: 5.0,
@@ -138,6 +161,20 @@ class WorkoutViewModel: NSObject {
                                                           userInfo: nil,
                                                           repeats: true)
         }
+    }
+    
+    func onEndActivityDetection() {
+        currentCountDown = initialCountDown
+        
+        if isResting {
+            currentActivityIndex += 1
+            detectPlayerActivity = false
+            userActionRequest.send(Action(type: .none, probability: 100.0))
+        } else {
+            detectPlayerActivity = true
+        }
+        
+        isResting = !isResting
     }
     
     private func invalidateTimer() {
@@ -153,7 +190,8 @@ class WorkoutViewModel: NSObject {
 extension WorkoutViewModel {
     func cameraViewController(_ controller: WorkoutViewController,
                               didReceiveBuffer buffer: CMSampleBuffer) {
-        let visionHandler = VNImageRequestHandler(cmSampleBuffer: buffer, orientation: orientation, options: [:])
+        let visionHandler = VNImageRequestHandler(cmSampleBuffer: buffer,
+                                                  orientation: orientation, options: [:])
         
         do {
             try visionHandler.perform([detectPlayerRequest])
@@ -168,10 +206,6 @@ extension WorkoutViewModel {
                     return
                 }
                 
-                if detectActionTimer == nil {
-                    self.onResumeActivity()
-                }
-
                 storeObservation(observation)
             }
         } catch {
