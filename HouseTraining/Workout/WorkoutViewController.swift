@@ -103,7 +103,7 @@ class WorkoutViewController: UIViewController {
         } else {
             actionQualityLabel.isHidden = false
             currentActivityLabel.text = viewModel.getActionName(action: action.type)
-            actionQualityLabel.text = "\(LocalizableKey.quality.localized): \(action.probability)%"
+            actionQualityLabel.text = "\(LocalizableKey.quality.localized): \(Int(action.probability))%"
         }
     }
     
@@ -173,20 +173,10 @@ class WorkoutViewController: UIViewController {
 // MARK: - BoundingBox
 extension WorkoutViewController {
     func setUIElements() {
-//        resetKPILabels()
         playerBoundingBox.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         playerBoundingBox.backgroundOpacity = 0
-//        playerBoundingBox.isHidden = true
         view.addSubview(playerBoundingBox)
         view.addSubview(jointSegmentView)
-
-        //        view.addSubview(trajectoryView)
-//        gameStatusLabel.text = "Waiting for player"
-//        // Set throw type counters
-//        underhandThrowView.throwType = .underhand
-//        overhandThrowView.throwType = .overhand
-//        underlegThrowView.throwType = .underleg
-//        scoreLabel.attributedText = getScoreLabelAttributedStringForScore(0)
     }
 
     func updateBoundingBox(_ view: UIView, withRect rect: CGRect?) {
@@ -236,15 +226,6 @@ extension WorkoutViewController {
             box = normalizedBoundingBox
         }
         
-        // Store the body pose observation in playerStats when the game is in TrackThrowsState.
-        // We will use these observations for action classification once the throw is complete.
-//        if gameManager.stateMachine.currentState is TrackThrowsState {
-//            debugPrint("StoreObservation    ")
-//            playerStats.storeObservation(observation)
-////            if trajectoryView.inFlight {
-////                trajectoryInFlightPoseObservations += 1
-////            }
-//        }
         return box
     }
 }

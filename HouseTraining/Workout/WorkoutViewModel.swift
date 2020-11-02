@@ -16,7 +16,6 @@ class WorkoutViewModel: NSObject {
     let playerRequest = PassthroughSubject<VNRecognizedPointsObservation, Never>()
     let userActionRequest = PassthroughSubject<Action, Never>()
     
-    private let gameManager: ExerciseManager = ExerciseManager()
     private(set) var cameraFeedSession: AVCaptureSession?
     private(set) var displayLink: CADisplayLink?
     private(set) var playerDetected = false
@@ -42,24 +41,8 @@ class WorkoutViewModel: NSObject {
     private var posesCount = 0
     
     //Variables - KPIs
-    var lastThrowMetrics: ThrowMetrics {
-        get {
-            return gameManager.lastThrowMetrics
-        }
-        set {
-            gameManager.lastThrowMetrics = newValue
-        }
-    }
+    private var playerStats = PlayerStats()
 
-    var playerStats: PlayerStats {
-        get {
-            return gameManager.playerStats
-        }
-        set {
-            gameManager.playerStats = newValue
-        }
-    }
-    
     override init() {
         videoDataOutputQueue = DispatchQueue(label: "CameraFeedDataOutput",
                                              qos: .userInitiated,
@@ -86,13 +69,6 @@ class WorkoutViewModel: NSObject {
             return LocalizableKey.jumpingJacks.localized
         default:
             return LocalizableKey.resting.localized
-        }
-    }
-    
-    func captureOutput() {
-        if gameManager.stateMachine.currentState is SetupCameraState {
-            // Once we received first buffer we are ready to proceed to the next state
-            gameManager.stateMachine.enter(DetectedPlayerState.self)
         }
     }
     
@@ -214,6 +190,5 @@ extension WorkoutViewModel {
         ///Confidence to score quality of action
         let currentAction = self.playerStats.getAction()
         userActionRequest.send(currentAction)
-//        self.lastThrowMetrics.updateThrowType(throwType)
     }
 }
