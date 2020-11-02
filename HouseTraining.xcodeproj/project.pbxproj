@@ -14,35 +14,23 @@
 		5643AD492549E13F00945EFA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643AD482549E13F00945EFA /* String+Extension.swift */; };
 		5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643AD502549E15900945EFA /* LocalizableKey.swift */; };
 		5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649350E255015DC000F8A5F /* JumpingJack.swift */; };
+		5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649352525501C05000F8A5F /* BoundingBoxView.swift */; };
+		5649352B25501C1D000F8A5F /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649352A25501C1D000F8A5F /* AnimatedTransitioning.swift */; };
 		567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCAF24C0A1F000A23864 /* AppDelegate.swift */; };
 		567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCB824C0A1F000A23864 /* HouseTraining.xcdatamodeld */; };
 		567ADCBC24C0A1F100A23864 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 567ADCBB24C0A1F100A23864 /* Assets.xcassets */; };
 		567ADCBF24C0A1F100A23864 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 567ADCBD24C0A1F100A23864 /* LaunchScreen.storyboard */; };
 		567ADCCA24C0A1F100A23864 /* HouseTrainingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCC924C0A1F100A23864 /* HouseTrainingTests.swift */; };
 		567ADCD524C0A1F100A23864 /* HouseTrainingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCD424C0A1F100A23864 /* HouseTrainingUITests.swift */; };
-		567ADCE724C0A41100A23864 /* ExercisePickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCE624C0A41100A23864 /* ExercisePickerTableViewController.swift */; };
-		567ADCEB24C0A72E00A23864 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCEA24C0A72E00A23864 /* CameraViewController.swift */; };
-		567ADCEE24C0A77500A23864 /* ExerciseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCED24C0A77500A23864 /* ExerciseManager.swift */; };
-		567ADCF024C0A79C00A23864 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCEF24C0A79C00A23864 /* State.swift */; };
-		567ADCF224C0A7AC00A23864 /* ExerciseStateChangeNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF124C0A7AC00A23864 /* ExerciseStateChangeNotification.swift */; };
 		567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF324C0A7F000A23864 /* CameraFeedView.swift */; };
 		567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */; };
 		567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF824C0A87700A23864 /* PlayerStats.swift */; };
 		567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF924C0A87700A23864 /* ThrowMetrics.swift */; };
-		567ADCFF24C0A91C00A23864 /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCFD24C0A91C00A23864 /* SetupViewController.swift */; };
-		567ADD0024C0A91C00A23864 /* SetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 567ADCFE24C0A91C00A23864 /* SetupViewController.xib */; };
-		567ADD0424C0A96300A23864 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0224C0A96300A23864 /* ExerciseViewController.swift */; };
-		567ADD0524C0A96300A23864 /* ExerciseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 567ADD0324C0A96300A23864 /* ExerciseViewController.xib */; };
-		567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */; };
-		567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
 		56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A1506C2534631F00F7F9D0 /* AppUtility.swift */; };
 		56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6FA30251CF9080027CBDB /* JointSegmentView.swift */; };
 		56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */; };
-		56B766D624E2AC9A0005330D /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D524E2AC9A0005330D /* CameraViewModel.swift */; };
 		56B766D924E2C1540005330D /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D824E2C1540005330D /* VisionHelper.swift */; };
-		56B766DB24E2C5640005330D /* ExercisePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766DA24E2C5640005330D /* ExercisePickerViewModel.swift */; };
-		56B766DD24E2C7640005330D /* SetupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766DC24E2C7640005330D /* SetupViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +60,8 @@
 		5643AD482549E13F00945EFA /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5643AD502549E15900945EFA /* LocalizableKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableKey.swift; sourceTree = "<group>"; };
 		5649350E255015DC000F8A5F /* JumpingJack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpingJack.swift; sourceTree = "<group>"; };
+		5649352525501C05000F8A5F /* BoundingBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
+		5649352A25501C1D000F8A5F /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
 		567ADCAC24C0A1F000A23864 /* HouseTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HouseTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		567ADCAF24C0A1F000A23864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		567ADCB924C0A1F000A23864 /* HouseTraining.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HouseTraining.xcdatamodel; sourceTree = "<group>"; };
@@ -84,29 +74,15 @@
 		567ADCD024C0A1F100A23864 /* HouseTrainingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HouseTrainingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		567ADCD424C0A1F100A23864 /* HouseTrainingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseTrainingUITests.swift; sourceTree = "<group>"; };
 		567ADCD624C0A1F100A23864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		567ADCE624C0A41100A23864 /* ExercisePickerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePickerTableViewController.swift; sourceTree = "<group>"; };
-		567ADCEA24C0A72E00A23864 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
-		567ADCED24C0A77500A23864 /* ExerciseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseManager.swift; sourceTree = "<group>"; };
-		567ADCEF24C0A79C00A23864 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		567ADCF124C0A7AC00A23864 /* ExerciseStateChangeNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseStateChangeNotification.swift; sourceTree = "<group>"; };
 		567ADCF324C0A7F000A23864 /* CameraFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFeedView.swift; sourceTree = "<group>"; };
 		567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerActionClassifier.swift; sourceTree = "<group>"; };
 		567ADCF824C0A87700A23864 /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
 		567ADCF924C0A87700A23864 /* ThrowMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowMetrics.swift; sourceTree = "<group>"; };
-		567ADCFD24C0A91C00A23864 /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
-		567ADCFE24C0A91C00A23864 /* SetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetupViewController.xib; sourceTree = "<group>"; };
-		567ADD0224C0A96300A23864 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
-		567ADD0324C0A96300A23864 /* ExerciseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExerciseViewController.xib; sourceTree = "<group>"; };
-		567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
-		567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
 		56A1506C2534631F00F7F9D0 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		56A6FA30251CF9080027CBDB /* JointSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointSegmentView.swift; sourceTree = "<group>"; };
 		56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
-		56B766D524E2AC9A0005330D /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
 		56B766D824E2C1540005330D /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
-		56B766DA24E2C5640005330D /* ExercisePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisePickerViewModel.swift; sourceTree = "<group>"; };
-		56B766DC24E2C7640005330D /* SetupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +115,7 @@
 			children = (
 				567ADCF324C0A7F000A23864 /* CameraFeedView.swift */,
 				56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */,
+				5649352525501C05000F8A5F /* BoundingBoxView.swift */,
 				56A6FA30251CF9080027CBDB /* JointSegmentView.swift */,
 				56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */,
 				56415DF4251A4D1F00B688DE /* WorkoutViewController.xib */,
@@ -186,11 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				567ADCE224C0A26B00A23864 /* App */,
-				567ADCE924C0A70400A23864 /* Camera */,
-				567ADCE524C0A2F600A23864 /* ExcersizePicker */,
-				567ADCE824C0A6D500A23864 /* ExerciseSetup */,
-				567ADD0124C0A93F00A23864 /* ExerciseViewController */,
-				567ADCEC24C0A75F00A23864 /* ExerciseManager */,
 				56415DF2251A4CA800B688DE /* Workout */,
 				567ADCE324C0A27200A23864 /* Model */,
 				567ADCE424C0A27B00A23864 /* Resources */,
@@ -247,44 +219,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		567ADCE524C0A2F600A23864 /* ExcersizePicker */ = {
-			isa = PBXGroup;
-			children = (
-				567ADCE624C0A41100A23864 /* ExercisePickerTableViewController.swift */,
-				56B766DA24E2C5640005330D /* ExercisePickerViewModel.swift */,
-			);
-			path = ExcersizePicker;
-			sourceTree = "<group>";
-		};
-		567ADCE824C0A6D500A23864 /* ExerciseSetup */ = {
-			isa = PBXGroup;
-			children = (
-				567ADCFD24C0A91C00A23864 /* SetupViewController.swift */,
-				567ADCFE24C0A91C00A23864 /* SetupViewController.xib */,
-				56B766DC24E2C7640005330D /* SetupViewModel.swift */,
-			);
-			path = ExerciseSetup;
-			sourceTree = "<group>";
-		};
-		567ADCE924C0A70400A23864 /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-				567ADCEA24C0A72E00A23864 /* CameraViewController.swift */,
-				56B766D524E2AC9A0005330D /* CameraViewModel.swift */,
-			);
-			path = Camera;
-			sourceTree = "<group>";
-		};
-		567ADCEC24C0A75F00A23864 /* ExerciseManager */ = {
-			isa = PBXGroup;
-			children = (
-				567ADCED24C0A77500A23864 /* ExerciseManager.swift */,
-				567ADCEF24C0A79C00A23864 /* State.swift */,
-				567ADCF124C0A7AC00A23864 /* ExerciseStateChangeNotification.swift */,
-			);
-			path = ExerciseManager;
-			sourceTree = "<group>";
-		};
 		567ADCF524C0A80E00A23864 /* Business */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,17 +238,6 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		567ADD0124C0A93F00A23864 /* ExerciseViewController */ = {
-			isa = PBXGroup;
-			children = (
-				567ADD0924C0A9B800A23864 /* AnimatedTransitioning.swift */,
-				567ADD0724C0A99B00A23864 /* BoundingBoxView.swift */,
-				567ADD0224C0A96300A23864 /* ExerciseViewController.swift */,
-				567ADD0324C0A96300A23864 /* ExerciseViewController.xib */,
-			);
-			path = ExerciseViewController;
-			sourceTree = "<group>";
-		};
 		56B646AB24D9CEE200C959BE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +252,7 @@
 		56B766D724E2C13B0005330D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5649352A25501C1D000F8A5F /* AnimatedTransitioning.swift */,
 				56B766D824E2C1540005330D /* VisionHelper.swift */,
 			);
 			path = Helpers;
@@ -439,8 +363,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				56415DF6251A4D1F00B688DE /* WorkoutViewController.xib in Resources */,
-				567ADD0524C0A96300A23864 /* ExerciseViewController.xib in Resources */,
-				567ADD0024C0A91C00A23864 /* SetupViewController.xib in Resources */,
 				5643AD2D2549DFD000945EFA /* Localizable.strings in Resources */,
 				567ADCBF24C0A1F100A23864 /* LaunchScreen.storyboard in Resources */,
 				567ADCBC24C0A1F100A23864 /* Assets.xcassets in Resources */,
@@ -468,34 +390,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56B766DD24E2C7640005330D /* SetupViewModel.swift in Sources */,
-				56B766DB24E2C5640005330D /* ExercisePickerViewModel.swift in Sources */,
 				567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */,
-				567ADD0424C0A96300A23864 /* ExerciseViewController.swift in Sources */,
-				567ADCE724C0A41100A23864 /* ExercisePickerTableViewController.swift in Sources */,
-				567ADCF224C0A7AC00A23864 /* ExerciseStateChangeNotification.swift in Sources */,
 				5643AD492549E13F00945EFA /* String+Extension.swift in Sources */,
+				5649352B25501C1D000F8A5F /* AnimatedTransitioning.swift in Sources */,
 				56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */,
 				567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */,
-				567ADD0A24C0A9B800A23864 /* AnimatedTransitioning.swift in Sources */,
 				56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */,
 				5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */,
 				56B766D924E2C1540005330D /* VisionHelper.swift in Sources */,
-				56B766D624E2AC9A0005330D /* CameraViewModel.swift in Sources */,
 				567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */,
-				567ADCFF24C0A91C00A23864 /* SetupViewController.swift in Sources */,
-				567ADCEE24C0A77500A23864 /* ExerciseManager.swift in Sources */,
 				5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */,
 				5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */,
+				5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */,
 				56415DFE251A4F1B00B688DE /* WorkoutViewModel.swift in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
 				56415DF5251A4D1F00B688DE /* WorkoutViewController.swift in Sources */,
-				567ADD0824C0A99B00A23864 /* BoundingBoxView.swift in Sources */,
 				567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */,
 				56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */,
 				567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */,
-				567ADCEB24C0A72E00A23864 /* CameraViewController.swift in Sources */,
-				567ADCF024C0A79C00A23864 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
