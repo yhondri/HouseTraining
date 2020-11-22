@@ -9,8 +9,6 @@ import UIKit
 import CoreData
 import SwiftUI
 
-
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
@@ -21,8 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         
 //        let hostingController = UIHostingController(rootView: WorkoutSummaryView(workoutSummary: WorkoutSummary.getPreview()))
-//        window?.rootViewController = hostingController
-        window?.rootViewController = UINavigationController(rootViewController: WorkoutViewController())
+        let hostingController = UIHostingController(rootView: ExerciseListView())
+        window?.rootViewController = hostingController
+//        window?.rootViewController = UINavigationController(rootViewController: WorkoutViewController())
         window?.makeKeyAndVisible()
         return true
     }

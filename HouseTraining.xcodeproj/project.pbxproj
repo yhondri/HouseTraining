@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,6 +35,15 @@
 		567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF924C0A87700A23864 /* ThrowMetrics.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
 		569F5D0B256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */; };
+		569F5D11256A7F24008644F0 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D10256A7F24008644F0 /* ExerciseListView.swift */; };
+		569F5D16256A807F008644F0 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D15256A807F008644F0 /* Exercise.swift */; };
+		569F5D1E256A8252008644F0 /* HighKneesRunInPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D1D256A8252008644F0 /* HighKneesRunInPlace.swift */; };
+		569F5D23256A86A6008644F0 /* Plank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D22256A86A6008644F0 /* Plank.swift */; };
+		569F5D28256A86EB008644F0 /* SumoSquat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D27256A86EB008644F0 /* SumoSquat.swift */; };
+		569F5D30256A8719008644F0 /* WallSit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D2F256A8719008644F0 /* WallSit.swift */; };
+		569F5D3D256A929F008644F0 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 569F5D3C256A929F008644F0 /* Introspect */; };
+		569F5D42256A9519008644F0 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D41256A9519008644F0 /* AppView.swift */; };
+		569F5D47256A9581008644F0 /* HouseTrainingApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D46256A9581008644F0 /* HouseTrainingApplication.swift */; };
 		56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A1506C2534631F00F7F9D0 /* AppUtility.swift */; };
 		56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6FA30251CF9080027CBDB /* JointSegmentView.swift */; };
 		56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */; };
@@ -95,6 +104,14 @@
 		567ADCF924C0A87700A23864 /* ThrowMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowMetrics.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
 		569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HouseTrainingActionClassifier.mlmodel; sourceTree = "<group>"; };
+		569F5D10256A7F24008644F0 /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseListView.swift; path = ../../../houseTraining/HouseTraining/ExerciseView/ExerciseListView.swift; sourceTree = "<group>"; };
+		569F5D15256A807F008644F0 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/Exercise.swift; sourceTree = "<group>"; };
+		569F5D1D256A8252008644F0 /* HighKneesRunInPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HighKneesRunInPlace.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/HighKneesRunInPlace.swift; sourceTree = "<group>"; };
+		569F5D22256A86A6008644F0 /* Plank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Plank.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/Plank.swift; sourceTree = "<group>"; };
+		569F5D27256A86EB008644F0 /* SumoSquat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SumoSquat.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/SumoSquat.swift; sourceTree = "<group>"; };
+		569F5D2F256A8719008644F0 /* WallSit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WallSit.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/WallSit.swift; sourceTree = "<group>"; };
+		569F5D41256A9519008644F0 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppView.swift; path = ../../../houseTraining/HouseTraining/App/AppView.swift; sourceTree = "<group>"; };
+		569F5D46256A9581008644F0 /* HouseTrainingApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HouseTrainingApplication.swift; path = ../../../houseTraining/HouseTraining/App/HouseTrainingApplication.swift; sourceTree = "<group>"; };
 		56A1506C2534631F00F7F9D0 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		56A6FA30251CF9080027CBDB /* JointSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointSegmentView.swift; sourceTree = "<group>"; };
 		56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
@@ -106,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				569F5D3D256A929F008644F0 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +171,12 @@
 		5649350D255015B8000F8A5F /* Exercises */ = {
 			isa = PBXGroup;
 			children = (
+				569F5D15256A807F008644F0 /* Exercise.swift */,
+				569F5D1D256A8252008644F0 /* HighKneesRunInPlace.swift */,
 				5649350E255015DC000F8A5F /* JumpingJack.swift */,
+				569F5D22256A86A6008644F0 /* Plank.swift */,
+				569F5D27256A86EB008644F0 /* SumoSquat.swift */,
+				569F5D2F256A8719008644F0 /* WallSit.swift */,
 				56493546255077C7000F8A5F /* WorkoutSummary.swift */,
 			);
 			path = Exercises;
@@ -193,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				567ADCE224C0A26B00A23864 /* App */,
+				569F5D0F256A7EE8008644F0 /* ExerciseView */,
 				56415DF2251A4CA800B688DE /* Workout */,
 				5649353A25507673000F8A5F /* WorkoutSummary */,
 				567ADCE324C0A27200A23864 /* Model */,
@@ -225,6 +249,8 @@
 			children = (
 				567ADCAF24C0A1F000A23864 /* AppDelegate.swift */,
 				56A1506C2534631F00F7F9D0 /* AppUtility.swift */,
+				569F5D46256A9581008644F0 /* HouseTrainingApplication.swift */,
+				569F5D41256A9519008644F0 /* AppView.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -270,6 +296,14 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		569F5D0F256A7EE8008644F0 /* ExerciseView */ = {
+			isa = PBXGroup;
+			children = (
+				569F5D10256A7F24008644F0 /* ExerciseListView.swift */,
+			);
+			path = ExerciseView;
+			sourceTree = "<group>";
+		};
 		56B646AB24D9CEE200C959BE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +340,9 @@
 			dependencies = (
 			);
 			name = HouseTraining;
+			packageProductDependencies = (
+				569F5D3C256A929F008644F0 /* Introspect */,
+			);
 			productName = HouseTraining;
 			productReference = 567ADCAC24C0A1F000A23864 /* HouseTraining.app */;
 			productType = "com.apple.product-type.application";
@@ -378,6 +415,9 @@
 				es,
 			);
 			mainGroup = 567ADCA324C0A1F000A23864;
+			packageReferences = (
+				569F5D3B256A929F008644F0 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = 567ADCAD24C0A1F000A23864 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -427,14 +467,19 @@
 				5643AD492549E13F00945EFA /* String+Extension.swift in Sources */,
 				5649352B25501C1D000F8A5F /* AnimatedTransitioning.swift in Sources */,
 				5649353C25507699000F8A5F /* WorkoutSummaryView.swift in Sources */,
+				569F5D16256A807F008644F0 /* Exercise.swift in Sources */,
 				56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */,
 				567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */,
+				569F5D30256A8719008644F0 /* WallSit.swift in Sources */,
 				56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */,
 				5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */,
 				56B766D924E2C1540005330D /* VisionHelper.swift in Sources */,
 				567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */,
 				5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */,
+				569F5D1E256A8252008644F0 /* HighKneesRunInPlace.swift in Sources */,
 				564935422550775F000F8A5F /* Color+Extension.swift in Sources */,
+				569F5D47256A9581008644F0 /* HouseTrainingApplication.swift in Sources */,
+				569F5D11256A7F24008644F0 /* ExerciseListView.swift in Sources */,
 				5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */,
 				5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */,
 				5649355A255079F4000F8A5F /* Double+Extension.swift in Sources */,
@@ -442,11 +487,14 @@
 				5649356725507DBA000F8A5F /* WorkoutSummaryItemView.swift in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
 				56415DF5251A4D1F00B688DE /* WorkoutViewController.swift in Sources */,
+				569F5D28256A86EB008644F0 /* SumoSquat.swift in Sources */,
 				56493552255078D5000F8A5F /* WorkoutSummaryHeaderView.swift in Sources */,
 				567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */,
 				56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */,
 				567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */,
+				569F5D42256A9519008644F0 /* AppView.swift in Sources */,
 				569F5D0B256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel in Sources */,
+				569F5D23256A86A6008644F0 /* Plank.swift in Sources */,
 				5649356225507A7E000F8A5F /* NumberFormatter+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,6 +832,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		569F5D3B256A929F008644F0 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		569F5D3C256A929F008644F0 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 569F5D3B256A929F008644F0 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		567ADCB824C0A1F000A23864 /* HouseTraining.xcdatamodeld */ = {

@@ -8,5 +8,12 @@
 
 // WorkoutViewController
 "workoutviewcontroler_quality" = "Calidad";
-"workoutviewcontroler_jumping_jacks" = "Jumping Jacks";
 "workoutviewcontroler_resting" = "Descansando";
+
+//ExerciseList
+"exerciselistview_exercises" = "Ejercicios";
+"exerciselistview_jumping_jacks" = "Jumping Jacks";
+"exerciselistview_high_knees_run_in_place" = "High knees run in place";
+"exerciselistview_plank" = "Plank";
+"exerciselistview_sumo_squat" = "Sumo squat";
+"exerciselistview_wall_sit" = "Wall sit";
