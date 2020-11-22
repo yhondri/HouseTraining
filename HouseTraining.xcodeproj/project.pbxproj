@@ -34,6 +34,7 @@
 		567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF824C0A87700A23864 /* PlayerStats.swift */; };
 		567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF924C0A87700A23864 /* ThrowMetrics.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
+		569F5D0B256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */; };
 		56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A1506C2534631F00F7F9D0 /* AppUtility.swift */; };
 		56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6FA30251CF9080027CBDB /* JointSegmentView.swift */; };
 		56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */; };
@@ -93,6 +94,7 @@
 		567ADCF824C0A87700A23864 /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
 		567ADCF924C0A87700A23864 /* ThrowMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowMetrics.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
+		569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HouseTrainingActionClassifier.mlmodel; sourceTree = "<group>"; };
 		56A1506C2534631F00F7F9D0 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		56A6FA30251CF9080027CBDB /* JointSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointSegmentView.swift; sourceTree = "<group>"; };
 		56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				567ADCBB24C0A1F100A23864 /* Assets.xcassets */,
+				569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */,
 				5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */,
 				567ADCBD24C0A1F100A23864 /* LaunchScreen.storyboard */,
 				5643AD2F2549DFD000945EFA /* Localizable.strings */,
@@ -443,6 +446,7 @@
 				567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */,
 				56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */,
 				567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */,
+				569F5D0B256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel in Sources */,
 				5649356225507A7E000F8A5F /* NumberFormatter+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

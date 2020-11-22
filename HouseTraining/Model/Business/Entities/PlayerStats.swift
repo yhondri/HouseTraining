@@ -20,11 +20,12 @@ struct Action {
 }
 
 enum ActionType: String, CaseIterable {
-    case overhand = "Overhand"
-    case underleg = "Underleg"
-    case underhand = "Underhand"
-    case jumpingJacks = "Jacks"
-    case other = "Other"
+    case highKneesRunInPlace = "high_knees_run_in_place"
+    case jumpingJacks = "jacks"
+    case plank = "plank"
+    case sumoSquat = "sumo_squat"
+    case wallSit = "wall_sit"
+    case other = "other"
     case none = "None"
 }
 
@@ -112,13 +113,7 @@ struct PlayerStats {
             return Action()
         }
 
-//        if throwType == .jumpingJacks || throwType == .other {
-//            
-////            debugPrint("throwTyp ", throwType, predictions.label.capitalized)
-////            resetObservations()
-//        } else {
-////            debugPrint("ELSE", predictions.label.capitalized)
-//        }
+//        debugPrint("throwType ", actionType, predictions.labelProbabilities)
 
         return Action(type: actionType, probability: predictions.actionProbability)
     }

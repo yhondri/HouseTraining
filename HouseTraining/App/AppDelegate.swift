@@ -20,9 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         
-        let hostingController = UIHostingController(rootView: WorkoutSummaryView(workoutSummary: WorkoutSummary.getPreview()))
-        
-        window?.rootViewController = hostingController //UINavigationController(rootViewController: WorkoutViewController())
+//        let hostingController = UIHostingController(rootView: WorkoutSummaryView(workoutSummary: WorkoutSummary.getPreview()))
+//        window?.rootViewController = hostingController
+        window?.rootViewController = UINavigationController(rootViewController: WorkoutViewController())
         window?.makeKeyAndVisible()
         return true
     }

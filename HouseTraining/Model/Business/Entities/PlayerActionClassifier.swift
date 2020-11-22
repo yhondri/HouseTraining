@@ -68,7 +68,7 @@ class PlayerActionClassifier {
     let model: MLModel
     class var urlOfModelInThisBundle : URL {
         let bundle = Bundle(for: self)
-        return bundle.url(forResource: "JacksActionClassifier", withExtension:"mlmodelc")!
+        return bundle.url(forResource: "HouseTrainingActionClassifier", withExtension:"mlmodelc")!
     }
     
     init(model: MLModel) {
