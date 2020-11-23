@@ -8,6 +8,8 @@
 import Foundation
 
 class SumoSquat: Exercise {
+    private let id: Int = 4
+
     init(workoutLastDate: Date? = nil) {
         super.init(actionType: .sumoSquat, actionName: LocalizableKey.sumoSquat.localized, workoutLastDate: workoutLastDate)
     }

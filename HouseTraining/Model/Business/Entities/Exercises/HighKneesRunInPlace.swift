@@ -8,6 +8,8 @@
 import Foundation
 
 class HighKneesRunInPlace: Exercise {
+    private let id: Int = 1
+    
     init(workoutLastDate: Date? = nil) {
         super.init(actionType: .highKneesRunInPlace, actionName: LocalizableKey.highKneesRunInPlace.localized, workoutLastDate: workoutLastDate)
     }

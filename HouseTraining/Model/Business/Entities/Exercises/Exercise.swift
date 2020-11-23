@@ -18,6 +18,8 @@ class Exercise: NSObject {
         "\(score)%"
     }
     
+    private let id: Int = 0
+    
     init(actionType: ActionType = .none,
          actionName: String = "--",
          workoutLastDate: Date? = nil) {
@@ -40,5 +42,15 @@ class Exercise: NSObject {
         if action.probability >= minProbability {
             score += action.probability
         }
+    }
+    
+    static func ==(lhs: Exercise, rhs: Exercise) -> Bool {
+       return lhs.id == rhs.id
+    }
+}
+
+extension Exercise {
+    static func getAvaialableExercises() -> [Exercise] {
+        [HighKneesRunInPlace(), JumpingJacks(), Plank(), SumoSquat(), WallSit()]
     }
 }

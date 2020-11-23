@@ -10,19 +10,21 @@ import Introspect
 
 struct ExerciseListView: View {
 
-    let exercises: [Exercise] = [HighKneesRunInPlace(), JumpingJacks(), Plank(), SumoSquat(), WallSit()]
+    let exercises: [Exercise] = Exercise.getAvaialableExercises()
     
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(0..<exercises.count) {
-                    ExercieRowView(exercise: exercises[$0])
+                ForEach(exercises, id: \.self) { exercise in
+                    ExercieRowView(exercise: exercise)
                         .listRowInsets(EdgeInsets())
                     
                 }
             }
             .padding(.top, 10)
-        }.background(Color.tableViewBackgroundColor)
+        }
+        .background(Color.tableViewBackgroundColor)
+        .navigationBarTitle(Text(LocalizableKey.exercises.localized))
     }
 }
 

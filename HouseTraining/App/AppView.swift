@@ -9,10 +9,11 @@ import SwiftUI
 
 struct AppView: View {
     var body: some View {
+
         TabView {
             NavigationView {
-                ExerciseListView()
-                    .navigationBarTitle(Text(LocalizableKey.exercises.localized))
+                RoutinesListView()
+                    .environmentObject(CreateRoutineViewModel())
             }
             .tabItem {
                 Image(systemName: "list.dash")
@@ -20,6 +21,15 @@ struct AppView: View {
             }
             .navigationViewStyle(StackNavigationViewStyle())
             
+            NavigationView {
+                ExerciseListView()
+            }
+            .tabItem {
+                Image(systemName: "list.dash")
+                Text(LocalizableKey.exercises.localized)
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+
             //            NavigationView {
 //                SettingsView()
 //            }.tabItem {

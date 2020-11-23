@@ -17,3 +17,7 @@
 "exerciselistview_plank" = "Plank";
 "exerciselistview_sumo_squat" = "Sumo squat";
 "exerciselistview_wall_sit" = "Wall sit";
+
+//MARK: - CreateRoutineView
+"createroutineview_new_routine" = "Nueva rutina";
+"createroutineview_new_save" = "Guardar";

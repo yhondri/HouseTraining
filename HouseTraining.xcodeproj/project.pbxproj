@@ -13,6 +13,11 @@
 		5643AD2D2549DFD000945EFA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5643AD2F2549DFD000945EFA /* Localizable.strings */; };
 		5643AD492549E13F00945EFA /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643AD482549E13F00945EFA /* String+Extension.swift */; };
 		5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643AD502549E15900945EFA /* LocalizableKey.swift */; };
+		564838FF256C367000F7005B /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564838FE256C367000F7005B /* ExerciseListView.swift */; };
+		56483904256C377000F7005B /* RoutinesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56483903256C377000F7005B /* RoutinesListView.swift */; };
+		5648390E256C383A00F7005B /* RoundedCornerCellModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5648390D256C383A00F7005B /* RoundedCornerCellModifier.swift */; };
+		56483913256C3C4400F7005B /* CreateRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56483912256C3C4400F7005B /* CreateRoutineView.swift */; };
+		5648391F256C3EAE00F7005B /* CreateRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */; };
 		5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649350E255015DC000F8A5F /* JumpingJack.swift */; };
 		5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649352525501C05000F8A5F /* BoundingBoxView.swift */; };
 		5649352B25501C1D000F8A5F /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649352A25501C1D000F8A5F /* AnimatedTransitioning.swift */; };
@@ -35,7 +40,6 @@
 		567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF924C0A87700A23864 /* ThrowMetrics.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
 		569F5D0B256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */; };
-		569F5D11256A7F24008644F0 /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D10256A7F24008644F0 /* ExerciseListView.swift */; };
 		569F5D16256A807F008644F0 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D15256A807F008644F0 /* Exercise.swift */; };
 		569F5D1E256A8252008644F0 /* HighKneesRunInPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D1D256A8252008644F0 /* HighKneesRunInPlace.swift */; };
 		569F5D23256A86A6008644F0 /* Plank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D22256A86A6008644F0 /* Plank.swift */; };
@@ -76,6 +80,11 @@
 		5643AD332549DFD400945EFA /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5643AD482549E13F00945EFA /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		5643AD502549E15900945EFA /* LocalizableKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableKey.swift; sourceTree = "<group>"; };
+		564838FE256C367000F7005B /* ExerciseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
+		56483903256C377000F7005B /* RoutinesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesListView.swift; sourceTree = "<group>"; };
+		5648390D256C383A00F7005B /* RoundedCornerCellModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerCellModifier.swift; sourceTree = "<group>"; };
+		56483912256C3C4400F7005B /* CreateRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineView.swift; sourceTree = "<group>"; };
+		5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineViewModel.swift; sourceTree = "<group>"; };
 		5649350E255015DC000F8A5F /* JumpingJack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpingJack.swift; sourceTree = "<group>"; };
 		5649352525501C05000F8A5F /* BoundingBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		5649352A25501C1D000F8A5F /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
@@ -104,7 +113,6 @@
 		567ADCF924C0A87700A23864 /* ThrowMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowMetrics.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
 		569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HouseTrainingActionClassifier.mlmodel; sourceTree = "<group>"; };
-		569F5D10256A7F24008644F0 /* ExerciseListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExerciseListView.swift; path = ../../../houseTraining/HouseTraining/ExerciseView/ExerciseListView.swift; sourceTree = "<group>"; };
 		569F5D15256A807F008644F0 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/Exercise.swift; sourceTree = "<group>"; };
 		569F5D1D256A8252008644F0 /* HighKneesRunInPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HighKneesRunInPlace.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/HighKneesRunInPlace.swift; sourceTree = "<group>"; };
 		569F5D22256A86A6008644F0 /* Plank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Plank.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/Plank.swift; sourceTree = "<group>"; };
@@ -168,6 +176,31 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		56483908256C377600F7005B /* RoutinesListView */ = {
+			isa = PBXGroup;
+			children = (
+				56483903256C377000F7005B /* RoutinesListView.swift */,
+			);
+			path = RoutinesListView;
+			sourceTree = "<group>";
+		};
+		5648390C256C382100F7005B /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				5648390D256C383A00F7005B /* RoundedCornerCellModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		56483917256C3C4900F7005B /* CreateRoutineView */ = {
+			isa = PBXGroup;
+			children = (
+				56483912256C3C4400F7005B /* CreateRoutineView.swift */,
+				5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */,
+			);
+			path = CreateRoutineView;
+			sourceTree = "<group>";
+		};
 		5649350D255015B8000F8A5F /* Exercises */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,7 +249,9 @@
 			isa = PBXGroup;
 			children = (
 				567ADCE224C0A26B00A23864 /* App */,
-				569F5D0F256A7EE8008644F0 /* ExerciseView */,
+				56483917256C3C4900F7005B /* CreateRoutineView */,
+				56483908256C377600F7005B /* RoutinesListView */,
+				569F5D0F256A7EE8008644F0 /* ExerciseListView */,
 				56415DF2251A4CA800B688DE /* Workout */,
 				5649353A25507673000F8A5F /* WorkoutSummary */,
 				567ADCE324C0A27200A23864 /* Model */,
@@ -296,17 +331,18 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		569F5D0F256A7EE8008644F0 /* ExerciseView */ = {
+		569F5D0F256A7EE8008644F0 /* ExerciseListView */ = {
 			isa = PBXGroup;
 			children = (
-				569F5D10256A7F24008644F0 /* ExerciseListView.swift */,
+				564838FE256C367000F7005B /* ExerciseListView.swift */,
 			);
-			path = ExerciseView;
+			path = ExerciseListView;
 			sourceTree = "<group>";
 		};
 		56B646AB24D9CEE200C959BE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5648390C256C382100F7005B /* Modifiers */,
 				5643AD472549E12B00945EFA /* Extensions */,
 				56B766D724E2C13B0005330D /* Helpers */,
 				56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */,
@@ -463,6 +499,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56493547255077C7000F8A5F /* WorkoutSummary.swift in Sources */,
+				56483904256C377000F7005B /* RoutinesListView.swift in Sources */,
 				567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */,
 				5643AD492549E13F00945EFA /* String+Extension.swift in Sources */,
 				5649352B25501C1D000F8A5F /* AnimatedTransitioning.swift in Sources */,
@@ -471,6 +508,7 @@
 				56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */,
 				567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */,
 				569F5D30256A8719008644F0 /* WallSit.swift in Sources */,
+				56483913256C3C4400F7005B /* CreateRoutineView.swift in Sources */,
 				56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */,
 				5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */,
 				56B766D924E2C1540005330D /* VisionHelper.swift in Sources */,
@@ -479,15 +517,17 @@
 				569F5D1E256A8252008644F0 /* HighKneesRunInPlace.swift in Sources */,
 				564935422550775F000F8A5F /* Color+Extension.swift in Sources */,
 				569F5D47256A9581008644F0 /* HouseTrainingApplication.swift in Sources */,
-				569F5D11256A7F24008644F0 /* ExerciseListView.swift in Sources */,
 				5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */,
 				5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */,
 				5649355A255079F4000F8A5F /* Double+Extension.swift in Sources */,
 				56415DFE251A4F1B00B688DE /* WorkoutViewModel.swift in Sources */,
 				5649356725507DBA000F8A5F /* WorkoutSummaryItemView.swift in Sources */,
+				564838FF256C367000F7005B /* ExerciseListView.swift in Sources */,
+				5648391F256C3EAE00F7005B /* CreateRoutineViewModel.swift in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
 				56415DF5251A4D1F00B688DE /* WorkoutViewController.swift in Sources */,
 				569F5D28256A86EB008644F0 /* SumoSquat.swift in Sources */,
+				5648390E256C383A00F7005B /* RoundedCornerCellModifier.swift in Sources */,
 				56493552255078D5000F8A5F /* WorkoutSummaryHeaderView.swift in Sources */,
 				567ADCF424C0A7F000A23864 /* CameraFeedView.swift in Sources */,
 				56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */,
