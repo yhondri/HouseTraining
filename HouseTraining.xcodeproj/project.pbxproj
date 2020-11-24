@@ -16,7 +16,7 @@
 		564838FF256C367000F7005B /* ExerciseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564838FE256C367000F7005B /* ExerciseListView.swift */; };
 		56483904256C377000F7005B /* RoutinesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56483903256C377000F7005B /* RoutinesListView.swift */; };
 		5648390E256C383A00F7005B /* RoundedCornerCellModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5648390D256C383A00F7005B /* RoundedCornerCellModifier.swift */; };
-		56483913256C3C4400F7005B /* CreateRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56483912256C3C4400F7005B /* CreateRoutineView.swift */; };
+		56483913256C3C4400F7005B /* CreateRoutineStep1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56483912256C3C4400F7005B /* CreateRoutineStep1View.swift */; };
 		5648391F256C3EAE00F7005B /* CreateRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */; };
 		5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649350E255015DC000F8A5F /* JumpingJack.swift */; };
 		5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649352525501C05000F8A5F /* BoundingBoxView.swift */; };
@@ -52,6 +52,8 @@
 		56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6FA30251CF9080027CBDB /* JointSegmentView.swift */; };
 		56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */; };
 		56B766D924E2C1540005330D /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D824E2C1540005330D /* VisionHelper.swift */; };
+		56EE8414256D1B6F00A58ED2 /* CreateRoutineStep2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE8413256D1B6F00A58ED2 /* CreateRoutineStep2View.swift */; };
+		56EE848C256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE848B256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +85,7 @@
 		564838FE256C367000F7005B /* ExerciseListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExerciseListView.swift; sourceTree = "<group>"; };
 		56483903256C377000F7005B /* RoutinesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesListView.swift; sourceTree = "<group>"; };
 		5648390D256C383A00F7005B /* RoundedCornerCellModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerCellModifier.swift; sourceTree = "<group>"; };
-		56483912256C3C4400F7005B /* CreateRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineView.swift; sourceTree = "<group>"; };
+		56483912256C3C4400F7005B /* CreateRoutineStep1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep1View.swift; sourceTree = "<group>"; };
 		5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineViewModel.swift; sourceTree = "<group>"; };
 		5649350E255015DC000F8A5F /* JumpingJack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpingJack.swift; sourceTree = "<group>"; };
 		5649352525501C05000F8A5F /* BoundingBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,8 @@
 		56A6FA30251CF9080027CBDB /* JointSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointSegmentView.swift; sourceTree = "<group>"; };
 		56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		56B766D824E2C1540005330D /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
+		56EE8413256D1B6F00A58ED2 /* CreateRoutineStep2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep2View.swift; sourceTree = "<group>"; };
+		56EE848B256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep2TVController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,8 +199,10 @@
 		56483917256C3C4900F7005B /* CreateRoutineView */ = {
 			isa = PBXGroup;
 			children = (
-				56483912256C3C4400F7005B /* CreateRoutineView.swift */,
+				56483912256C3C4400F7005B /* CreateRoutineStep1View.swift */,
+				56EE8413256D1B6F00A58ED2 /* CreateRoutineStep2View.swift */,
 				5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */,
+				56EE848B256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift */,
 			);
 			path = CreateRoutineView;
 			sourceTree = "<group>";
@@ -499,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56493547255077C7000F8A5F /* WorkoutSummary.swift in Sources */,
+				56EE8414256D1B6F00A58ED2 /* CreateRoutineStep2View.swift in Sources */,
 				56483904256C377000F7005B /* RoutinesListView.swift in Sources */,
 				567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */,
 				5643AD492549E13F00945EFA /* String+Extension.swift in Sources */,
@@ -508,7 +515,7 @@
 				56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */,
 				567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */,
 				569F5D30256A8719008644F0 /* WallSit.swift in Sources */,
-				56483913256C3C4400F7005B /* CreateRoutineView.swift in Sources */,
+				56483913256C3C4400F7005B /* CreateRoutineStep1View.swift in Sources */,
 				56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */,
 				5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */,
 				56B766D924E2C1540005330D /* VisionHelper.swift in Sources */,
@@ -526,6 +533,7 @@
 				5648391F256C3EAE00F7005B /* CreateRoutineViewModel.swift in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
 				56415DF5251A4D1F00B688DE /* WorkoutViewController.swift in Sources */,
+				56EE848C256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift in Sources */,
 				569F5D28256A86EB008644F0 /* SumoSquat.swift in Sources */,
 				5648390E256C383A00F7005B /* RoundedCornerCellModifier.swift in Sources */,
 				56493552255078D5000F8A5F /* WorkoutSummaryHeaderView.swift in Sources */,

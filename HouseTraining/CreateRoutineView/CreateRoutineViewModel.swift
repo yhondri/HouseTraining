@@ -22,6 +22,10 @@ class CreateRoutineViewModel: ObservableObject {
         addedExercise.contains(exercise)
     }
     
+    func getExercises() -> [Exercise] {
+        Array(addedExercise)
+    }
+    
     func saveRoutine() {
         
     }

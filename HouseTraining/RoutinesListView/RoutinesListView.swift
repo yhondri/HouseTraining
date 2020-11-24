@@ -29,7 +29,7 @@ struct RoutinesListView: View {
                                 }
             .sheet(isPresented: $showingCreateRoutineView) {
                 NavigationView {
-                    CreateRoutineView()
+                    CreateRoutineStep2ControllerRepresentable()
                 }
             }
         )

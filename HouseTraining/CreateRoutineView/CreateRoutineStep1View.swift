@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CreateRoutineView: View {
+struct CreateRoutineStep1View: View {
     @EnvironmentObject var createRoutineViewModel: CreateRoutineViewModel
     @Environment(\.presentationMode) var presentation
     let exercises: [Exercise] = Exercise.getAvaialableExercises()
@@ -24,10 +24,13 @@ struct CreateRoutineView: View {
         }
         .background(Color.tableViewBackgroundColor)
         .navigationBarItems(trailing:
-                                Button(LocalizableKey.save.localized) {
-                                    createRoutineViewModel.saveRoutine()
-                                    presentation.wrappedValue.dismiss()
+                                NavigationLink(destination: CreateRoutineStep2View()) {
+                                    Text("Next 1 - 3")
                                 }
+//                                Button(LocalizableKey.save.localized) {
+//                                    createRoutineViewModel.saveRoutine()
+//
+//                                }
         )
         .navigationBarTitle(Text(LocalizableKey.newRoutine.localized))
     }
@@ -62,7 +65,7 @@ struct CreateRoutineRowView: View {
 
 struct CreateRoutineView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateRoutineView()
+        CreateRoutineStep1View()
             .environmentObject(CreateRoutineViewModel())
     }
 }
