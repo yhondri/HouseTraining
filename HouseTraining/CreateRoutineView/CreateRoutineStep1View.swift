@@ -8,36 +8,45 @@
 import SwiftUI
 
 struct CreateRoutineStep1View: View {
-    @EnvironmentObject var createRoutineViewModel: CreateRoutineViewModel
-    @Environment(\.presentationMode) var presentation
+    @StateObject var createRoutineViewModel: CreateRoutineViewModel = CreateRoutineViewModel()
     let exercises: [Exercise] = Exercise.getAvaialableExercises()
     
     var body: some View {
-        ScrollView {
-            LazyVStack {
-                ForEach(exercises, id: \.self) { exercise in
-                    CreateRoutineRowView(exercise: exercise)
-                        .roundedCorner()
+        ZStack {
+            ScrollView {
+                LazyVStack {
+                    ForEach(0 ..< createRoutineViewModel.availableExercises.count, id: \.self) { index in
+                        CreateRoutineRowView(createRoutineViewModel: createRoutineViewModel,
+                                             index: index, exercise:
+                                                createRoutineViewModel.availableExercises[index])
+                            .roundedCorner()
+                    }
                 }
+                .padding(.top, 10)
             }
-            .padding(.top, 10)
+            VStack {
+                Spacer()
+                
+                NavigationLink(LocalizableKey.next.localized, destination: CreateRoutineStep2ControllerRepresentable(exercises: createRoutineViewModel.getExercises())
+                                .navigationTitle(LocalizableKey.sortExercises.localized)) //UIKit bug? Cannot change title in UIViewControllerRepresentable
+                .disabled(!createRoutineViewModel.canGoToNextView)
+                .foregroundColor(.white)
+                .padding()
+                .background(createRoutineViewModel.canGoToNextView ? Color.blue : Color.gray)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding()
+                .shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
+            }
         }
         .background(Color.tableViewBackgroundColor)
-        .navigationBarItems(trailing:
-                                NavigationLink(destination: CreateRoutineStep2View()) {
-                                    Text("Next 1 - 3")
-                                }
-//                                Button(LocalizableKey.save.localized) {
-//                                    createRoutineViewModel.saveRoutine()
-//
-//                                }
-        )
         .navigationBarTitle(Text(LocalizableKey.newRoutine.localized))
     }
 }
 
 struct CreateRoutineRowView: View {
-    @EnvironmentObject var createRoutineViewModel: CreateRoutineViewModel
+    @ObservedObject var createRoutineViewModel: CreateRoutineViewModel
+    let index: Int
+    @State var isAdded: Bool = false
     let exercise: Exercise
     
     var body: some View {
@@ -47,13 +56,15 @@ struct CreateRoutineRowView: View {
             Text(exercise.actionName)
             Spacer()
             Button(action: {
-                if createRoutineViewModel.exerciseIsAdded(exercise: exercise) {
-                    createRoutineViewModel.deleteExercise(exercise)
+                if isAdded {
+                    createRoutineViewModel.deleteExercise(at: index)
                 } else {
-                    createRoutineViewModel.addExercise(exercise)
+                    createRoutineViewModel.addExercise(at: index)
                 }
+                
+                self.isAdded.toggle()
             }) {
-                if createRoutineViewModel.exerciseIsAdded(exercise: exercise) {
+                if isAdded {
                     Image(systemName: "minus")
                 } else {
                     Image(systemName: "plus")

@@ -38,6 +38,7 @@
 		567ADCFA24C0A87700A23864 /* PlayerActionClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */; };
 		567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF824C0A87700A23864 /* PlayerStats.swift */; };
 		567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF924C0A87700A23864 /* ThrowMetrics.swift */; };
+		567CA471256EC17100BB9385 /* CreateRoutineStep2CVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CA470256EC17100BB9385 /* CreateRoutineStep2CVCell.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
 		569F5D0B256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */; };
 		569F5D16256A807F008644F0 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D15256A807F008644F0 /* Exercise.swift */; };
@@ -52,7 +53,6 @@
 		56A6FA31251CF9080027CBDB /* JointSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A6FA30251CF9080027CBDB /* JointSegmentView.swift */; };
 		56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */; };
 		56B766D924E2C1540005330D /* VisionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B766D824E2C1540005330D /* VisionHelper.swift */; };
-		56EE8414256D1B6F00A58ED2 /* CreateRoutineStep2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE8413256D1B6F00A58ED2 /* CreateRoutineStep2View.swift */; };
 		56EE848C256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EE848B256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +113,7 @@
 		567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerActionClassifier.swift; sourceTree = "<group>"; };
 		567ADCF824C0A87700A23864 /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
 		567ADCF924C0A87700A23864 /* ThrowMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowMetrics.swift; sourceTree = "<group>"; };
+		567CA470256EC17100BB9385 /* CreateRoutineStep2CVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep2CVCell.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
 		569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HouseTrainingActionClassifier.mlmodel; sourceTree = "<group>"; };
 		569F5D15256A807F008644F0 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/Exercise.swift; sourceTree = "<group>"; };
@@ -126,7 +127,6 @@
 		56A6FA30251CF9080027CBDB /* JointSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JointSegmentView.swift; sourceTree = "<group>"; };
 		56B646AC24D9CEFD00C959BE /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		56B766D824E2C1540005330D /* VisionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionHelper.swift; sourceTree = "<group>"; };
-		56EE8413256D1B6F00A58ED2 /* CreateRoutineStep2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep2View.swift; sourceTree = "<group>"; };
 		56EE848B256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep2TVController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,9 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				56483912256C3C4400F7005B /* CreateRoutineStep1View.swift */,
-				56EE8413256D1B6F00A58ED2 /* CreateRoutineStep2View.swift */,
 				5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */,
 				56EE848B256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift */,
+				567CA470256EC17100BB9385 /* CreateRoutineStep2CVCell.swift */,
 			);
 			path = CreateRoutineView;
 			sourceTree = "<group>";
@@ -505,7 +505,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				56493547255077C7000F8A5F /* WorkoutSummary.swift in Sources */,
-				56EE8414256D1B6F00A58ED2 /* CreateRoutineStep2View.swift in Sources */,
 				56483904256C377000F7005B /* RoutinesListView.swift in Sources */,
 				567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */,
 				5643AD492549E13F00945EFA /* String+Extension.swift in Sources */,
@@ -523,6 +522,7 @@
 				5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */,
 				569F5D1E256A8252008644F0 /* HighKneesRunInPlace.swift in Sources */,
 				564935422550775F000F8A5F /* Color+Extension.swift in Sources */,
+				567CA471256EC17100BB9385 /* CreateRoutineStep2CVCell.swift in Sources */,
 				569F5D47256A9581008644F0 /* HouseTrainingApplication.swift in Sources */,
 				5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */,
 				5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */,

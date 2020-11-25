@@ -7,23 +7,39 @@
 
 import UIKit
 
-class CreateRoutineViewModel: ObservableObject {
-    @Published var addedExercise: Set<Exercise> = []
 
-    func addExercise(_ exercise: Exercise) {
-        addedExercise.insert(exercise)
+class CreateRoutineViewModel: ObservableObject {
+    @Published var canGoToNextView: Bool = false
+    private var addedExercise: [Int: Bool] = [:]
+    let availableExercises: [Exercise] = Exercise.getAvaialableExercises()
+
+    init() {
+        for i in 0..<availableExercises.count {
+            addedExercise[i] = false
+        }
     }
     
-    func deleteExercise(_ exercise: Exercise) {
-        addedExercise.remove(exercise)
+    func addExercise(at index: Int) {
+        addedExercise[index] = true
+        updateGoToNextView()
     }
     
-    func exerciseIsAdded(exercise: Exercise) -> Bool {
-        addedExercise.contains(exercise)
+    func deleteExercise(at index: Int) {
+        addedExercise[index] = false
+        updateGoToNextView()
+    }
+    
+    func exerciseIsAdded(at index: Int) -> Bool {
+        addedExercise[index] ?? false
     }
     
     func getExercises() -> [Exercise] {
-        Array(addedExercise)
+        addedExercise.filter { $0.value }
+            .map { availableExercises[$0.key] }
+    }
+    
+    func updateGoToNextView() {
+        canGoToNextView = addedExercise.first(where: { $0.value }) != nil
     }
     
     func saveRoutine() {

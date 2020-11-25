@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RoutinesListView: View {
     @State var showingCreateRoutineView = false
-    
+
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -29,11 +29,11 @@ struct RoutinesListView: View {
                                 }
             .sheet(isPresented: $showingCreateRoutineView) {
                 NavigationView {
-                    CreateRoutineStep2ControllerRepresentable()
+                    CreateRoutineStep1View()
                 }
             }
         )
-        .navigationBarTitle(Text(LocalizableKey.exercises.localized))
+        .navigationBarTitle(Text(LocalizableKey.routines.localized))
     }
 }
 

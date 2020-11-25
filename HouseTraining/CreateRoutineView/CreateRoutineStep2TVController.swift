@@ -4,26 +4,21 @@
 //
 //  Created by Yhondri Acosta Novas on 24/11/20.
 //
+// El código referente a la funcionalidad drag and drop procede de la respuesta de Vasily Bodnarchuk en https://stackoverflow.com/questions/39080807/drag-and-reorder-uicollectionview-with-sections
 
 import UIKit
 import SwiftUI
 
 enum CellModel {
-    case simple(text: String)
+    case simple(exercise: Exercise)
     case availableToDrop
 }
 
 class CreateRoutineStep2TVController: UIViewController {
     
     private let reuseIdentifier = "CellReuseIdentifier"
-    private lazy var collectionView: UICollectionView = {
-        let config = UICollectionLayoutListConfiguration(appearance: .plain)
-        let layout = UICollectionViewCompositionalLayout.list(using: config)
-        return UICollectionView(frame: .zero, collectionViewLayout: layout)
-    }()
-    
-//    private lazy var dataSource = makeDataSource()
-    private var exercises = Exercise.getAvaialableExercises()
+    private lazy var collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: getLayout())    
+    private let exercises: [Exercise]
     private let sections = 1
     private let itemsInSection: Int
     
@@ -31,14 +26,16 @@ class CreateRoutineStep2TVController: UIViewController {
         var count = 0
         return (0 ..< sections).map { _ in
             return (0 ..< itemsInSection).map { _ -> CellModel in
+                let value = CellModel.simple(exercise: exercises[count])
                 count += 1
-                return .simple(text: "cell \(count)")
+                return value
             }
         }
     }()
     
-    init() {
+    init(exercises: [Exercise]) {
         itemsInSection =  exercises.count
+        self.exercises = exercises
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,6 +44,8 @@ class CreateRoutineStep2TVController: UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView.backgroundColor = UIColor.gray
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CreateRoutineStep2CVCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         view.addSubview(collectionView)
@@ -61,43 +60,23 @@ class CreateRoutineStep2TVController: UIViewController {
         collectionView.reorderingCadence = .fast
         collectionView.dropDelegate = self
         collectionView.dragDelegate = self
-        collectionView.delegate = self
         collectionView.dataSource = self
-//        updateList()
     }
     
-//    func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewListCell, Exercise> {
-//        UICollectionView.CellRegistration { cell, indexPath, exercise in
-//            // Configuring each cell's content:
-//            var config = cell.defaultContentConfiguration()
-//            config.text = exercise.actionName
-//            cell.contentConfiguration = config
-//        }
-//    }
-//
-//    func makeDataSource() -> UICollectionViewDiffableDataSource<CVSection, Exercise> {
-//        let cellRegistration = makeCellRegistration()
-//
-//        return UICollectionViewDiffableDataSource<CVSection, Exercise>(
-//            collectionView: collectionView,
-//            cellProvider: { view, indexPath, item in
-//                view.dequeueConfiguredReusableCell(
-//                    using: cellRegistration,
-//                    for: indexPath,
-//                    item: item
-//                )
-//            }
-//        )
-//    }
-//
-//    func updateList() {
-//        var snapshot = NSDiffableDataSourceSnapshot<CVSection, Exercise>()
-//        snapshot.appendSections(CVSection.allCases)
-//        snapshot.appendItems(exercises, toSection: .favorites)
-//        dataSource.apply(snapshot)
-//    }
+    private func getLayout() -> UICollectionViewCompositionalLayout {
+        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(80))
+        let item = NSCollectionLayoutItem(layoutSize: size)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0)
+        section.interGroupSpacing = 0
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
 }
 
+// MARK: - UICollectionViewDataSource
 extension CreateRoutineStep2TVController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data[section].count
@@ -105,21 +84,19 @@ extension CreateRoutineStep2TVController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch data[indexPath.section][indexPath.item] {
-        case .simple(let text):
+        case .simple(let exercise):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CreateRoutineStep2CVCell
-            cell.hourlabel.text = text
+            cell.exercise = exercise
             return cell
         case .availableToDrop:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CreateRoutineStep2CVCell
-            cell.backgroundColor = UIColor.green.withAlphaComponent(0.3)
+            cell.isHidden = true //Hide weird animation
             return cell
         }
     }
 }
 
-
-extension CreateRoutineStep2TVController: UICollectionViewDelegate { }
-
+// MARK: - UICollectionViewDragDelegate
 extension CreateRoutineStep2TVController: UICollectionViewDragDelegate {
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         let itemProvider = NSItemProvider(object: "\(indexPath)" as NSString)
@@ -159,6 +136,7 @@ extension CreateRoutineStep2TVController: UICollectionViewDragDelegate {
     }
 }
 
+// MARK: - UICollectionViewDropDelegate
 extension CreateRoutineStep2TVController: UICollectionViewDropDelegate {
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         let destinationIndexPath: IndexPath
@@ -180,6 +158,7 @@ extension CreateRoutineStep2TVController: UICollectionViewDropDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool { return true }
+    
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
         if collectionView.hasActiveDrag, let destinationIndexPath = destinationIndexPath {
             switch data[destinationIndexPath.section][destinationIndexPath.row] {
@@ -193,17 +172,16 @@ extension CreateRoutineStep2TVController: UICollectionViewDropDelegate {
 
     private func reorderItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
         let items = coordinator.items
-        if  items.count == 1, let item = items.first,
-            let sourceIndexPath = item.sourceIndexPath,
-            let localObject = item.dragItem.localObject as? CellModel {
-
-            collectionView.performBatchUpdates ({
-                data[sourceIndexPath.section].remove(at: sourceIndexPath.item)
-                data[destinationIndexPath.section].insert(localObject, at: destinationIndexPath.item)
-                collectionView.deleteItems(at: [sourceIndexPath])
-                collectionView.insertItems(at: [destinationIndexPath])
-            })
-        }
+        guard items.count == 1, let item = items.first,
+              let sourceIndexPath = item.sourceIndexPath,
+              let localObject = item.dragItem.localObject as? CellModel else { return }
+        
+        collectionView.performBatchUpdates ({
+            data[sourceIndexPath.section].remove(at: sourceIndexPath.item)
+            data[destinationIndexPath.section].insert(localObject, at: destinationIndexPath.item)
+            collectionView.deleteItems(at: [sourceIndexPath])
+            collectionView.insertItems(at: [destinationIndexPath])
+        })
     }
 
     private func copyItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
@@ -220,44 +198,14 @@ extension CreateRoutineStep2TVController: UICollectionViewDropDelegate {
         })
     }
 }
+
 struct CreateRoutineStep2ControllerRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = CreateRoutineStep2TVController
+    var exercises: [Exercise]
     
     func makeUIViewController(context: Context) -> CreateRoutineStep2TVController {
-        //        var sb = UIStoryboard(name: "Main", bundle: nil)
-        //        var vc = sb.instantiateViewController(identifier: "MasterViewController") as! MasterViewController
-        return CreateRoutineStep2TVController()
+        return CreateRoutineStep2TVController(exercises: exercises)
     }
     
-    func updateUIViewController(_ uiViewController: CreateRoutineStep2TVController, context: Context) {
-    }
-    
-    typealias UIViewControllerType = CreateRoutineStep2TVController
-}
-
-
-class CreateRoutineStep2CVCell: UICollectionViewCell {
-    let hourlabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.systemFont(ofSize: 24)
-        titleLabel.text = "00:00"
-        titleLabel.textColor = .blue
-        return titleLabel
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(hourlabel)
-                
-        NSLayoutConstraint.activate([
-            hourlabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            hourlabel.topAnchor.constraint(equalTo: topAnchor),
-            hourlabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            hourlabel.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    func updateUIViewController(_ uiViewController: CreateRoutineStep2TVController, context: Context) {}
 }

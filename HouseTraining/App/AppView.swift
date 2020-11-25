@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct AppView: View {
+    
     var body: some View {
-
         TabView {
             NavigationView {
                 RoutinesListView()
-                    .environmentObject(CreateRoutineViewModel())
             }
             .tabItem {
                 Image(systemName: "list.dash")
