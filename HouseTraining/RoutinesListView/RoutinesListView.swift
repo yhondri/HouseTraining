@@ -31,6 +31,8 @@ struct RoutinesListView: View {
                 NavigationView {
                     CreateRoutineStep1View()
                 }
+            }.onReceive(NotificationCenter.default.publisher(for: .createWorkoutDismiss)) { _ in
+                showingCreateRoutineView = false
             }
         )
         .navigationBarTitle(Text(LocalizableKey.routines.localized))

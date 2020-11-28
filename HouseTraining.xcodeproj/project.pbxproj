@@ -28,6 +28,9 @@
 		5649355A255079F4000F8A5F /* Double+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56493559255079F4000F8A5F /* Double+Extension.swift */; };
 		5649356225507A7E000F8A5F /* NumberFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649356125507A7E000F8A5F /* NumberFormatter+Extension.swift */; };
 		5649356725507DBA000F8A5F /* WorkoutSummaryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649356625507DBA000F8A5F /* WorkoutSummaryItemView.swift */; };
+		56532DC52572B134008F341A /* CreateRoutineStep3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56532DC42572B134008F341A /* CreateRoutineStep3View.swift */; };
+		56532DCA2572B6DD008F341A /* CreateRoutineStep3ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56532DC92572B6DD008F341A /* CreateRoutineStep3ViewModel.swift */; };
+		56532DCF2572C255008F341A /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56532DCE2572C255008F341A /* NSNotification+Extension.swift */; };
 		567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCAF24C0A1F000A23864 /* AppDelegate.swift */; };
 		567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCB824C0A1F000A23864 /* HouseTraining.xcdatamodeld */; };
 		567ADCBC24C0A1F100A23864 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 567ADCBB24C0A1F100A23864 /* Assets.xcassets */; };
@@ -97,6 +100,9 @@
 		56493559255079F4000F8A5F /* Double+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Double+Extension.swift"; sourceTree = "<group>"; };
 		5649356125507A7E000F8A5F /* NumberFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Extension.swift"; sourceTree = "<group>"; };
 		5649356625507DBA000F8A5F /* WorkoutSummaryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryItemView.swift; sourceTree = "<group>"; };
+		56532DC42572B134008F341A /* CreateRoutineStep3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep3View.swift; sourceTree = "<group>"; };
+		56532DC92572B6DD008F341A /* CreateRoutineStep3ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep3ViewModel.swift; sourceTree = "<group>"; };
+		56532DCE2572C255008F341A /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 		567ADCAC24C0A1F000A23864 /* HouseTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HouseTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		567ADCAF24C0A1F000A23864 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		567ADCB924C0A1F000A23864 /* HouseTraining.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HouseTraining.xcdatamodel; sourceTree = "<group>"; };
@@ -176,6 +182,7 @@
 				56493559255079F4000F8A5F /* Double+Extension.swift */,
 				5643AD482549E13F00945EFA /* String+Extension.swift */,
 				5649356125507A7E000F8A5F /* NumberFormatter+Extension.swift */,
+				56532DCE2572C255008F341A /* NSNotification+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -203,6 +210,8 @@
 				5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */,
 				56EE848B256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift */,
 				567CA470256EC17100BB9385 /* CreateRoutineStep2CVCell.swift */,
+				56532DC42572B134008F341A /* CreateRoutineStep3View.swift */,
+				56532DC92572B6DD008F341A /* CreateRoutineStep3ViewModel.swift */,
 			);
 			path = CreateRoutineView;
 			sourceTree = "<group>";
@@ -506,6 +515,7 @@
 			files = (
 				56493547255077C7000F8A5F /* WorkoutSummary.swift in Sources */,
 				56483904256C377000F7005B /* RoutinesListView.swift in Sources */,
+				56532DCF2572C255008F341A /* NSNotification+Extension.swift in Sources */,
 				567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */,
 				5643AD492549E13F00945EFA /* String+Extension.swift in Sources */,
 				5649352B25501C1D000F8A5F /* AnimatedTransitioning.swift in Sources */,
@@ -531,7 +541,9 @@
 				5649356725507DBA000F8A5F /* WorkoutSummaryItemView.swift in Sources */,
 				564838FF256C367000F7005B /* ExerciseListView.swift in Sources */,
 				5648391F256C3EAE00F7005B /* CreateRoutineViewModel.swift in Sources */,
+				56532DC52572B134008F341A /* CreateRoutineStep3View.swift in Sources */,
 				567ADCBA24C0A1F000A23864 /* HouseTraining.xcdatamodeld in Sources */,
+				56532DCA2572B6DD008F341A /* CreateRoutineStep3ViewModel.swift in Sources */,
 				56415DF5251A4D1F00B688DE /* WorkoutViewController.swift in Sources */,
 				56EE848C256D9A4700A58ED2 /* CreateRoutineStep2TVController.swift in Sources */,
 				569F5D28256A86EB008644F0 /* SumoSquat.swift in Sources */,

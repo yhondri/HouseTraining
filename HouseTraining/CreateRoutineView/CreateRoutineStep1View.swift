@@ -15,11 +15,13 @@ struct CreateRoutineStep1View: View {
         ZStack {
             ScrollView {
                 LazyVStack {
-                    ForEach(0 ..< createRoutineViewModel.availableExercises.count, id: \.self) { index in
-                        CreateRoutineRowView(createRoutineViewModel: createRoutineViewModel,
-                                             index: index, exercise:
-                                                createRoutineViewModel.availableExercises[index])
-                            .roundedCorner()
+                    Section(header: Text("Selecciona los ejercicios").padding()) {
+                        ForEach(0 ..< createRoutineViewModel.availableExercises.count, id: \.self) { index in
+                            CreateRoutineRowView(createRoutineViewModel: createRoutineViewModel,
+                                                 index: index, exercise:
+                                                    createRoutineViewModel.availableExercises[index])
+                                .roundedCorner()
+                        }
                     }
                 }
                 .padding(.top, 10)
@@ -29,13 +31,14 @@ struct CreateRoutineStep1View: View {
                 
                 NavigationLink(LocalizableKey.next.localized, destination: CreateRoutineStep2ControllerRepresentable(exercises: createRoutineViewModel.getExercises())
                                 .navigationTitle(LocalizableKey.sortExercises.localized)) //UIKit bug? Cannot change title in UIViewControllerRepresentable
-                .disabled(!createRoutineViewModel.canGoToNextView)
-                .foregroundColor(.white)
-                .padding()
-                .background(createRoutineViewModel.canGoToNextView ? Color.blue : Color.gray)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding()
-                .shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
+                    .disabled(!createRoutineViewModel.canGoToNextView)
+                    .foregroundColor(.white)
+                    .padding([.top, .bottom], 10)
+                    .padding([.leading, .trailing], 40)
+                    .background(createRoutineViewModel.canGoToNextView ? Color.blue : Color.gray)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding()
+                    .shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
             }
         }
         .background(Color.tableViewBackgroundColor)

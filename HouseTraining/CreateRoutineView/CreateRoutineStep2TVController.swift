@@ -45,7 +45,7 @@ class CreateRoutineStep2TVController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundColor = UIColor.gray
+        collectionView.backgroundColor = .tableViewBackgroundColor
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(CreateRoutineStep2CVCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         view.addSubview(collectionView)
@@ -61,6 +61,23 @@ class CreateRoutineStep2TVController: UIViewController {
         collectionView.dropDelegate = self
         collectionView.dragDelegate = self
         collectionView.dataSource = self
+        
+        let nextButton = UIButton(type: .system)
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.setTitle(LocalizableKey.next.localized, for: .normal)
+        nextButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        nextButton.setTitleColor(.white, for: .normal)
+        nextButton.backgroundColor = .buttonMainColor
+        nextButton.addTarget(self, action: #selector(goToNextView), for: .touchUpInside)
+        nextButton.layer.cornerRadius = 12
+        nextButton.layer.masksToBounds = true
+        nextButton.addLeftPadding(35)
+        view.addSubview(nextButton)
+        NSLayoutConstraint.activate([
+            nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20),
+            nextButton.heightAnchor.constraint(equalToConstant: 35)
+        ])
     }
     
     private func getLayout() -> UICollectionViewCompositionalLayout {
@@ -73,6 +90,21 @@ class CreateRoutineStep2TVController: UIViewController {
         section.interGroupSpacing = 0
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
+    }
+    
+    @objc private func goToNextView() {
+        let exercises = data[0].compactMap { (cellModel) -> Exercise? in
+            switch cellModel {
+            case .simple(let exercise):
+                return exercise
+            default:
+                break
+            }
+            return nil
+        }
+        let createRoutineStep3ViewModel = CreateRoutineStep3ViewModel(exercises: exercises)
+        let hostingController = UIHostingController(rootView: CreateRoutineStep3View(createRoutineViewModel: createRoutineStep3ViewModel))
+        navigationController?.pushViewController(hostingController, animated: true)
     }
 }
 
@@ -208,4 +240,11 @@ struct CreateRoutineStep2ControllerRepresentable: UIViewControllerRepresentable 
     }
     
     func updateUIViewController(_ uiViewController: CreateRoutineStep2TVController, context: Context) {}
+}
+
+
+extension UIButton {
+    func addLeftPadding(_ padding: CGFloat) {
+        contentEdgeInsets = UIEdgeInsets(top: 0.0, left: padding, bottom: 0.0, right: padding)
+    }
 }

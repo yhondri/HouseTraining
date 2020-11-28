@@ -12,3 +12,8 @@ extension Color {
     static let tableViewBackgroundColor = Color("TableBackgroundColor")
     static let itemTextColor = Color("ItemTextColor")
 }
+
+extension UIColor {
+    static let tableViewBackgroundColor = UIColor(named: "TableBackgroundColor")
+    static let buttonMainColor = UIColor(named: "ButtonMainColor")
+}
