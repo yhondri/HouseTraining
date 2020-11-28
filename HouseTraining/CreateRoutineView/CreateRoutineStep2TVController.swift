@@ -93,9 +93,12 @@ class CreateRoutineStep2TVController: UIViewController {
     }
     
     @objc private func goToNextView() {
+        var position = 0
         let exercises = data[0].compactMap { (cellModel) -> Exercise? in
             switch cellModel {
             case .simple(let exercise):
+                exercise.position = position
+                position += 1
                 return exercise
             default:
                 break

@@ -9,12 +9,17 @@ import SwiftUI
 
 struct RoutinesListView: View {
     @State var showingCreateRoutineView = false
-
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: WorkoutEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)]
+    ) var workoutList: FetchedResults<WorkoutEntity>
+    
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(0..<5) { _ in 
-                    RoutineView()
+                ForEach(workoutList, id: \.self) { workout in
+                    RoutineView(workout: workout)
                         .roundedCorner()                    
                 }
             }
@@ -40,11 +45,12 @@ struct RoutinesListView: View {
 }
 
 struct RoutineView: View {
+    let workout: WorkoutEntity
     var body: some View {
         HStack {
             Image("ic_temp_activity")
                 .padding(.trailing, 8)
-            Text("Routine")
+            Text(workout.name)
             Spacer()
             Image(systemName: "chevron.right")
         }.padding(.leading)

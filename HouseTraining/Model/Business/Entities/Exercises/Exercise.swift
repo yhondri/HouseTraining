@@ -14,18 +14,26 @@ class Exercise: NSObject {
     var actionType: ActionType
     var actionName: String
     var workoutLastDate: Date?
+    var imageName: String
     var scoreValue: String {
         "\(score)%"
     }
     
     private let id: Int = 0
+    var position: Int = 0
     
     init(actionType: ActionType = .none,
          actionName: String = "--",
-         workoutLastDate: Date? = nil) {
+         workoutLastDate: Date? = nil,
+         imageName: String = "ic_temp_activity") {
         self.actionType = actionType
         self.actionName = actionName
         self.workoutLastDate = workoutLastDate
+        self.imageName = imageName
+    }
+    
+    func getId() -> Int {
+        return id
     }
     
     /**

@@ -11,9 +11,10 @@ import UIKit
 class CreateRoutineViewModel: ObservableObject {
     @Published var canGoToNextView: Bool = false
     private var addedExercise: [Int: Bool] = [:]
-    let availableExercises: [Exercise] = Exercise.getAvaialableExercises()
+    let availableExercises: [Exercise]
 
     init() {
+        availableExercises = ExerciseEntity.fetchAllExercises(context: CoreDataStack.shared.viewContext)
         for i in 0..<availableExercises.count {
             addedExercise[i] = false
         }

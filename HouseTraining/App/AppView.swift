@@ -9,10 +9,15 @@ import SwiftUI
 
 struct AppView: View {
     
+    init() {
+        AppViewModel().setupDataIfNeeded()
+    }
+    
     var body: some View {
         TabView {
             NavigationView {
                 RoutinesListView()
+                    .environment(\.managedObjectContext, CoreDataStack.shared.viewContext)
             }
             .tabItem {
                 Image(systemName: "list.dash")

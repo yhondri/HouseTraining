@@ -15,6 +15,7 @@ class CreateRoutineStep3ViewModel: ObservableObject {
     }
     
     func saveWorkout(workoutName: String) {
-        
+        WorkoutEntity.insert(workoutName: workoutName, exercises: exercises, context: CoreDataStack.shared.viewContext)
+        CoreDataStack.shared.saveViewContext()
     }
 }
