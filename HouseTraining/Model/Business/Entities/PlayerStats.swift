@@ -44,7 +44,7 @@ struct PlayerStats {
     var avgSpeed = 0.0
     var releaseAngle = 0.0
     var avgReleaseAngle = 0.0
-    private var poseObservations = [VNRecognizedPointsObservation]()
+    private var poseObservations = [VNHumanBodyPoseObservation]()
     
     var throwPaths = [CGPath]()
     
@@ -76,7 +76,7 @@ struct PlayerStats {
         throwPaths.append(path)
     }
 
-    mutating func storeObservation(_ observation: VNRecognizedPointsObservation) {
+    mutating func storeObservation(_ observation: VNHumanBodyPoseObservation) {
         if poseObservations.count >= GameConstants.maxPoseObservations {
             poseObservations.removeFirst()
         }
@@ -109,11 +109,9 @@ struct PlayerStats {
             return Action()
         }
         
-        guard let actionType = ActionType(rawValue: predictions.label.capitalized) else {
+        guard let actionType = ActionType(rawValue: predictions.label) else {
             return Action()
         }
-
-//        debugPrint("throwType ", actionType, predictions.labelProbabilities)
 
         return Action(type: actionType, probability: predictions.actionProbability)
     }
@@ -205,70 +203,32 @@ enum AppError: Error {
     }
 }
 
-
-let jointsOfInterest: [VNHumanBodyPoseObservation.JointName] = [.rightWrist,
-                                                                .rightElbow,
-                                                                .rightShoulder,
-                                                                .rightHip,
-                                                                .rightKnee,
-                                                                .rightAnkle,
-                                                                .leftWrist,
-                                                                .leftElbow,
-                                                                .leftShoulder,
-                                                                .leftHip,
-                                                                .leftKnee,
-                                                                .leftAnkle
-]
-
-let humanBodyPoseJoinNameTranslator: [VNRecognizedPointKey: VNHumanBodyPoseObservation.JointName] = [
-    VNRecognizedPointKey.bodyLandmarkKeyRightWrist: VNHumanBodyPoseObservation.JointName.rightWrist,
-    VNRecognizedPointKey.bodyLandmarkKeyLeftWrist: VNHumanBodyPoseObservation.JointName.leftWrist,
-    VNRecognizedPointKey.bodyLandmarkKeyRightElbow: VNHumanBodyPoseObservation.JointName.rightElbow,
-    VNRecognizedPointKey.bodyLandmarkKeyLeftElbow: VNHumanBodyPoseObservation.JointName.leftElbow,
-    VNRecognizedPointKey.bodyLandmarkKeyRightShoulder: VNHumanBodyPoseObservation.JointName.rightShoulder,
-    VNRecognizedPointKey.bodyLandmarkKeyLeftShoulder: VNHumanBodyPoseObservation.JointName.leftShoulder,
-    VNRecognizedPointKey.bodyLandmarkKeyRightHip: VNHumanBodyPoseObservation.JointName.rightHip,
-    VNRecognizedPointKey.bodyLandmarkKeyLeftHip: VNHumanBodyPoseObservation.JointName.leftHip,
-    VNRecognizedPointKey.bodyLandmarkKeyRightKnee: VNHumanBodyPoseObservation.JointName.rightKnee,
-    VNRecognizedPointKey.bodyLandmarkKeyLeftKnee: VNHumanBodyPoseObservation.JointName.leftKnee,
-    VNRecognizedPointKey.bodyLandmarkKeyRightAnkle: VNHumanBodyPoseObservation.JointName.rightAnkle,
-    VNRecognizedPointKey.bodyLandmarkKeyLeftAnkle: VNHumanBodyPoseObservation.JointName.leftAnkle
-]
-
-func armJoints(for observation: VNRecognizedPointsObservation) -> (CGPoint, CGPoint) {
+//TODO: Set confidence global const variable.
+func armJoints(for observation: VNHumanBodyPoseObservation) -> (CGPoint, CGPoint) {
     var rightElbow = CGPoint(x: 0, y: 0)
     var rightWrist = CGPoint(x: 0, y: 0)
 
-    guard let identifiedPoints = try? observation.recognizedPoints(forGroupKey: .all) else {
-        return (rightElbow, rightWrist)
+    if let point = try? observation.recognizedPoint(.rightElbow), point.confidence > 0.1 {
+        rightElbow = point.location
     }
-    for (key, point) in identifiedPoints where point.confidence > 0.1 {
-        guard let mKey = humanBodyPoseJoinNameTranslator[key] else { continue }
-        
-        switch mKey {
-        case .rightElbow:
-            rightElbow = point.location
-        case .rightWrist:
-            rightWrist = point.location
-        default:
-            break
-        }
+
+    if let point = try? observation.recognizedPoint(.rightWrist), point.confidence > 0.1 {
+        rightWrist = point.location
     }
+    
     return (rightElbow, rightWrist)
 }
 
-func getBodyJointsFor(observation: VNRecognizedPointsObservation) -> ([VNHumanBodyPoseObservation.JointName: CGPoint]) {
+func getBodyJointsFor(observation: VNHumanBodyPoseObservation) -> ([VNHumanBodyPoseObservation.JointName: CGPoint]) {
     var joints = [VNHumanBodyPoseObservation.JointName: CGPoint]()
-    guard let identifiedPoints = try? observation.recognizedPoints(forGroupKey: .all) else {
+    guard let identifiedPoints = try? observation.recognizedPoints(VNHumanBodyPoseObservation.JointsGroupName.all) else {
         return joints
     }
+    
     for (key, point) in identifiedPoints where point.confidence > 0.1 {
-        guard let mKey = humanBodyPoseJoinNameTranslator[key] else { continue }
-        
-        if jointsOfInterest.contains(mKey) {
-            joints[mKey] = point.location
-        }
+        joints[key] = point.location
     }
+    
     return joints
 }
 

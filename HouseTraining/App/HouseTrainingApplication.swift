@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-@main
-struct HouseTrainingApplication: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
-    var body: some Scene {
-        WindowGroup {
-            AppView()
-                .environment(\.managedObjectContext, CoreDataStack.shared.viewContext)
-        }
-    }
-}
-
+//@main
+//struct HouseTrainingApplication: App {
+//    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+//    
+//    var body: some Scene {
+//        WindowGroup {
+//            AppView()
+//                .environment(\.managedObjectContext, CoreDataStack.shared.viewContext)
+//        }
+//    }
+//}
+//

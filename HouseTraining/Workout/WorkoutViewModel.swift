@@ -13,7 +13,7 @@ import Combine
 
 class WorkoutViewModel: NSObject {
     let videoDataOutputQueue: DispatchQueue
-    let playerRequest = PassthroughSubject<VNRecognizedPointsObservation, Never>()
+    let playerRequest = PassthroughSubject<VNHumanBodyPoseObservation, Never>()
     let userActionRequest = PassthroughSubject<Action, Never>()
     
     private(set) var cameraFeedSession: AVCaptureSession?
@@ -221,7 +221,7 @@ extension WorkoutViewModel {
         }
     }
     
-    private func storeObservation(_ observation: VNRecognizedPointsObservation) {
+    private func storeObservation(_ observation: VNHumanBodyPoseObservation) {
         if observation.confidence > bodyPoseDetectionMinConfidence {
             self.playerStats.storeObservation(observation)
             self.posesCount += 1

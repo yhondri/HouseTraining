@@ -170,7 +170,7 @@ class WorkoutViewController: UIViewController {
         navigationController?.pushViewController(hostingController, animated: true)
     }
     
-    private func updateHumanBodyPose(reconizedPointsObservation: VNRecognizedPointsObservation) {
+    private func updateHumanBodyPose(reconizedPointsObservation: VNHumanBodyPoseObservation) {
         let box = humanBoundingBox(for: reconizedPointsObservation)
         let boxView = playerBoundingBox
         DispatchQueue.main.async {

@@ -15,6 +15,19 @@ class JointSegmentView: UIView, AnimatedTransitioning {
     private let jointSegmentWidth: CGFloat = 2.0
     private let jointSegmentLayer = CAShapeLayer()
     private var jointSegmentPath = UIBezierPath()
+    
+    let jointsOfInterest: [VNHumanBodyPoseObservation.JointName] = [.rightWrist,
+                                                                    .rightElbow,
+                                                                    .rightShoulder,
+                                                                    .rightHip,
+                                                                    .rightKnee,
+                                                                    .rightAnkle,
+                                                                    .leftWrist,
+                                                                    .leftElbow,
+                                                                    .leftShoulder,
+                                                                    .leftHip,
+                                                                    .leftKnee,
+                                                                    .leftAnkle]
 
     override init(frame: CGRect) {
         super.init(frame: frame)
