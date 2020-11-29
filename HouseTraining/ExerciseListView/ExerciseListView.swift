@@ -10,7 +10,11 @@ import Introspect
 
 struct ExerciseListView: View {
 
-    let exercises: [Exercise] = Exercise.getAvaialableExercises()
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(
+        entity: ExerciseEntity.entity(),
+        sortDescriptors: [NSSortDescriptor(keyPath: \ExerciseEntity.name, ascending: true)]
+    ) var exercises: FetchedResults<ExerciseEntity>
     
     var body: some View {
         ScrollView {
@@ -29,7 +33,7 @@ struct ExerciseListView: View {
 }
 
 struct ExercieRowView: View {
-    let exercise: Exercise
+    let exercise: ExerciseEntity
     
     var body: some View {
         NavigationLink(destination: Text("Somewhere")) {
@@ -49,7 +53,7 @@ struct ExercieRowView: View {
                 Image("ic_temp_activity")
                     .padding(.trailing, 8)
                 VStack(alignment: .leading) {
-                    Text(exercise.actionName)
+                    Text(exercise.name)
                         .font(.body)
                         .fontWeight(.medium)
                     HStack {

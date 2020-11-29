@@ -11,18 +11,10 @@ import SwiftUI
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    var window: UIWindow?
     /// set orientations you want to be allowed in this property by default
     var orientationLock = UIInterfaceOrientationMask.all
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow()
-        
-//        let hostingController = UIHostingController(rootView: WorkoutSummaryView(workoutSummary: WorkoutSummary.getPreview()))
-        let hostingController = UIHostingController(rootView: ExerciseListView())
-        window?.rootViewController = hostingController
-//        window?.rootViewController = UINavigationController(rootViewController: WorkoutViewController())
-        window?.makeKeyAndVisible()
         return true
     }
     

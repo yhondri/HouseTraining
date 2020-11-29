@@ -18,8 +18,8 @@
 "exerciselistview_sumo_squat" = "Sumo squat";
 "exerciselistview_wall_sit" = "Wall sit";
 
-//MARK: - RoutinesListView
-"routinesListView_routines" = "Rutinas";
+//MARK: - WorkoutListView
+"workoutListView_workouts" = "Entrenamientos";
 
 //MARK: - CreateRoutineStep1View
 "createroutineStep1View_new_routine" = "Nueva rutina";

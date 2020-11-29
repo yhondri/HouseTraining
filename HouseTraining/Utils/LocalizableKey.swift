@@ -20,8 +20,8 @@ struct LocalizableKey {
     static let sumoSquat = "exerciselistview_sumo_squat";
     static let wallSit = "exerciselistview_wall_sit";
     
-    //MARK: - RoutinesListView
-    static let routines = "routinesListView_routines"
+    //MARK: - WorkoutListView
+    static let workouts = "workoutListView_workouts"
     
     //MARK: - CreateRoutineStep1View
     static let newRoutine = "createroutineStep1View_new_routine"

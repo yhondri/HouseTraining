@@ -12,7 +12,7 @@ struct RoutinesListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(
         entity: WorkoutEntity.entity(),
-        sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)]
+        sortDescriptors: [NSSortDescriptor(keyPath: \WorkoutEntity.name, ascending: true)]
     ) var workoutList: FetchedResults<WorkoutEntity>
     
     var body: some View {
@@ -40,7 +40,7 @@ struct RoutinesListView: View {
                 showingCreateRoutineView = false
             }
         )
-        .navigationBarTitle(Text(LocalizableKey.routines.localized))
+        .navigationBarTitle(Text(LocalizableKey.workouts.localized))
     }
 }
 

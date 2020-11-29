@@ -10,13 +10,11 @@ import SwiftUI
 @main
 struct HouseTrainingApplication: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-//    private let dependency = AppEnvironment()
     
     var body: some Scene {
         WindowGroup {
             AppView()
-//                .environmentObject(dependency.indicatorInteractor)
-//                .environmentObject(dependency.settingsViewModel)
+                .environment(\.managedObjectContext, CoreDataStack.shared.viewContext)
         }
     }
 }

@@ -18,8 +18,8 @@
         <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutEntity" inverseName="exercises" inverseEntity="WorkoutEntity"/>
     </entity>
     <elements>
+        <element name="ExerciseEntity" positionX="-9321.496887207031" positionY="-3406.369750976562" width="128" height="133"/>
         <element name="WorkoutEntity" positionX="-9746.282165527344" positionY="-3528.605712890625" width="128" height="73"/>
         <element name="WorkoutExerciseEntity" positionX="-9545.155090332031" positionY="-3526.384826660156" width="128" height="88"/>
-        <element name="ExerciseEntity" positionX="-9542.199768066406" positionY="-3414.352661132812" width="128" height="133"/>
     </elements>
 </model>

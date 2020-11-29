@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AppView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
     
     init() {
         AppViewModel().setupDataIfNeeded()
@@ -17,11 +18,10 @@ struct AppView: View {
         TabView {
             NavigationView {
                 RoutinesListView()
-                    .environment(\.managedObjectContext, CoreDataStack.shared.viewContext)
             }
             .tabItem {
                 Image(systemName: "list.dash")
-                Text(LocalizableKey.exercises.localized)
+                Text(LocalizableKey.workouts.localized)
             }
             .navigationViewStyle(StackNavigationViewStyle())
             
@@ -33,14 +33,6 @@ struct AppView: View {
                 Text(LocalizableKey.exercises.localized)
             }
             .navigationViewStyle(StackNavigationViewStyle())
-
-            //            NavigationView {
-//                SettingsView()
-//            }.tabItem {
-//                Image(systemName: "gear")
-//                Text(LocalizableKey.settings.localized)
-//            }
-//            .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
