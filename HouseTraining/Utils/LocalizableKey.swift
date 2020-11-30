@@ -8,9 +8,11 @@
 import Foundation
 
 struct LocalizableKey {
-    //MARK: - WorkoutViewController
-    static let quality = "workoutviewcontroler_quality"
-    static let resting = "workoutviewcontroler_resting"
+    
+    //MARK: - ChartsView
+    static let charts = "chartsView_charts"
+    static let weeklyActivity = "chartsView_weekly_activity"
+    static let monthActivity = "chartsView_month_activity"
     
     //MARK: - ExerciseListView
     static let exercises = "exerciselistview_exercises"
@@ -32,4 +34,8 @@ struct LocalizableKey {
 
     //MARK: - CreateRoutineStep3View
     static let save = "createroutineStep3View_save"
+    
+    //MARK: - WorkoutViewController
+    static let quality = "workoutviewcontroler_quality"
+    static let resting = "workoutviewcontroler_resting"
 }

@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 import SwiftUI
 
-@main
+//@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var orientationLock = UIInterfaceOrientationMask.all
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow()
-        window?.rootViewController = UINavigationController(rootViewController: WorkoutViewController())
-        window?.makeKeyAndVisible()
+//        window = UIWindow()
+//        window?.rootViewController = UINavigationController(rootViewController: WorkoutViewController())
+//        window?.makeKeyAndVisible()
         return true
     }
     

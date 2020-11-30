@@ -6,11 +6,12 @@
   
 */
 
-// WorkoutViewController
-"workoutviewcontroler_quality" = "Calidad";
-"workoutviewcontroler_resting" = "Descansando";
+//MARK: - ChartsView
+"chartsView_charts" = "Gráficos";
+"chartsView_weekly_activity" = "Actividad semanal";
+"chartsView_month_activity" = "Actividad mensual";
 
-//ExerciseList
+//MARK: - ExerciseList
 "exerciselistview_exercises" = "Ejercicios";
 "exerciselistview_jumping_jacks" = "Jumping Jacks";
 "exerciselistview_high_knees_run_in_place" = "High knees run in place";
@@ -31,3 +32,6 @@
 //MARK: - CreateRoutineStep3View
 "createroutineStep3View_save" = "Guardar";
 
+//MARK: - WorkoutViewController
+"workoutviewcontroler_quality" = "Calidad";
+"workoutviewcontroler_resting" = "Descansando";

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		562FF4DB25756D7800ABA4D1 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FF4DA25756D7800ABA4D1 /* BarChartView.swift */; };
+		562FF4ED2575710B00ABA4D1 /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FF4EC2575710B00ABA4D1 /* ChartGridView.swift */; };
+		562FF4F52575714500ABA4D1 /* ChartGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FF4F42575714500ABA4D1 /* ChartGridViewModel.swift */; };
 		56415DF5251A4D1F00B688DE /* WorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */; };
 		56415DF6251A4D1F00B688DE /* WorkoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56415DF4251A4D1F00B688DE /* WorkoutViewController.xib */; };
 		56415DFE251A4F1B00B688DE /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */; };
@@ -88,6 +91,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		562FF4DA25756D7800ABA4D1 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		562FF4EC2575710B00ABA4D1 /* ChartGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
+		562FF4F42575714500ABA4D1 /* ChartGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridViewModel.swift; sourceTree = "<group>"; };
 		56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewController.swift; sourceTree = "<group>"; };
 		56415DF4251A4D1F00B688DE /* WorkoutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkoutViewController.xib; sourceTree = "<group>"; };
 		56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
@@ -184,6 +190,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		562FF4D925756D5A00ABA4D1 /* BarChart */ = {
+			isa = PBXGroup;
+			children = (
+				562FF4DA25756D7800ABA4D1 /* BarChartView.swift */,
+			);
+			path = BarChart;
+			sourceTree = "<group>";
+		};
+		562FF4EB257570F900ABA4D1 /* ChartsView */ = {
+			isa = PBXGroup;
+			children = (
+				562FF4EC2575710B00ABA4D1 /* ChartGridView.swift */,
+				562FF4F42575714500ABA4D1 /* ChartGridViewModel.swift */,
+			);
+			path = ChartsView;
+			sourceTree = "<group>";
+		};
 		56415DF2251A4CA800B688DE /* Workout */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +327,8 @@
 			isa = PBXGroup;
 			children = (
 				567ADCE224C0A26B00A23864 /* App */,
+				562FF4D925756D5A00ABA4D1 /* BarChart */,
+				562FF4EB257570F900ABA4D1 /* ChartsView */,
 				56483917256C3C4900F7005B /* CreateRoutineView */,
 				56483908256C377600F7005B /* RoutinesListView */,
 				569F5D0F256A7EE8008644F0 /* ExerciseListView */,
@@ -572,6 +597,7 @@
 				569F5D30256A8719008644F0 /* WallSit.swift in Sources */,
 				56483913256C3C4400F7005B /* CreateRoutineStep1View.swift in Sources */,
 				56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */,
+				562FF4F52575714500ABA4D1 /* ChartGridViewModel.swift in Sources */,
 				56532E1B2572D2A6008F341A /* NSManagedObject+Extension.swift in Sources */,
 				5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */,
 				56532E202572D3CE008F341A /* AppViewModel.swift in Sources */,
@@ -586,6 +612,8 @@
 				5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */,
 				5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */,
 				5649355A255079F4000F8A5F /* Double+Extension.swift in Sources */,
+				562FF4DB25756D7800ABA4D1 /* BarChartView.swift in Sources */,
+				562FF4ED2575710B00ABA4D1 /* ChartGridView.swift in Sources */,
 				56415DFE251A4F1B00B688DE /* WorkoutViewModel.swift in Sources */,
 				5649356725507DBA000F8A5F /* WorkoutSummaryItemView.swift in Sources */,
 				56532DF12572CDCE008F341A /* WorkoutEntity+CoreDataClass.swift in Sources */,

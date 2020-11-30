@@ -17,10 +17,17 @@ struct AppView: View {
     var body: some View {
         TabView {
             NavigationView {
+                ChartGridView()
+            }
+            .tabItem {
+                Image(systemName: "chart.bar.fill")
+                Text(LocalizableKey.charts.localized)
+            }
+            NavigationView {
                 RoutinesListView()
             }
             .tabItem {
-                Image(systemName: "list.dash")
+                Image(systemName: "flowchart.fill")
                 Text(LocalizableKey.workouts.localized)
             }
             .navigationViewStyle(StackNavigationViewStyle())
