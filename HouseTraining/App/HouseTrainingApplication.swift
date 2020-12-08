@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main
+//@main
 struct HouseTrainingApplication: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     

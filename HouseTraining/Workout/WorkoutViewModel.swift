@@ -40,22 +40,23 @@ class WorkoutViewModel: NSObject {
     ///Guarda el tiempo restante de la actividad actual en segundos.
     var currentCountDown: Double = 10.0
     ///Define el tiempo de una actividad en segundos.
-    private let initialCountDown: Double = 10
-    private var isResting = true
+    let initialCountDown: Double = 10
+    var isResting = true
     
     //Variables - KPIs
     private var playerStats = PlayerStats()
     private let actions: [ActionType]
     private lazy var exercises: [Exercise] = createRoutine()
-    private var currentActivityIndex = 0
+    private(set) var currentActivityIndex = 0
+    let numberOfExercises: Int
     
     var didFinishRoutine: Bool {
-        currentActivityIndex >= exercises.count
+        currentActivityIndex == exercises.count
     }
     
     init(actions: [ActionType]) {
         self.actions = actions
-
+        numberOfExercises = actions.count
         videoDataOutputQueue = DispatchQueue(label: "CameraFeedDataOutput",
                                              qos: .userInitiated,
                                              attributes: [],
@@ -170,11 +171,13 @@ class WorkoutViewModel: NSObject {
             currentActivityIndex += 1
             detectPlayerActivity = false
             userActionRequest.send(Action(type: .none, probability: 100.0))
+            
+            if didFinishRoutine {
+                invalidateTimer()
+            }
         } else {
             detectPlayerActivity = true
         }
-        
-        isResting = !isResting
     }
     
     private func invalidateTimer() {

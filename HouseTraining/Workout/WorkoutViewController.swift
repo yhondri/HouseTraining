@@ -19,6 +19,7 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var heartRateLabel: UILabel!
     @IBOutlet weak var currentActivityLabel: UILabel!
     @IBOutlet weak var actionQualityLabel: UILabel!
+    @IBOutlet var progressBars: [UIProgressView]!
     
     private var timer: Timer?
     private var countDown: Double = 0.0
@@ -26,13 +27,14 @@ class WorkoutViewController: UIViewController {
     
     // Live camera feed management
     private(set) var cameraFeedView: CameraFeedView!
-    private let viewModel = WorkoutViewModel(actions: [.jumpingJacks, .jumpingJacks])
+    private let viewModel: WorkoutViewModel
     //Views
     private let playerBoundingBox = BoundingBoxView()
     private let jointSegmentView = JointSegmentView()
     private var cancellables = [AnyCancellable]()
     
-    init() {
+    init(viewModel: WorkoutViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: "WorkoutViewController", bundle: nil)
     }
     
@@ -59,6 +61,10 @@ class WorkoutViewController: UIViewController {
             setUIElements()
         } catch {
             debugPrint("Show error, session couldn't be started ", error)
+        }
+        
+        for index in 0..<viewModel.numberOfExercises {
+            progressBars[index].isHidden = false
         }
         
         updateCurrentActivity(action: Action())
@@ -127,6 +133,11 @@ class WorkoutViewController: UIViewController {
                                      selector: #selector(updateCountDown),
                                      userInfo: nil, repeats: true)
         
+        if !didStartRoutine {
+            viewModel.isResting = false
+            didStartRoutine = true
+        }
+        
         viewModel.onResumeActivityDetection()
         
         isCounDownRunning = true
@@ -138,6 +149,8 @@ class WorkoutViewController: UIViewController {
         isCounDownRunning = false
     }
     
+    var didStartRoutine: Bool = false
+    
     @objc private func pauseActivity() {
         invalidateTimer()
         viewModel.currentCountDown = countDown
@@ -147,6 +160,10 @@ class WorkoutViewController: UIViewController {
         if(countDown > 0) {
             countDown -= 1
             timerLabel.text = String(countDown)
+            if !viewModel.isResting {
+                let progress = ((viewModel.initialCountDown - countDown)*100)/viewModel.initialCountDown
+                progressBars[viewModel.currentActivityIndex].setProgress(Float(progress/100), animated: true)
+            }
         } else {
             onEndActivity()
         }
@@ -154,8 +171,8 @@ class WorkoutViewController: UIViewController {
         
     private func onEndActivity() {
         pauseActivity()
+        viewModel.isResting = !viewModel.isResting
         viewModel.onEndActivityDetection()
-        
         if viewModel.didFinishRoutine {
             showSummaryView()
         } else {
