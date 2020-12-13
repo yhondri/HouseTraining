@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5629306D25867EFD00801AA6 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5629306C25867EFD00801AA6 /* UIView+Extension.swift */; };
 		562FF4DB25756D7800ABA4D1 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FF4DA25756D7800ABA4D1 /* BarChartView.swift */; };
 		562FF4ED2575710B00ABA4D1 /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FF4EC2575710B00ABA4D1 /* ChartGridView.swift */; };
 		562FF4F52575714500ABA4D1 /* ChartGridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FF4F42575714500ABA4D1 /* ChartGridViewModel.swift */; };
@@ -91,6 +92,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5629306C25867EFD00801AA6 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		562FF4DA25756D7800ABA4D1 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		562FF4EC2575710B00ABA4D1 /* ChartGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
 		562FF4F42575714500ABA4D1 /* ChartGridViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridViewModel.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				56532E002572CF05008F341A /* NSObject+Extension.swift */,
 				56532E152572D1B8008F341A /* Int+Extension.swift */,
 				56532E1A2572D2A6008F341A /* NSManagedObject+Extension.swift */,
+				5629306C25867EFD00801AA6 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 				564935422550775F000F8A5F /* Color+Extension.swift in Sources */,
 				567CA471256EC17100BB9385 /* CreateRoutineStep2CVCell.swift in Sources */,
 				569F5D47256A9581008644F0 /* HouseTrainingApplication.swift in Sources */,
+				5629306D25867EFD00801AA6 /* UIView+Extension.swift in Sources */,
 				5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */,
 				5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */,
 				5649355A255079F4000F8A5F /* Double+Extension.swift in Sources */,

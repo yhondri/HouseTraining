@@ -8,28 +8,40 @@
 import SwiftUI
 
 struct WorkoutSummaryView: View {
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     let workoutSummary: WorkoutSummary
-    
+
     var body: some View {
-        NavigationView {
+        ZStack {
             List {
                 Section(header: WorkoutSummaryHeaderView(workoutSummary: workoutSummary)) {}.textCase(nil).listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-                //                ForEach(activityViewModel.activities.keys.sorted(by: {$0 > $1}), id: \.self) { key in
-                //                    Section(header: Text(key.mediumDate).padding(5)) {
                 ForEach(0..<workoutSummary.exercises.count) {
                     WorkoutSummaryItemView(exercise: workoutSummary.exercises[$0])
                 }
                 .listRowBackground(Color.clear)
-                //
-                //                    }.listRowInsets(EdgeInsets())
-                //                }
             }
             .listStyle(GroupedListStyle())
             .onAppear{UITableView.appearance().separatorColor = .clear}
-            .background(Color.tableViewBackgroundColor)
-            .navigationBarTitle(Text("Resumen"))
+            
+            VStack {
+                Spacer()
+                
+                Button(LocalizableKey.save.localized, action: {
+                    NotificationCenter.default.post(Notification(name: .dismissWorkoutWorkflow))
+                })
+                .foregroundColor(.white)
+                .padding([.top, .bottom], 10)
+                .padding([.leading, .trailing], 40)
+                .background(Color.blue)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding()
+                .shadow(color: Color.black.opacity(0.3), radius: 3, x: 3, y: 3)
+            }
+            
         }
+        .background(Color.tableViewBackgroundColor)
+        .navigationBarTitle(Text(LocalizableKey.summary.localized))
+        .navigationBarBackButtonHidden(true)
     }
 }
 

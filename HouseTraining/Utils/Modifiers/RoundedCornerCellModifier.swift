@@ -21,6 +21,6 @@ struct RoundedCornerCellModifier: ViewModifier {
 
 extension View {
     func roundedCorner(with backgroundColor: Color = .white) -> some View {
-        self.modifier(RoundedCornerCellModifier(backgroundColor: backgroundColor))
+        modifier(RoundedCornerCellModifier(backgroundColor: backgroundColor))
     }
 }

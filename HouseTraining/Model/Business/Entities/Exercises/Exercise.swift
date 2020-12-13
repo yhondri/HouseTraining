@@ -16,7 +16,11 @@ class Exercise: NSObject {
     var workoutLastDate: Date?
     var imageName: String
     var scoreValue: String {
-        "\(score)%"
+        if numberOfActionDetected == 0 {
+            return "0%"
+        } else {
+            return "\((score/Double(numberOfActionDetected)).getWithTwoDecimals())%"
+        }
     }
     
     private let id: Int = 0
@@ -45,6 +49,8 @@ class Exercise: NSObject {
      */
     
     func didDectectAction(action: Action) {
+        guard action.type == actionType else { return }
+        
         numberOfActionDetected += 1
         
         if action.probability >= minProbability {

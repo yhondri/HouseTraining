@@ -93,6 +93,11 @@ class WorkoutViewController: UIViewController {
         AppUtility.lockOrientation(maskOrientation, andRotateTo: interfaceOrientation)
     }
     
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Tool.hiddenTabBar()
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewModel.viewDidDissapear()
@@ -273,4 +278,17 @@ extension WorkoutViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                         
         viewModel.cameraViewController(self, didReceiveBuffer: sampleBuffer)
     }
+}
+
+
+struct WorkoutViewControllerRepresentable: UIViewControllerRepresentable {
+    typealias UIViewControllerType = WorkoutViewController
+    var workoutEntity: WorkoutEntity
+
+    func makeUIViewController(context: Context) -> WorkoutViewController {
+        let viewModel = WorkoutViewModel(actions: [.jumpingJacks])
+        return WorkoutViewController(viewModel: viewModel)
+    }
+    
+    func updateUIViewController(_ uiViewController: WorkoutViewController, context: Context) {}
 }

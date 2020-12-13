@@ -15,12 +15,20 @@ struct RoutinesListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \WorkoutEntity.name, ascending: true)]
     ) var workoutList: FetchedResults<WorkoutEntity>
     
+    @State var workoutViewIsActive = false
+
+    
     var body: some View {
         ScrollView {
             LazyVStack {
                 ForEach(workoutList, id: \.self) { workout in
-                    RoutineView(workout: workout)
-                        .roundedCorner()                    
+                    NavigationLink(
+                        destination: WorkoutViewControllerRepresentable(workoutEntity: workout),
+                        isActive: $workoutViewIsActive,
+                        label: {
+                            RoutineView(workout: workout)
+                                .roundedCorner()
+                        })
                 }
             }
             .padding(.top, 10)
@@ -38,6 +46,10 @@ struct RoutinesListView: View {
                 }
             }.onReceive(NotificationCenter.default.publisher(for: .createWorkoutDismiss)) { _ in
                 showingCreateRoutineView = false
+            }.onReceive(NotificationCenter.default.publisher(for: .dismissWorkoutWorkflow)) { _ in
+                workoutViewIsActive = false
+            }.onAppear {
+                Tool.showTabBar()
             }
         )
         .navigationBarTitle(Text(LocalizableKey.workouts.localized))

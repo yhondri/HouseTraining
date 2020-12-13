@@ -35,3 +35,10 @@
 //MARK: - WorkoutViewController
 "workoutviewcontroler_quality" = "Calidad";
 "workoutviewcontroler_resting" = "Descansando";
+
+//MARK: - WorkoutSummary
+"workoutsummary_summary" = "Resumen";
+"workoutsummary_duration" = "Duración";
+"workoutsummary_success_rate" = "Puntuación";
+"workoutsummary_heart_rate" = "Ritmo cardiaco";
+"workoutsummary_calories" = "Calorias";

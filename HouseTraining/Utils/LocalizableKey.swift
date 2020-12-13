@@ -38,4 +38,11 @@ struct LocalizableKey {
     //MARK: - WorkoutViewController
     static let quality = "workoutviewcontroler_quality"
     static let resting = "workoutviewcontroler_resting"
+    
+    //MARK: - WorkoutSummary
+    static let summary = "workoutsummary_summary"
+    static let duration = "workoutsummary_duration"
+    static let successRate = "workoutsummary_success_rate"
+    static let heartRate = "workoutsummary_heart_rate"
+    static let calories = "workoutsummary_calories"
 }

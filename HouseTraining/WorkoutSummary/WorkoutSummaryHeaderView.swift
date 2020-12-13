@@ -11,41 +11,52 @@ struct WorkoutSummaryHeaderView: View {
     
     let workoutSummary: WorkoutSummary
     
-    let titles = ["Duration", "Success Rate", "Heart rate", "Calories Burned"]
-
     let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
     
-   var body: some View {
-       LazyVGrid(columns: columns, spacing: 10) {
-           ForEach(0..<4) { i in
-               switch i {
-               case 0:
-                BoxView(title: titles[0], value: workoutSummary.successRate, imageColor: .blue)
-               case 1:
-                   BoxView(title: titles[1], value: workoutSummary.successRate, imageColor: .blue)
-               case 2:
-                   BoxView(title: titles[2], value: workoutSummary.heartRate, imageColor: .blue)
-               case 3:
-                   BoxView(title: titles[3], value: workoutSummary.caloriesBurned, imageColor: .red)
-               default:
-                   fatalError("Caso no contemplado")
-               }
-           }
-       }
-   }
+    var body: some View {
+        LazyVGrid(columns: columns, spacing: 10) {
+            ForEach(0..<2) { i in
+                switch i {
+                case 0:
+                    BoxView(title: LocalizableKey.duration.localized,
+                            value: workoutSummary.successRate,
+                            imageColor: .blue,
+                            imageName: "calendar.circle.fill")
+                case 1:
+                    BoxView(title: LocalizableKey.successRate.localized,
+                            value: workoutSummary.successRate,
+                            imageColor: .green,
+                            imageName: "star.circle.fill")
+                case 2:
+                    BoxView(title: LocalizableKey.heartRate.localized,
+                            value: workoutSummary.heartRate,
+                            imageColor: .blue,
+                            imageName: "calendar.circle.fill")
+                case 3:
+                    BoxView(title: LocalizableKey.calories.localized,
+                            value: workoutSummary.caloriesBurned,
+                            imageColor: .red,
+                            imageName: "calendar.circle.fill")
+                default:
+                    fatalError("Caso no contemplado")
+                }
+            }
+        }
+    }
 }
 
 struct BoxView: View {
     let title: String
     let value: Double
     let imageColor: Color
+    let imageName: String
     
     var body: some View {
         HStack {
-            Image(systemName: "calendar.circle.fill")
+            Image(systemName: imageName)
                 .resizable()
                 .frame(width: 35, height: 35)
                 .foregroundColor(Color.blue)
