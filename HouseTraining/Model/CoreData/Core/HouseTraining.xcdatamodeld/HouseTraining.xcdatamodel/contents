@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20B50" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="ExerciseEntity" representedClassName="ExerciseEntity" syncable="YES">
         <attribute name="actionType" attributeType="String"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="imageName" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="workoutLastDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="exerciseRecords" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ExerciseRecordEntity" inverseName="exercise" inverseEntity="ExerciseRecordEntity"/>
         <relationship name="workoutExercise" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WorkoutExerciseEntity" inverseName="exercise" inverseEntity="WorkoutExerciseEntity"/>
+    </entity>
+    <entity name="ExerciseRecordEntity" representedClassName="ExerciseRecordEntity" syncable="YES">
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="score" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="exercise" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExerciseEntity" inverseName="exerciseRecords" inverseEntity="ExerciseEntity"/>
     </entity>
     <entity name="WorkoutEntity" representedClassName="WorkoutEntity" syncable="YES">
         <attribute name="name" attributeType="String"/>
@@ -18,7 +24,8 @@
         <relationship name="workout" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WorkoutEntity" inverseName="exercises" inverseEntity="WorkoutEntity"/>
     </entity>
     <elements>
-        <element name="ExerciseEntity" positionX="-9321.496887207031" positionY="-3406.369750976562" width="128" height="133"/>
+        <element name="ExerciseEntity" positionX="-9274.373870849609" positionY="-3466.551330566406" width="128" height="148"/>
+        <element name="ExerciseRecordEntity" positionX="-9076.290008544922" positionY="-3356.150573730469" width="128" height="88"/>
         <element name="WorkoutEntity" positionX="-9746.282165527344" positionY="-3528.605712890625" width="128" height="73"/>
         <element name="WorkoutExerciseEntity" positionX="-9545.155090332031" positionY="-3526.384826660156" width="128" height="88"/>
     </elements>

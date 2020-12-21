@@ -10,8 +10,8 @@ import Foundation
 class JumpingJacks: Exercise {
     private let id: Int = 2
     
-    init(workoutLastDate: Date? = nil) {
-        super.init(actionType: .jumpingJacks, actionName: LocalizableKey.jumpingJacks.localized, workoutLastDate: workoutLastDate)
+    init(workoutDate: Date? = nil) {
+        super.init(actionType: .jumpingJacks, actionName: LocalizableKey.jumpingJacks.localized, workoutDate: workoutDate)
     }
 }
 

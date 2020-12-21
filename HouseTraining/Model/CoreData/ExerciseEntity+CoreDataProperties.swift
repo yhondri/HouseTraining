@@ -2,7 +2,7 @@
 //  ExerciseEntity+CoreDataProperties.swift
 //  HouseTraining
 //
-//  Created by Yhondri Acosta Novas on 28/11/20.
+//  Created by Yhondri Acosta Novas on 17/12/20.
 //
 //
 
@@ -16,11 +16,12 @@ extension ExerciseEntity {
         return NSFetchRequest<ExerciseEntity>(entityName: "ExerciseEntity")
     }
 
-    @NSManaged public var id: Int64
-    @NSManaged public var name: String
-    @NSManaged public var imageName: String
-    @NSManaged public var workoutLastDate: Date?
     @NSManaged public var actionType: String
+    @NSManaged public var id: Int64
+    @NSManaged public var imageName: String
+    @NSManaged public var name: String
+    @NSManaged public var workoutLastDate: Date?
+    @NSManaged public var exerciseRecords: ExerciseRecordEntity?
     @NSManaged public var workoutExercise: NSSet?
 
 }

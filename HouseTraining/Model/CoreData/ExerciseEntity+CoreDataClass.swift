@@ -31,7 +31,7 @@ public class ExerciseEntity: NSManagedObject {
             exerciseEntity.id = exercise.getId().toInt64()
             exerciseEntity.actionType = exercise.actionType.rawValue
             exerciseEntity.name = exercise.actionName
-            exerciseEntity.workoutLastDate = exercise.workoutLastDate
+            exerciseEntity.workoutLastDate = exercise.workoutDate
             exerciseEntity.imageName = exercise.imageName
         }
     }
@@ -45,7 +45,7 @@ public class ExerciseEntity: NSManagedObject {
         return availableExercises.map {
             Exercise(actionType: ActionType(rawValue: $0.actionType)!,
                      actionName: $0.name,
-                     workoutLastDate: $0.workoutLastDate,
+                     workoutDate: $0.workoutLastDate,
                      imageName: $0.imageName)
         }
     }

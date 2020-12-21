@@ -13,6 +13,7 @@ struct LocalizableKey {
     static let charts = "chartsView_charts"
     static let weeklyActivity = "chartsView_weekly_activity"
     static let monthActivity = "chartsView_month_activity"
+    static let exercise = "chartsView_exercise"
     
     //MARK: - ExerciseListView
     static let exercises = "exerciselistview_exercises"

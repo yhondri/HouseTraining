@@ -8,15 +8,18 @@
 import SwiftUI
 
 struct WorkoutSummaryView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    let workoutSummary: WorkoutSummary
+    @ObservedObject private var workoutSummaryViewModel: WorkoutSummaryViewModel
+    
+    init(workoutSummary: WorkoutSummary) {
+        workoutSummaryViewModel = WorkoutSummaryViewModel(workoutSummary: workoutSummary)
+    }
 
     var body: some View {
         ZStack {
             List {
-                Section(header: WorkoutSummaryHeaderView(workoutSummary: workoutSummary)) {}.textCase(nil).listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
-                ForEach(0..<workoutSummary.exercises.count) {
-                    WorkoutSummaryItemView(exercise: workoutSummary.exercises[$0])
+                Section(header: WorkoutSummaryHeaderView(workoutSummary: workoutSummaryViewModel.workoutSummary)) {}.textCase(nil).listRowInsets(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                ForEach(0..<workoutSummaryViewModel.workoutSummary.exercises.count) {
+                    WorkoutSummaryItemView(exercise: workoutSummaryViewModel.workoutSummary.exercises[$0])
                 }
                 .listRowBackground(Color.clear)
             }
@@ -27,6 +30,7 @@ struct WorkoutSummaryView: View {
                 Spacer()
                 
                 Button(LocalizableKey.save.localized, action: {
+                    workoutSummaryViewModel.saveSummary()
                     NotificationCenter.default.post(Notification(name: .dismissWorkoutWorkflow))
                 })
                 .foregroundColor(.white)

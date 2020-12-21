@@ -10,6 +10,7 @@
 "chartsView_charts" = "Gráficos";
 "chartsView_weekly_activity" = "Actividad semanal";
 "chartsView_month_activity" = "Actividad mensual";
+"chartsView_exercise" = "Ejercicio";
 
 //MARK: - ExerciseList
 "exerciselistview_exercises" = "Ejercicios";

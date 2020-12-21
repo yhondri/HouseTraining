@@ -8,12 +8,13 @@
 import Foundation
 
 class Exercise: NSObject {
+    static let exerciseTime = 30 //seconds
     private let minProbability: Double = 50.0
     private(set) var score: Double = 0.0
     private var numberOfActionDetected = 0
     var actionType: ActionType
     var actionName: String
-    var workoutLastDate: Date?
+    var workoutDate: Date?
     var imageName: String
     var scoreValue: String {
         if numberOfActionDetected == 0 {
@@ -28,11 +29,11 @@ class Exercise: NSObject {
     
     init(actionType: ActionType = .none,
          actionName: String = "--",
-         workoutLastDate: Date? = nil,
+         workoutDate: Date? = nil,
          imageName: String = "ic_temp_activity") {
         self.actionType = actionType
         self.actionName = actionName
-        self.workoutLastDate = workoutLastDate
+        self.workoutDate = workoutDate
         self.imageName = imageName
     }
     
