@@ -67,7 +67,7 @@ class CreateRoutineStep2TVController: UIViewController {
         nextButton.setTitle(LocalizableKey.next.localized, for: .normal)
         nextButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         nextButton.setTitleColor(.white, for: .normal)
-        nextButton.backgroundColor = .buttonMainColor
+        nextButton.backgroundColor = .swiftUIBlueColor
         nextButton.addTarget(self, action: #selector(goToNextView), for: .touchUpInside)
         nextButton.layer.cornerRadius = 12
         nextButton.layer.masksToBounds = true

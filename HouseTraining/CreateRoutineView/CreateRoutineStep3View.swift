@@ -20,7 +20,7 @@ struct CreateRoutineStep3View: View {
                                 .padding()) {
                         ForEach(createRoutineViewModel.exercises, id: \.self) { exercise in
                             CreateRoutineStep3RowView(exercise: exercise)
-                                .roundedCorner()
+                                .roundedCorner(with: Color.itemBackgroundColor)
                         }
                     }
                 }
@@ -52,11 +52,22 @@ struct CreateRoutineStep3RowView: View {
     
     var body: some View {
         HStack {
-            Image("ic_temp_activity")
-                .padding(.trailing, 8)
+            ZStack {
+                Circle()
+                    .fill(LinearGradient(
+                        gradient: .init(colors: [Color.charBarTopColor, Color.charBarBottomColor]),
+                        startPoint: .init(x: 0.5, y: 0),
+                        endPoint: .init(x: 0.5, y: 0.6)
+                    ))
+                    .frame(width: 50, height: 50)
+                Image(exercise.imageName)
+                    .resizable()
+                    .frame(width: 35, height: 35)
+            }
             Text(exercise.actionName)
+                .foregroundColor(.itemTextColor)
             Spacer()
-        }.padding(.leading)
+        }
     }
 }
 

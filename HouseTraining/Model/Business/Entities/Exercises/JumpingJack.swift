@@ -11,7 +11,10 @@ class JumpingJacks: Exercise {
     private let id: Int = 2
     
     init(workoutDate: Date? = nil) {
-        super.init(actionType: .jumpingJacks, actionName: LocalizableKey.jumpingJacks.localized, workoutDate: workoutDate)
+        super.init(actionType: .jumpingJacks,
+                   actionName: LocalizableKey.jumpingJacks.localized,
+                   workoutDate: workoutDate,
+                   imageName: "noun_jumping_jacks")
     }
 }
 

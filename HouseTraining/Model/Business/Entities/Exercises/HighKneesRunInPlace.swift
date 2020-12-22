@@ -11,7 +11,10 @@ class HighKneesRunInPlace: Exercise {
     private let id: Int = 1
     
     init(workoutDate: Date? = nil) {
-        super.init(actionType: .highKneesRunInPlace, actionName: LocalizableKey.highKneesRunInPlace.localized, workoutDate: workoutDate)
+        super.init(actionType: .highKneesRunInPlace,
+                   actionName: LocalizableKey.highKneesRunInPlace.localized,
+                   workoutDate: workoutDate,
+                   imageName: "noun_high_knees")
     }
 }
 

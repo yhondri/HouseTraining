@@ -12,27 +12,34 @@ class CreateRoutineStep2CVCell: UICollectionViewCell {
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont.systemFont(ofSize: 14)
-        titleLabel.textColor = .black
+        titleLabel.textColor = .itemTextColor
         return titleLabel
     }()
     
     private let exerciseImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 20
-        imageView.layer.masksToBounds = true
-        imageView.image = UIImage(named: "ic_temp_activity")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     var exercise: Exercise! {
         didSet {
             exerciseNameLabel.text = exercise.actionName
+            exerciseImageView.image = UIImage(named: exercise.imageName)
+
         }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let stackView = UIStackView(arrangedSubviews: [exerciseImageView, exerciseNameLabel])
+        let imageContentView = UIView()
+        imageContentView.translatesAutoresizingMaskIntoConstraints = false
+        imageContentView.addSubview(exerciseImageView)
+        imageContentView.addBlackGradientLayerInBackground(frame: CGRect(x: 0, y: 0, width: 40, height: 40), colors: [UIColor.charBarTopColor!, UIColor.charBarBottomColor!])
+        imageContentView.layer.cornerRadius = 20
+        imageContentView.layer.masksToBounds = true
+        
+        let stackView = UIStackView(arrangedSubviews: [imageContentView, exerciseNameLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
@@ -47,11 +54,15 @@ class CreateRoutineStep2CVCell: UICollectionViewCell {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            exerciseImageView.heightAnchor.constraint(equalToConstant: 40),
-            exerciseImageView.widthAnchor.constraint(equalToConstant: 40)
+            imageContentView.heightAnchor.constraint(equalToConstant: 40),
+            imageContentView.widthAnchor.constraint(equalToConstant: 40),
+            exerciseImageView.leadingAnchor.constraint(equalTo: imageContentView.leadingAnchor, constant: 5),
+            exerciseImageView.topAnchor.constraint(equalTo: imageContentView.topAnchor, constant: 5),
+            exerciseImageView.trailingAnchor.constraint(equalTo: imageContentView.trailingAnchor, constant: -5),
+            exerciseImageView.bottomAnchor.constraint(equalTo: imageContentView.bottomAnchor, constant: -5)
         ])
         
-        backgroundColor = .white
+        backgroundColor = .itemBackgroundColor
     }
     
     required init?(coder: NSCoder) {

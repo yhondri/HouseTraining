@@ -46,9 +46,18 @@ struct ExercieRowView: View {
     private func getDataView() -> some View {
         ZStack {
             HStack {
-                Image("ic_temp_activity")
-                    .padding(.leading, 2)
-                    .padding(.trailing, 6)
+                ZStack {
+                    Circle()
+                        .fill(LinearGradient(
+                            gradient: .init(colors: [Color.charBarTopColor, Color.charBarBottomColor]),
+                            startPoint: .init(x: 0.5, y: 0),
+                            endPoint: .init(x: 0.5, y: 0.6)
+                        ))
+                        .frame(width: 50, height: 50)
+                    Image(exercise.imageName)
+                        .resizable()
+                        .frame(width: 35, height: 35)
+                } 
                 VStack {
                     HStack(alignment: .top) {
                         Text(exercise.name)
