@@ -40,36 +40,37 @@ struct ExercieRowView: View {
             getDataView()
         }
         .buttonStyle(PlainButtonStyle())
-        .padding(.leading, 5)
-        .padding(.trailing, 5)
         .frame(minHeight: 70)
     }
     
     private func getDataView() -> some View {
         ZStack {
-            Color.white
-                .cornerRadius(12)
             HStack {
                 Image("ic_temp_activity")
-                    .padding(.leading)
-                    .padding(.trailing, 8)
+                    .padding(.leading, 2)
+                    .padding(.trailing, 6)
                 VStack {
                     HStack(alignment: .top) {
                         Text(exercise.name)
                             .font(.body)
                             .fontWeight(.medium)
                         Spacer()
+                        HStack {
                         Text("22-02-1993")
                             .font(Font.system(size: 10))
                             .foregroundColor(.gray)
                         Image(systemName: "chevron.right")
                             .foregroundColor(.gray)
+                        }
+                        .padding(.top, 3)
+                        
                     }
                     Spacer()
                 }
-                .padding([.top, .trailing], 10)
             }
-        }.frame(maxHeight: .infinity)
+        }
+        .roundedCorner(with: .itemBackgroundColor)
+        .frame(maxHeight: .infinity)
     }
 }
 

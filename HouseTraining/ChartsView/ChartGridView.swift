@@ -16,7 +16,7 @@ struct ChartGridView: View {
                 ForEach(chartGridViewModel.charts, id: \.self) { data in
                     BarChartView(data: data)
                         .frame(height: 200)
-                        .roundedCorner()
+                        .roundedCorner(with: Color.itemBackgroundColor)
                 }
             }
             .padding([.top, .bottom], 10)

@@ -72,7 +72,7 @@ struct BarChartView: View {
                     })
                 )
             }
-        }.background(Color.white)
+        }
     }
     
     func normalizedValue(index: Int) -> Double {
