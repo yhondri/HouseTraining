@@ -8,6 +8,9 @@
 import SwiftUI
 
 extension Color {
+    //MARK: - ChartView
+    static let charBarTopColor = Color("ChartBarTopColor")
+    static let charBarBottomColor = Color("ChartBarBottomColor")    
     static let itemBackgroundColor = Color("ItemBackgroundColor")
     static let tableViewBackgroundColor = Color("TableBackgroundColor")
     static let itemTextColor = Color("ItemTextColor")

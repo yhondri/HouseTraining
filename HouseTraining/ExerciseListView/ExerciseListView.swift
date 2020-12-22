@@ -51,20 +51,24 @@ struct ExercieRowView: View {
                 .cornerRadius(12)
             HStack {
                 Image("ic_temp_activity")
+                    .padding(.leading)
                     .padding(.trailing, 8)
-                VStack(alignment: .leading) {
-                    Text(exercise.name)
-                        .font(.body)
-                        .fontWeight(.medium)
-                    HStack {
+                VStack {
+                    HStack(alignment: .top) {
+                        Text(exercise.name)
+                            .font(.body)
+                            .fontWeight(.medium)
                         Spacer()
                         Text("22-02-1993")
                             .font(Font.system(size: 10))
+                            .foregroundColor(.gray)
                         Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
                     }
+                    Spacer()
                 }
-                Spacer()
-            }.padding(.leading)
+                .padding([.top, .trailing], 10)
+            }
         }.frame(maxHeight: .infinity)
     }
 }

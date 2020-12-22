@@ -20,14 +20,14 @@ struct AppView: View {
                 ChartGridView()
             }
             .tabItem {
-                Image(systemName: "chart.bar.fill")
+                Image(systemName: "chart.bar")
                 Text(LocalizableKey.charts.localized)
             }
             NavigationView {
                 RoutinesListView()
             }
             .tabItem {
-                Image(systemName: "flowchart.fill")
+                Image(systemName: "flowchart")
                 Text(LocalizableKey.workouts.localized)
             }
             .navigationViewStyle(StackNavigationViewStyle())
@@ -41,6 +41,7 @@ struct AppView: View {
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }
+        .accentColor(.charBarTopColor)
     }
 }
 

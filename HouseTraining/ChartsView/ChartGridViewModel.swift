@@ -23,14 +23,14 @@ class ChartGridViewModel: NSObject, ObservableObject {
 
     override init() {
         super.init()
-//        charts = [ChartViewData(title: LocalizableKey.weeklyActivity.localized,
-//                                barTitles: Calendar.current.veryShortStandaloneWeekdaySymbols,
-//                                data: [50, 90, 80, 20, 100, 90, 7]),
-//                  ChartViewData(title: LocalizableKey.monthActivity.localized,
-//                                barTitles: Calendar.current.veryShortStandaloneMonthSymbols,
-//                                data: [50, 90, 80, 20, 100, 90, 7, 80, 20, 100, 90, 7])]
+        charts = [ChartViewData(title: LocalizableKey.weeklyActivity.localized,
+                                barTitles: Calendar.current.veryShortStandaloneWeekdaySymbols,
+                                data: [1:50, 2:90, 3:80, 4:20, 5:100, 6:90, 7:7], maxValue: 100),
+                  ChartViewData(title: LocalizableKey.monthActivity.localized,
+                                barTitles: Calendar.current.veryShortStandaloneMonthSymbols,
+                                data: [1:50, 2:90, 3:80, 4:20, 5:100, 6:90, 7:7, 8:80, 9:20, 10:100, 11:90, 12:7], maxValue: 100)]
         
-        loadData()
+//        loadData()
     }
     
     private func loadData() {

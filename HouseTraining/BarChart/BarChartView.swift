@@ -28,6 +28,8 @@ struct BarChartView: View {
         GeometryReader { geometry in
             VStack(alignment: .leading, spacing: 12) {
                 Text(data.title)
+                    .bold()
+                
                 if chartValue.currentValue > 0 {
                     Text(getExerciseTimeText(interval: chartValue.currentValue))
                         .font(.footnote)
@@ -39,12 +41,17 @@ struct BarChartView: View {
                             Spacer()
                             VStack {
                                 Rectangle()
-                                    .fill(Color.green)
+                                    .fill(LinearGradient(
+                                        gradient: .init(colors: [Color.charBarTopColor, Color.charBarBottomColor]),
+                                        startPoint: .init(x: 0.5, y: 0),
+                                        endPoint: .init(x: 0.5, y: 0.6)
+                                    ))
                                     .scaleEffect(CGSize(width: 1, height: normalizedValue(index: index)), anchor: .bottom)
                             }
                             
                             Text(data.barTitles[index])
                                 .font(.footnote)
+                                .foregroundColor(Color.gray)
                                 .frame(height: 20)
                         }
                     }
@@ -61,6 +68,7 @@ struct BarChartView: View {
                     .onEnded({ value in
                         self.chartValue.interactionInProgress = false
                         self.touchLocation = -1
+                        self.chartValue.currentValue = 0
                     })
                 )
             }
