@@ -14,7 +14,8 @@ struct LocalizableKey {
     static let weeklyActivity = "chartsView_weekly_activity"
     static let monthActivity = "chartsView_month_activity"
     static let exercise = "chartsView_exercise"
-    
+    static let chartsViewNoData = "chartsView_no_data" 
+
     //MARK: - ExerciseListView
     static let exercises = "exerciselistview_exercises"
     static let jumpingJacks = "exerciselistview_jumping_jacks";
@@ -25,7 +26,8 @@ struct LocalizableKey {
     
     //MARK: - WorkoutListView
     static let workouts = "workoutListView_workouts"
-    
+    static let workoutsNoData = "workoutListView_no_data"
+
     //MARK: - CreateRoutineStep1View
     static let newRoutine = "createroutineStep1View_new_routine"
     static let next = "createroutineStep1View_next"

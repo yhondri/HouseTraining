@@ -17,8 +17,52 @@ struct RoutinesListView: View {
     
     @State var workoutViewIsActive = false
 
+    @ViewBuilder var body: some View {
+        getView()
+            .navigationBarItems(trailing:
+                                    Button(action: {
+                                        showingCreateRoutineView.toggle()
+                                    }) {
+                                        Image(systemName: "plus")
+                                    }
+                .sheet(isPresented: $showingCreateRoutineView) {
+                    NavigationView {
+                        CreateRoutineStep1View()
+                    }
+                }.onReceive(NotificationCenter.default.publisher(for: .createWorkoutDismiss)) { _ in
+                    showingCreateRoutineView = false
+                }.onReceive(NotificationCenter.default.publisher(for: .dismissWorkoutWorkflow)) { _ in
+                    workoutViewIsActive = false
+                }.onAppear {
+                    Tool.showTabBar()
+                }
+            )
+            .navigationBarTitle(Text(LocalizableKey.workouts.localized))
+        
+        
+    }
     
-    var body: some View {
+    private func getView() -> some View {
+        if workoutList.isEmpty {
+            return AnyView(getEmtpyView())
+        } else {
+            return AnyView(getBodyWithData())
+        }
+    }
+    
+    private func getEmtpyView() -> some View {
+        VStack(alignment: .center) {
+            Image("no_workout_data")
+                .resizable()
+                .frame(width: 300, height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            
+            Text(LocalizableKey.workoutsNoData.localized)
+                .multilineTextAlignment(.center)
+                .padding()
+        }
+    }
+    
+    private func getBodyWithData() ->  some View {
         ScrollView {
             LazyVStack {
                 ForEach(workoutList, id: \.self) { workout in
@@ -34,25 +78,6 @@ struct RoutinesListView: View {
             .padding(.top, 10)
         }
         .background(Color.tableViewBackgroundColor)
-        .navigationBarItems(trailing:
-                                Button(action: {
-                                    showingCreateRoutineView.toggle()
-                                }) {
-                                    Image(systemName: "plus")
-                                }
-            .sheet(isPresented: $showingCreateRoutineView) {
-                NavigationView {
-                    CreateRoutineStep1View()
-                }
-            }.onReceive(NotificationCenter.default.publisher(for: .createWorkoutDismiss)) { _ in
-                showingCreateRoutineView = false
-            }.onReceive(NotificationCenter.default.publisher(for: .dismissWorkoutWorkflow)) { _ in
-                workoutViewIsActive = false
-            }.onAppear {
-                Tool.showTabBar()
-            }
-        )
-        .navigationBarTitle(Text(LocalizableKey.workouts.localized))
     }
 }
 

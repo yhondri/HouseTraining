@@ -10,7 +10,28 @@ import SwiftUI
 struct ChartGridView: View {
     @ObservedObject var chartGridViewModel = ChartGridViewModel()
 
-    var body: some View {
+    @ViewBuilder var body: some View {
+        if chartGridViewModel.charts.isEmpty {
+             getEmtpyView()
+        } else {
+             getBodyWithData()
+        }
+    }
+    
+    private func getEmtpyView() -> some View {
+        VStack(alignment: .center) {
+            Image("no_chart_data")
+                .resizable()
+                .frame(width: 300, height: 300, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            
+            Text(LocalizableKey.chartsViewNoData.localized)
+                .multilineTextAlignment(.center)
+                .padding()
+        }
+        .navigationBarTitle(Text(LocalizableKey.charts.localized))
+    }
+    
+    private func getBodyWithData() ->  some View {
         ScrollView {
             LazyVStack {
                 ForEach(chartGridViewModel.charts, id: \.self) { data in

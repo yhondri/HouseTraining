@@ -54,11 +54,7 @@ struct CreateRoutineStep3RowView: View {
         HStack {
             ZStack {
                 Circle()
-                    .fill(LinearGradient(
-                        gradient: .init(colors: [Color.charBarTopColor, Color.charBarBottomColor]),
-                        startPoint: .init(x: 0.5, y: 0),
-                        endPoint: .init(x: 0.5, y: 0.6)
-                    ))
+                    .fill(Color.charBarBottomColor)
                     .frame(width: 50, height: 50)
                 Image(exercise.imageName)
                     .resizable()

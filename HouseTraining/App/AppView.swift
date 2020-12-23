@@ -41,7 +41,7 @@ struct AppView: View {
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }
-        .accentColor(.charBarTopColor)
+        .accentColor(.charBarBottomColor)
     }
 }
 

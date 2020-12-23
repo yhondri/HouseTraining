@@ -26,7 +26,6 @@ class CreateRoutineStep2CVCell: UICollectionViewCell {
         didSet {
             exerciseNameLabel.text = exercise.actionName
             exerciseImageView.image = UIImage(named: exercise.imageName)
-
         }
     }
     
@@ -35,7 +34,7 @@ class CreateRoutineStep2CVCell: UICollectionViewCell {
         let imageContentView = UIView()
         imageContentView.translatesAutoresizingMaskIntoConstraints = false
         imageContentView.addSubview(exerciseImageView)
-        imageContentView.addBlackGradientLayerInBackground(frame: CGRect(x: 0, y: 0, width: 40, height: 40), colors: [UIColor.charBarTopColor!, UIColor.charBarBottomColor!])
+        imageContentView.backgroundColor = UIColor.charBarBottomColor
         imageContentView.layer.cornerRadius = 20
         imageContentView.layer.masksToBounds = true
         

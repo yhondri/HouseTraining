@@ -11,6 +11,7 @@
 "chartsView_weekly_activity" = "Actividad semanal";
 "chartsView_month_activity" = "Actividad mensual";
 "chartsView_exercise" = "Ejercicio";
+"chartsView_no_data" = "Aún no has completado ningún ejercicio\n ¡Vamos, ponte manos a la obra!";
 
 //MARK: - ExerciseList
 "exerciselistview_exercises" = "Ejercicios";
@@ -22,6 +23,7 @@
 
 //MARK: - WorkoutListView
 "workoutListView_workouts" = "Entrenamientos";
+"workoutListView_no_data" = "Aún no has creado ningún entrenamiento.\n Pulsa el botón + y añade los ejercicios que quieras a tu entrenamiento.";
 
 //MARK: - CreateRoutineStep1View
 "createroutineStep1View_new_routine" = "Nueva rutina";

@@ -42,7 +42,7 @@ struct BarChartView: View {
                             VStack {
                                 Rectangle()
                                     .fill(LinearGradient(
-                                        gradient: .init(colors: [Color.charBarTopColor, Color.charBarBottomColor]),
+                                        gradient: .init(colors: [Color.charBarBottomColor, Color.charBarTopColor]),
                                         startPoint: .init(x: 0.5, y: 0),
                                         endPoint: .init(x: 0.5, y: 0.6)
                                     ))
