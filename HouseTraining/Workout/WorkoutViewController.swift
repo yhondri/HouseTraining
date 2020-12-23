@@ -283,10 +283,28 @@ extension WorkoutViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 struct WorkoutViewControllerRepresentable: UIViewControllerRepresentable {
     typealias UIViewControllerType = WorkoutViewController
-    var workoutEntity: WorkoutEntity
-
+    var workoutEntity: WorkoutEntity?
+    var exerciseEntity: ExerciseEntity?
+    
+    init(workoutEntity: WorkoutEntity? = nil, exerciseEntity: ExerciseEntity? = nil) {
+        self.workoutEntity = workoutEntity
+        self.exerciseEntity = exerciseEntity
+    }
+    
     func makeUIViewController(context: Context) -> WorkoutViewController {
-        let viewModel = WorkoutViewModel(actions: [.jumpingJacks])
+        var actions: [ActionType]
+        if let exercises = workoutEntity?.exercises?.allObjects as? [ExerciseEntity] {
+            actions = exercises.compactMap({ exercise -> ActionType? in
+                ActionType(rawValue: exercise.actionType)
+            })
+        } else if let actionTypeString = exerciseEntity?.actionType,
+                  let actionType = ActionType(rawValue: actionTypeString) {
+            actions = [actionType]
+        } else {
+            fatalError("No puedes inicializar este módulo sin una acción válida")
+        }
+        
+        let viewModel = WorkoutViewModel(actions: actions)
         return WorkoutViewController(viewModel: viewModel)
     }
     
