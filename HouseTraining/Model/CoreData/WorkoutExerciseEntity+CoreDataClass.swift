@@ -27,7 +27,7 @@ public class WorkoutExerciseEntity: NSManagedObject {
     
     static func insert(exercises: [Exercise], in workout: WorkoutEntity, context: NSManagedObjectContext) {
         for exercise in exercises {
-            guard let foundExercise = ExerciseEntity.getByID(exercise.getId().toInt64(), context: context) else {
+            guard let foundExercise = ExerciseEntity.getByID(exercise.id, context: context) else {
                 debugPrint("Error exercise not found on Insert WorkoutExerciseEntity")
                 continue
             }

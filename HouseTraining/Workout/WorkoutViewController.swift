@@ -293,10 +293,13 @@ struct WorkoutViewControllerRepresentable: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> WorkoutViewController {
         var actions: [ActionType]
-        if let exercises = workoutEntity?.exercises?.allObjects as? [ExerciseEntity] {
-            actions = exercises.compactMap({ exercise -> ActionType? in
-                ActionType(rawValue: exercise.actionType)
-            })
+        if let workoutExercises = workoutEntity?.exercises?.allObjects as? [WorkoutExerciseEntity] {
+            actions = workoutExercises.compactMap {  workoutEntity  -> ActionType? in
+                guard let action = workoutEntity.exercise?.actionType,  let actionType = ActionType(rawValue: action) else {
+                    return nil
+                }
+                return actionType
+            }
         } else if let actionTypeString = exerciseEntity?.actionType,
                   let actionType = ActionType(rawValue: actionTypeString) {
             actions = [actionType]

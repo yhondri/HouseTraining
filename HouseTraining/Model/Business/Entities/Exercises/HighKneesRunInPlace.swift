@@ -8,10 +8,9 @@
 import Foundation
 
 class HighKneesRunInPlace: Exercise {
-    private let id: Int = 1
-    
     init(workoutDate: Date? = nil) {
-        super.init(actionType: .highKneesRunInPlace,
+        super.init(id: 1,
+                   actionType: .highKneesRunInPlace,
                    actionName: LocalizableKey.highKneesRunInPlace.localized,
                    workoutDate: workoutDate,
                    imageName: "noun_high_knees")

@@ -9,6 +9,7 @@ import Foundation
 
 class Exercise: NSObject {
     static let exerciseTime = 30 //seconds
+    private(set) var id: Int64
     private let minProbability: Double = 50.0
     private(set) var score: Double = 0.0
     private var numberOfActionDetected = 0
@@ -24,22 +25,23 @@ class Exercise: NSObject {
         }
     }
     
-    private let id: Int = 0
     var position: Int = 0
     
-    init(actionType: ActionType = .none,
+    init(id: Int64 = 0,
+         actionType: ActionType = .none,
          actionName: String = "--",
          workoutDate: Date? = nil,
          imageName: String = "ic_temp_activity") {
+        self.id = id
         self.actionType = actionType
         self.actionName = actionName
         self.workoutDate = workoutDate
         self.imageName = imageName
     }
     
-    func getId() -> Int {
-        return id
-    }
+//    func getId() -> Int {
+//        fatalError("Not implemented")
+//    }
     
     /**
      Actualiza las estadísticas del ejercicio que se está haciendo.

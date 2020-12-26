@@ -62,6 +62,7 @@ struct ExercieRowView: View {
                         Text(exercise.name)
                             .font(.body)
                             .fontWeight(.medium)
+                            .foregroundColor(.accentColor)
                         Spacer()
                         HStack {
                         Text("22-02-1993")

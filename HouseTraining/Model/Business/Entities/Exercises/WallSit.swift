@@ -8,10 +8,9 @@
 import Foundation
 
 class WallSit: Exercise {
-    private let id: Int = 5
-
     init(workoutDate: Date? = nil) {
-        super.init(actionType: .wallSit,
+        super.init(id: 5,
+                   actionType: .wallSit,
                    actionName: LocalizableKey.wallSit.localized,
                    workoutDate: workoutDate,
                    imageName: "noun_Wall_sit")

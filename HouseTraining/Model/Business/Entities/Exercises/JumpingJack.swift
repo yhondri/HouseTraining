@@ -7,11 +7,10 @@
 
 import Foundation
 
-class JumpingJacks: Exercise {
-    private let id: Int = 2
-    
+class JumpingJacks: Exercise {    
     init(workoutDate: Date? = nil) {
-        super.init(actionType: .jumpingJacks,
+        super.init(id: 2,
+                   actionType: .jumpingJacks,
                    actionName: LocalizableKey.jumpingJacks.localized,
                    workoutDate: workoutDate,
                    imageName: "noun_jumping_jacks")

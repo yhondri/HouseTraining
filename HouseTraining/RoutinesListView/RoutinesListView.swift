@@ -71,7 +71,7 @@ struct RoutinesListView: View {
                         isActive: $workoutViewIsActive,
                         label: {
                             RoutineView(workout: workout)
-                                .roundedCorner()
+                                .roundedCorner(with: Color.itemBackgroundColor)
                         })
                 }
             }
@@ -85,11 +85,10 @@ struct RoutineView: View {
     let workout: WorkoutEntity
     var body: some View {
         HStack {
-            Image("ic_temp_activity")
-                .padding(.trailing, 8)
             Text(workout.name)
             Spacer()
             Image(systemName: "chevron.right")
+                .foregroundColor(.gray)
         }.padding(.leading)
     }
 }

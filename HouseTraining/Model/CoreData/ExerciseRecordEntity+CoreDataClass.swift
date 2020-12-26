@@ -26,7 +26,7 @@ public class ExerciseRecordEntity: NSManagedObject {
     
     static func insert(exercises: [Exercise], context: NSManagedObjectContext) {
         for exercise in exercises {
-            guard let exerciseEntity = ExerciseEntity.getByID(exercise.getId().toInt64(), context: context) else { continue }
+            guard let exerciseEntity = ExerciseEntity.getByID(exercise.id, context: context) else { continue }
             let exerciseRecord = ExerciseRecordEntity(context: context)
             exerciseRecord.date = Date()
             exerciseRecord.score = 10

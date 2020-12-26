@@ -28,7 +28,7 @@ public class ExerciseEntity: NSManagedObject {
     static func insert(exercises: [Exercise], context: NSManagedObjectContext) {
         for exercise in exercises {
             let exerciseEntity = ExerciseEntity(context: context)
-            exerciseEntity.id = exercise.getId().toInt64()
+            exerciseEntity.id = exercise.id
             exerciseEntity.actionType = exercise.actionType.rawValue
             exerciseEntity.name = exercise.actionName
             exerciseEntity.workoutLastDate = exercise.workoutDate
@@ -43,7 +43,8 @@ public class ExerciseEntity: NSManagedObject {
         }
 
         return availableExercises.map {
-            Exercise(actionType: ActionType(rawValue: $0.actionType)!,
+            Exercise(id: $0.id,
+                     actionType: ActionType(rawValue: $0.actionType)!,
                      actionName: $0.name,
                      workoutDate: $0.workoutLastDate,
                      imageName: $0.imageName)

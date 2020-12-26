@@ -77,16 +77,22 @@ class WorkoutViewModel: NSObject {
     }
     
     private func createRoutine() -> [Exercise] {
-        var exercises = [Exercise]()
-        for action in actions {
+        actions.compactMap { action -> Exercise? in
             switch action {
+            case .highKneesRunInPlace:
+                return HighKneesRunInPlace()
             case .jumpingJacks:
-                exercises.append(JumpingJacks())
+                return JumpingJacks()
+            case .plank:
+                return Plank()
+            case .sumoSquat:
+                return SumoSquat()
+            case .wallSit:
+                return WallSit()
             default:
                 fatalError("Action not implemented")
             }
         }
-        return exercises
     }
     
     func getActionName(action: ActionType) -> String {
