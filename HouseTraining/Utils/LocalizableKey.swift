@@ -48,4 +48,20 @@ struct LocalizableKey {
     static let successRate = "workoutsummary_success_rate"
     static let heartRate = "workoutsummary_heart_rate"
     static let calories = "workoutsummary_calories"
+    
+    //MARK: - More
+    static let more = "more_title"
+    static let developedBy = "more_developed_by"
+    static let developerText = "more_developer_text"
+    static let supervisedBy = "more_supervised_by"
+    static let teacherName = "more_teacher_name" 
+    static let termsOfUse = "more_terms_of_use" 
+    static let author1Text = "more_author1_text"
+    static let author2Text = "more_author2_text"
+    static let author3Text = "more_author3_text"
+    static let author4Text = "more_author4_text"
+    static let author5Text = "more_author5_text"
+    static let author6Text = "more_author6_text"
+    static let author7Text = "more_author7_text"
+    static let author8Text = "more_author8_text"
 }

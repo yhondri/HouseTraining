@@ -45,3 +45,19 @@
 "workoutsummary_success_rate" = "Puntuación";
 "workoutsummary_heart_rate" = "Ritmo cardiaco";
 "workoutsummary_calories" = "Calorias";
+
+//MARK: More
+"more_title" = "More";
+"more_developed_by" = "Developed by:";
+"more_developer_text" = "Yhondri Josué Acosta Novas. Work, end-of-degree project. At Universidad Complutense de Madrid";
+"more_supervised_by" = "Supervised by:";
+"more_teacher_name" = "Gonzalo Pajares Martinsanz";
+"more_terms_of_use" = "Términos de uso: Algunos iconos se encuentran bajo la licencia Creative Commons:";
+"more_author1_text" = "High knees exercise by Gan Khoon Lay from the Noun Project";
+"more_author2_text" = "Jumping jacks by Gan Khoon Lay from the Noun Project";
+"more_author3_text" = "Wall sit by Gan Khoon Lay from the Noun Project";
+"more_author4_text" = "Basic plank by Gan Khoon Lay from the Noun Project";
+"more_author5_text" = "Basic plank by Gan Khoon Lay from the Noun Project";
+"more_author6_text" = "Squatting by Gan Khoon Lay from the Noun Project";
+"more_author7_text" = "Sport vector created by stories";
+"more_author8_text" = "Fitness vector created by stories";

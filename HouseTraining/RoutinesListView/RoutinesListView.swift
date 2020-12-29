@@ -38,8 +38,6 @@ struct RoutinesListView: View {
                 }
             )
             .navigationBarTitle(Text(LocalizableKey.workouts.localized))
-        
-        
     }
     
     private func getView() -> some View {

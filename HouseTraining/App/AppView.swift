@@ -40,6 +40,15 @@ struct AppView: View {
                 Text(LocalizableKey.exercises.localized)
             }
             .navigationViewStyle(StackNavigationViewStyle())
+            
+            NavigationView {
+                MoreView()
+            }
+            .tabItem {
+                Image(systemName: "gear")
+                Text(LocalizableKey.more.localized)
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
         }
         .accentColor(.charBarBottomColor)
     }

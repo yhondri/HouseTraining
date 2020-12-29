@@ -62,6 +62,7 @@
 		567ADCFB24C0A87700A23864 /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF824C0A87700A23864 /* PlayerStats.swift */; };
 		567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF924C0A87700A23864 /* ThrowMetrics.swift */; };
 		567CA471256EC17100BB9385 /* CreateRoutineStep2CVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CA470256EC17100BB9385 /* CreateRoutineStep2CVCell.swift */; };
+		5686690C259B80550011E0F6 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686690B259B80550011E0F6 /* MoreView.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
 		569F5D0B256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */; };
 		569F5D16256A807F008644F0 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D15256A807F008644F0 /* Exercise.swift */; };
@@ -160,6 +161,7 @@
 		567ADCF824C0A87700A23864 /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
 		567ADCF924C0A87700A23864 /* ThrowMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowMetrics.swift; sourceTree = "<group>"; };
 		567CA470256EC17100BB9385 /* CreateRoutineStep2CVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep2CVCell.swift; sourceTree = "<group>"; };
+		5686690B259B80550011E0F6 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
 		569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HouseTrainingActionClassifier.mlmodel; sourceTree = "<group>"; };
 		569F5D15256A807F008644F0 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/Exercise.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 		567ADCAE24C0A1F000A23864 /* HouseTraining */ = {
 			isa = PBXGroup;
 			children = (
+				5686690A259B80490011E0F6 /* MoreView */,
 				567ADCE224C0A26B00A23864 /* App */,
 				562FF4D925756D5A00ABA4D1 /* BarChart */,
 				562FF4EB257570F900ABA4D1 /* ChartsView */,
@@ -436,6 +439,14 @@
 				567ADCF924C0A87700A23864 /* ThrowMetrics.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		5686690A259B80490011E0F6 /* MoreView */ = {
+			isa = PBXGroup;
+			children = (
+				5686690B259B80550011E0F6 /* MoreView.swift */,
+			);
+			path = MoreView;
 			sourceTree = "<group>";
 		};
 		569F5D0F256A7EE8008644F0 /* ExerciseListView */ = {
@@ -628,6 +639,7 @@
 				56532E202572D3CE008F341A /* AppViewModel.swift in Sources */,
 				56B766D924E2C1540005330D /* VisionHelper.swift in Sources */,
 				567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */,
+				5686690C259B80550011E0F6 /* MoreView.swift in Sources */,
 				56532E162572D1B8008F341A /* Int+Extension.swift in Sources */,
 				5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */,
 				569F5D1E256A8252008644F0 /* HighKneesRunInPlace.swift in Sources */,
