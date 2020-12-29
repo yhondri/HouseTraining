@@ -63,6 +63,9 @@
 		567ADCFC24C0A87700A23864 /* ThrowMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567ADCF924C0A87700A23864 /* ThrowMetrics.swift */; };
 		567CA471256EC17100BB9385 /* CreateRoutineStep2CVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CA470256EC17100BB9385 /* CreateRoutineStep2CVCell.swift */; };
 		5686690C259B80550011E0F6 /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686690B259B80550011E0F6 /* MoreView.swift */; };
+		56866911259B91F10011E0F6 /* RoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56866910259B91F10011E0F6 /* RoutineViewModel.swift */; };
+		56866916259B944A0011E0F6 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56866915259B944A0011E0F6 /* SafariView.swift */; };
+		5686691B259B947D0011E0F6 /* DesignerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5686691A259B947D0011E0F6 /* DesignerData.swift */; };
 		5696418D24C88979009E2A81 /* JacksActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */; };
 		569F5D0B256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */; };
 		569F5D16256A807F008644F0 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D15256A807F008644F0 /* Exercise.swift */; };
@@ -162,6 +165,9 @@
 		567ADCF924C0A87700A23864 /* ThrowMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowMetrics.swift; sourceTree = "<group>"; };
 		567CA470256EC17100BB9385 /* CreateRoutineStep2CVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep2CVCell.swift; sourceTree = "<group>"; };
 		5686690B259B80550011E0F6 /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
+		56866910259B91F10011E0F6 /* RoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineViewModel.swift; sourceTree = "<group>"; };
+		56866915259B944A0011E0F6 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		5686691A259B947D0011E0F6 /* DesignerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerData.swift; sourceTree = "<group>"; };
 		5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = JacksActionClassifier.mlmodel; sourceTree = "<group>"; };
 		569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = HouseTrainingActionClassifier.mlmodel; sourceTree = "<group>"; };
 		569F5D15256A807F008644F0 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = ../../../../../../houseTraining/HouseTraining/Model/Business/Entities/Exercises/Exercise.swift; sourceTree = "<group>"; };
@@ -265,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				56483903256C377000F7005B /* RoutinesListView.swift */,
+				56866910259B91F10011E0F6 /* RoutineViewModel.swift */,
 			);
 			path = RoutinesListView;
 			sourceTree = "<group>";
@@ -354,7 +361,6 @@
 		567ADCAE24C0A1F000A23864 /* HouseTraining */ = {
 			isa = PBXGroup;
 			children = (
-				5686690A259B80490011E0F6 /* MoreView */,
 				567ADCE224C0A26B00A23864 /* App */,
 				562FF4D925756D5A00ABA4D1 /* BarChart */,
 				562FF4EB257570F900ABA4D1 /* ChartsView */,
@@ -363,6 +369,7 @@
 				569F5D0F256A7EE8008644F0 /* ExerciseListView */,
 				56415DF2251A4CA800B688DE /* Workout */,
 				5649353A25507673000F8A5F /* WorkoutSummary */,
+				5686690A259B80490011E0F6 /* MoreView */,
 				567ADCE324C0A27200A23864 /* Model */,
 				567ADCE424C0A27B00A23864 /* Resources */,
 				56B646AB24D9CEE200C959BE /* Utils */,
@@ -434,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				5649350D255015B8000F8A5F /* Exercises */,
+				5686691A259B947D0011E0F6 /* DesignerData.swift */,
 				567ADCF724C0A87700A23864 /* PlayerActionClassifier.swift */,
 				567ADCF824C0A87700A23864 /* PlayerStats.swift */,
 				567ADCF924C0A87700A23864 /* ThrowMetrics.swift */,
@@ -445,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				5686690B259B80550011E0F6 /* MoreView.swift */,
+				56866915259B944A0011E0F6 /* SafariView.swift */,
 			);
 			path = MoreView;
 			sourceTree = "<group>";
@@ -635,7 +644,9 @@
 				56B646AD24D9CEFD00C959BE /* Notification+Extension.swift in Sources */,
 				562FF4F52575714500ABA4D1 /* ChartGridViewModel.swift in Sources */,
 				56532E1B2572D2A6008F341A /* NSManagedObject+Extension.swift in Sources */,
+				5686691B259B947D0011E0F6 /* DesignerData.swift in Sources */,
 				5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */,
+				56866911259B91F10011E0F6 /* RoutineViewModel.swift in Sources */,
 				56532E202572D3CE008F341A /* AppViewModel.swift in Sources */,
 				56B766D924E2C1540005330D /* VisionHelper.swift in Sources */,
 				567ADCB024C0A1F000A23864 /* AppDelegate.swift in Sources */,
@@ -649,6 +660,7 @@
 				567CA471256EC17100BB9385 /* CreateRoutineStep2CVCell.swift in Sources */,
 				569F5D47256A9581008644F0 /* HouseTrainingApplication.swift in Sources */,
 				5629306D25867EFD00801AA6 /* UIView+Extension.swift in Sources */,
+				56866916259B944A0011E0F6 /* SafariView.swift in Sources */,
 				5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */,
 				5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */,
 				5649355A255079F4000F8A5F /* Double+Extension.swift in Sources */,

@@ -14,8 +14,9 @@ struct RoutinesListView: View {
         entity: WorkoutEntity.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \WorkoutEntity.name, ascending: true)]
     ) var workoutList: FetchedResults<WorkoutEntity>
-    
     @State var workoutViewIsActive = false
+    @State private var showingAlert = false
+    private let routineViewModel = RoutineViewModel()
 
     @ViewBuilder var body: some View {
         getView()
@@ -60,6 +61,7 @@ struct RoutinesListView: View {
         }
     }
     
+    
     private func getBodyWithData() ->  some View {
         ScrollView {
             LazyVStack {
@@ -71,6 +73,22 @@ struct RoutinesListView: View {
                             RoutineView(workout: workout)
                                 .roundedCorner(with: Color.itemBackgroundColor)
                         })
+                        .contextMenu {
+                            Button(action: {
+                                self.showingAlert = true
+                            }) {
+                                Text(LocalizableKey.delete.localized)
+                            }
+                        }
+                        .alert(isPresented: $showingAlert) {
+                            Alert(title: Text(LocalizableKey.warning.localized),
+                                  message: Text(LocalizableKey.deleteMessage.localized),
+                                  primaryButton: .default(Text(LocalizableKey.cancel.localized)),
+                                  secondaryButton:
+                                    .destructive(Text(LocalizableKey.delete.localized), action: {
+                                        routineViewModel.deleteWorkout(workout)
+                                    }))
+                        }
                 }
             }
             .padding(.top, 10)
@@ -87,7 +105,8 @@ struct RoutineView: View {
             Spacer()
             Image(systemName: "chevron.right")
                 .foregroundColor(.gray)
-        }.padding(.leading)
+        }
+        .padding(.leading)
     }
 }
 

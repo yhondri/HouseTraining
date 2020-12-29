@@ -9,6 +9,12 @@ import Foundation
 
 struct LocalizableKey {
     
+    //MARK: - General
+    static let delete = "general_delete"
+    static let cancel = "general_cancel"
+    static let warning = "general_warning"
+    static let deleteMessage = "general_delete_message"
+    
     //MARK: - ChartsView
     static let charts = "chartsView_charts"
     static let weeklyActivity = "chartsView_weekly_activity"

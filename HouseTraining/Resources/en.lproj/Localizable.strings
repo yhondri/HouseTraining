@@ -6,6 +6,12 @@
   
 */
 
+//MARK: - General
+"general_delete" = "Delete";
+"general_cancel" = "Cancel";
+"general_warning" = "Warning";
+"general_delete_message" = "After delete this workout all releated data will be removed too";
+
 //MARK: - ChartsView
 "chartsView_charts" = "Gráficos";
 "chartsView_weekly_activity" = "Actividad semanal";

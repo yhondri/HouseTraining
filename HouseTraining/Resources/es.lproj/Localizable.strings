@@ -6,6 +6,12 @@
   
 */
 
+//MARK: - General
+"general_delete" = "Eliminar";
+"general_cancel" = "Cancelar";
+"general_warning" = "Atención";
+"general_delete_message" = "Al eliminar este entrenamiento se eliminarán además todos los datos relacionados.";
+
 //MARK: - ChartsView
 "chartsView_charts" = "Gráficos";
 "chartsView_weekly_activity" = "Actividad semanal";

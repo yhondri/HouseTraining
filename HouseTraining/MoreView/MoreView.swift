@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct DesignerData: Identifiable {
-    let id = UUID()
-    let text: String
-    let link: URL
-}
-
 struct MoreView: View {
     let designers: [DesignerData]
     let theNounProjectURL: URL = URL(string: "https://thenounproject.com/")!
@@ -90,19 +84,6 @@ struct DesignerCreditsRow: View {
             Image(systemName: "info.circle")
         }
     }
-}
-
-import UIKit
-import SafariServices
-
-struct SafariView: UIViewControllerRepresentable {
-    var url: URL
-        
-    func makeUIViewController(context: UIViewControllerRepresentableContext<SafariView>) -> SFSafariViewController {
-        SFSafariViewController(url: url)
-    }
-    
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: UIViewControllerRepresentableContext<SafariView>) {}
 }
 
 struct MoreView_Previews: PreviewProvider {

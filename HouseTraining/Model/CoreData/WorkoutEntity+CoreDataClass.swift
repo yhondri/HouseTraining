@@ -29,4 +29,8 @@ public class WorkoutEntity: NSManagedObject {
         workoutEntity.name = workoutName
         WorkoutExerciseEntity.insert(exercises: exercises, in: workoutEntity, context: context)
     }
+    
+    static func delete(workoutEntity: WorkoutEntity, context: NSManagedObjectContext) {
+        context.delete(workoutEntity)
+    }
 }
