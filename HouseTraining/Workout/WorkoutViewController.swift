@@ -20,6 +20,9 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var currentActivityLabel: UILabel!
     @IBOutlet weak var actionQualityLabel: UILabel!
     @IBOutlet var progressBars: [UIProgressView]!
+    @IBOutlet weak var noCameraPermissionView: UIView!
+    @IBOutlet weak var noCameraPermissionLabel: UILabel!
+    @IBOutlet weak var noCameraPermissionButton: UIButton!
     
     private var timer: Timer?
     private var countDown: Double = 0.0
@@ -44,37 +47,18 @@ class WorkoutViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        viewModel.playerRequest.sink { result in
-            self.updateHumanBodyPose(reconizedPointsObservation: result)
+        viewModel.isCameraAuthorizationGranted.sink { [weak self] granted in
+            DispatchQueue.main.async {
+                if granted {
+                    self?.onSetupView()
+                } else {
+                    
+                }
+            }
         }
         .store(in: &cancellables)
         
-        viewModel.userActionRequest.sink { action in
-            self.updateCurrentActivity(action: action)
-        }
-        .store(in: &cancellables)
-        
-        do {
-            try viewModel.setupAVSession(avcaptureVideoDataOutputSampleBufferDelegate: self)
-            setupCameraFeedSession()
-            setUIElements()
-        } catch {
-            debugPrint("Show error, session couldn't be started ", error)
-        }
-        
-        for index in 0..<viewModel.numberOfExercises {
-            progressBars[index].isHidden = false
-        }
-        
-        updateCurrentActivity(action: Action())
-        
-        workoutInfoContentView.layer.cornerRadius = 12
-        workoutInfoContentView.layer.masksToBounds = true
-        view.sendSubviewToBack(cameraFeedView)
-        
-        let pauseGesture = UITapGestureRecognizer(target: self, action: #selector(onChangeActivityState))
-        view.addGestureRecognizer(pauseGesture)
+        viewModel.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,6 +91,41 @@ class WorkoutViewController: UIViewController {
         super.viewWillDisappear(animated)
         // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
+    }
+    
+    private func onSetupView() {
+        viewModel.playerRequest.sink { result in
+            self.updateHumanBodyPose(reconizedPointsObservation: result)
+        }
+        .store(in: &cancellables)
+        
+        viewModel.userActionRequest.sink { action in
+            self.updateCurrentActivity(action: action)
+        }
+        .store(in: &cancellables)
+        
+        do {
+            try viewModel.setupAVSession(avcaptureVideoDataOutputSampleBufferDelegate: self)
+            setupCameraFeedSession()
+            setUIElements()
+        } catch {
+            debugPrint("Show error, session couldn't be started ", error)
+        }
+        
+        for index in 0..<viewModel.numberOfExercises {
+            progressBars[index].isHidden = false
+        }
+        
+        updateCurrentActivity(action: Action())
+        
+        workoutInfoContentView.layer.cornerRadius = 12
+        workoutInfoContentView.layer.masksToBounds = true
+        view.sendSubviewToBack(cameraFeedView)
+        
+        let pauseGesture = UITapGestureRecognizer(target: self, action: #selector(onChangeActivityState))
+        view.addGestureRecognizer(pauseGesture)
+        
+        noCameraPermissionView.isHidden = true
     }
     
     private func updateCurrentActivity(action: Action) {
@@ -207,6 +226,11 @@ class WorkoutViewController: UIViewController {
             let normalizedFrame = CGRect(x: 0, y: 0, width: 1, height: 1)
             self.jointSegmentView.frame = VisionHelper.viewRectForVisionRect(normalizedFrame, cameraFeedView: self.cameraFeedView)
         }
+    }
+    
+    @IBAction func goToAppSettings(_ sender: Any) {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        UIApplication.shared.open(url)
     }
 }
 

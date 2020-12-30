@@ -14,6 +14,9 @@
                 <outlet property="caloriesLabel" destination="R3z-cz-bUi" id="bC9-bq-M3F"/>
                 <outlet property="currentActivityLabel" destination="gLU-qF-uIg" id="kTp-5b-GYS"/>
                 <outlet property="heartRateLabel" destination="rjB-4N-vmN" id="prb-qX-YkM"/>
+                <outlet property="noCameraPermissionButton" destination="0sR-te-EHS" id="vf4-Dd-3jC"/>
+                <outlet property="noCameraPermissionLabel" destination="LEW-yo-PHx" id="Gd3-U5-NiR"/>
+                <outlet property="noCameraPermissionView" destination="voR-tR-Q9u" id="MTL-hG-knG"/>
                 <outlet property="timerLabel" destination="BXL-o9-DSy" id="ObK-sm-JTp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="workoutInfoContentView" destination="i8U-yy-tWr" id="Za4-aQ-Bqo"/>
@@ -145,13 +148,46 @@
                         <constraint firstAttribute="trailing" secondItem="SzN-LL-dcQ" secondAttribute="trailing" constant="8" id="pFy-WV-6uQ"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voR-tR-Q9u">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Bfn-AC-Zog">
+                            <rect key="frame" x="12" y="400.5" width="390" height="95"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Permite el acceso para poder realizar tu entrenamiento" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEW-yo-PHx">
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="41"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sR-te-EHS">
+                                    <rect key="frame" x="0.0" y="65" width="390" height="30"/>
+                                    <state key="normal" title="Permitir acceso a la cámara"/>
+                                    <connections>
+                                        <action selector="goToAppSettings:" destination="-1" eventType="touchUpInside" id="xz3-Yp-HX6"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Bfn-AC-Zog" secondAttribute="trailing" constant="12" id="Syy-5O-fLz"/>
+                        <constraint firstItem="Bfn-AC-Zog" firstAttribute="centerY" secondItem="voR-tR-Q9u" secondAttribute="centerY" id="WWA-6w-Qh2"/>
+                        <constraint firstItem="Bfn-AC-Zog" firstAttribute="leading" secondItem="voR-tR-Q9u" secondAttribute="leading" constant="12" id="hI6-tb-Gi3"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i8U-yy-tWr" secondAttribute="trailing" constant="8" id="84j-Y2-Pga"/>
                 <constraint firstItem="i8U-yy-tWr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="Ktp-4Q-CdB"/>
+                <constraint firstItem="voR-tR-Q9u" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="c6g-V1-v0s"/>
                 <constraint firstItem="i8U-yy-tWr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="fcF-Zs-L6t"/>
+                <constraint firstItem="voR-tR-Q9u" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="o4w-li-keh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="voR-tR-Q9u" secondAttribute="trailing" id="s7Y-y1-9rZ"/>
+                <constraint firstAttribute="bottom" secondItem="voR-tR-Q9u" secondAttribute="bottom" id="vIg-34-Lv0"/>
             </constraints>
             <point key="canvasLocation" x="136.23188405797103" y="137.27678571428569"/>
         </view>

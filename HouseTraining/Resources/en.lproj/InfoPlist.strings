@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  HouseTraining
+
+  Created by Yhondri Acosta Novas on 30/12/20.
+  
+*/
+
+"NSCameraUsageDescription" = "This app uses the camera to analyze the scene";

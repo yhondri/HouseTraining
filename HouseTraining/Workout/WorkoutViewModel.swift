@@ -15,7 +15,8 @@ class WorkoutViewModel: NSObject {
     let videoDataOutputQueue: DispatchQueue
     let playerRequest = PassthroughSubject<VNHumanBodyPoseObservation, Never>()
     let userActionRequest = PassthroughSubject<Action, Never>()
-    
+    let isCameraAuthorizationGranted = PassthroughSubject<Bool, Never>()
+
     private(set) var cameraFeedSession: AVCaptureSession?
     private(set) var displayLink: CADisplayLink?
     private(set) var playerDetected = false
@@ -66,6 +67,20 @@ class WorkoutViewModel: NSObject {
             sessionVideoOrientation = .portrait
         } else {
             sessionVideoOrientation = .landscapeRight
+        }
+    }
+    
+    func viewDidLoad() {
+        if AVCaptureDevice.authorizationStatus(for: .video) == .authorized {
+            isCameraAuthorizationGranted.send(true)
+        } else {
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+                if granted {
+                    self.isCameraAuthorizationGranted.send(true)
+                } else {
+                    self.isCameraAuthorizationGranted.send(false)
+                }
+            })
         }
     }
     

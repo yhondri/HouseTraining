@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  HouseTraining
+
+  Created by Yhondri Acosta Novas on 30/12/20.
+  
+*/
+
+"NSCameraUsageDescription" = "Necesitamos que nos des acceso a la cámara para poder analizar la actividad que estás realizando.";
