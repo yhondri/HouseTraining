@@ -29,4 +29,16 @@ extension Date {
         let weekDayNum = Calendar.current.component(.month, from: self)
         return weekDayNum
     }
+    
+    var fullRelativeFormat: String {
+        RelativeDateTimeFormatter.fullDateFormatter.localizedString(for: self, relativeTo: Date())
+    }
+}
+
+extension RelativeDateTimeFormatter {
+    static var fullDateFormatter: RelativeDateTimeFormatter {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return formatter
+    }
 }

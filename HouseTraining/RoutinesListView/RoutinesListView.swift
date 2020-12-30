@@ -62,7 +62,7 @@ struct RoutinesListView: View {
     }
     
     
-    private func getBodyWithData() ->  some View {
+    private func getBodyWithData() -> some View {
         ScrollView {
             LazyVStack {
                 ForEach(workoutList, id: \.self) { workout in

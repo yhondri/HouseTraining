@@ -15,26 +15,14 @@ struct ExerciseListView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \ExerciseEntity.name, ascending: true)]
     ) var exercises: FetchedResults<ExerciseEntity>
     
-    @State var workoutViewIsActive = false
-
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(exercises, id: \.self) { exercise in
-                    NavigationLink(
-                        destination: WorkoutViewControllerRepresentable(exerciseEntity: exercise),
-                        isActive: $workoutViewIsActive,
-                        label: {
-                            ExercieRowView(exercise: exercise)
-                        })
-                        .buttonStyle(PlainButtonStyle())
-                        .frame(minHeight: 70)
-                        .listRowInsets(EdgeInsets())
+                ForEach(exercises, id: \.id) { exercise in
+                    ExercieRowView(exercise: exercise)
                 }
             }
             .padding(.top, 10)
-        }.onReceive(NotificationCenter.default.publisher(for: .dismissWorkoutWorkflow)) { _ in
-            workoutViewIsActive = false
         }.onAppear {
             Tool.showTabBar()
         }
@@ -45,8 +33,22 @@ struct ExerciseListView: View {
 
 struct ExercieRowView: View {
     let exercise: ExerciseEntity
-    
+    @State var workoutViewIsActive = false
+
     var body: some View {
+        NavigationLink(
+            destination: WorkoutViewControllerRepresentable(exerciseEntity: exercise),
+            isActive: $workoutViewIsActive,
+            label: { rowView() })
+            .buttonStyle(PlainButtonStyle())
+            .frame(minHeight: 70)
+            .listRowInsets(EdgeInsets())
+            .onReceive(NotificationCenter.default.publisher(for: .dismissWorkoutWorkflow)) { _ in
+                workoutViewIsActive = false
+            }
+    }
+    
+    private func rowView() -> some View {
         ZStack {
             HStack {
                 ZStack {
@@ -65,11 +67,13 @@ struct ExercieRowView: View {
                             .foregroundColor(.accentColor)
                         Spacer()
                         HStack {
-                        Text("22-02-1993")
-                            .font(Font.system(size: 10))
-                            .foregroundColor(.gray)
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.gray)
+                            if let date = exercise.workoutLastDate {
+                                Text(date.fullRelativeFormat)
+                                    .font(Font.system(size: 10))
+                                    .foregroundColor(.gray)
+                            }
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.gray)
                         }
                         .padding(.top, 3)
                         

@@ -31,6 +31,7 @@ public class ExerciseRecordEntity: NSManagedObject {
             exerciseRecord.date = Date()
             exerciseRecord.score = 10
             exerciseRecord.exercise = exerciseEntity
+            exerciseEntity.workoutLastDate = Date()
         }
     }
     

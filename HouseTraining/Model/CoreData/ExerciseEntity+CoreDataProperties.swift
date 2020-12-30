@@ -17,7 +17,7 @@ extension ExerciseEntity {
     }
 
     @NSManaged public var actionType: String
-    @NSManaged public var id: Int64
+    @NSManaged public var exerciseId: Int64
     @NSManaged public var imageName: String
     @NSManaged public var name: String
     @NSManaged public var workoutLastDate: Date?
