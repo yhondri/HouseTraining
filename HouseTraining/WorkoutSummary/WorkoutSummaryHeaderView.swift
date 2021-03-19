@@ -22,22 +22,26 @@ struct WorkoutSummaryHeaderView: View {
                 switch i {
                 case 0:
                     BoxView(title: LocalizableKey.duration.localized,
-                            value: workoutSummary.successRate,
+                            value: workoutSummary.duration,
+                            isTimeValue: true,
                             imageColor: .blue,
                             imageName: "calendar.circle.fill")
                 case 1:
                     BoxView(title: LocalizableKey.successRate.localized,
                             value: workoutSummary.successRate,
+                            isTimeValue: false,
                             imageColor: .green,
                             imageName: "star.circle.fill")
                 case 2:
                     BoxView(title: LocalizableKey.heartRate.localized,
                             value: workoutSummary.heartRate,
+                            isTimeValue: false,
                             imageColor: .blue,
                             imageName: "calendar.circle.fill")
                 case 3:
                     BoxView(title: LocalizableKey.calories.localized,
                             value: workoutSummary.caloriesBurned,
+                            isTimeValue: false,
                             imageColor: .red,
                             imageName: "calendar.circle.fill")
                 default:
@@ -51,6 +55,7 @@ struct WorkoutSummaryHeaderView: View {
 struct BoxView: View {
     let title: String
     let value: Double
+    let isTimeValue: Bool
     let imageColor: Color
     let imageName: String
     
@@ -66,10 +71,17 @@ struct BoxView: View {
                 Text(title)
                     .font(.subheadline)
                 if let value = NumberFormatter.twoFractionDigits.string(from: NSNumber(value: value)) {
-                    Text("\(value)")
+                    if isTimeValue {
+                    Text("\(value)s")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.itemTextColor)
+                    } else {
+                        Text("\(value)")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.itemTextColor)
+                    }
                }
                 Spacer(minLength: 5)
             }

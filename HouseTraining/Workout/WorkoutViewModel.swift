@@ -253,6 +253,8 @@ extension WorkoutViewModel {
     }
     
     @objc private func detectAction() {
+        guard self.posesCount >= 60 else { return }
+        
         ///Confidence to score quality of action
         let currentAction = self.playerStats.getAction()
         userActionRequest.send(currentAction)

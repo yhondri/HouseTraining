@@ -52,7 +52,7 @@ public class ExerciseEntity: NSManagedObject {
     }
     
     static func getByID(_ id: Int64, context: NSManagedObjectContext) -> ExerciseEntity? {
-        let predicate = NSPredicate(format: "id = %d", id)
+        let predicate = NSPredicate(format: "exerciseId = %d", id)
         guard let exercises = ExerciseEntity.fetchAll(predicate: predicate,
                                                                fetchLimit: 1,
                                                                in: CoreDataStack.shared.viewContext) as? [ExerciseEntity] else {

@@ -30,7 +30,7 @@ struct WorkoutSummary {
 #if DEBUG
 extension WorkoutSummary {
     static func getPreview() -> WorkoutSummary {
-        let exercises = [JumpingJacks()]
+        let exercises = [JumpingJacks.getPreview()]
         return WorkoutSummary(duration: 30,
                               successRate: 98,
                               heartRate: 156,

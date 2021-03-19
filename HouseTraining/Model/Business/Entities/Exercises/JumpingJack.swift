@@ -21,7 +21,10 @@ class JumpingJacks: Exercise {
 #if DEBUG
 extension JumpingJacks {
     static func getPreview() -> JumpingJacks {
-        return JumpingJacks()
+        let jumpingJacks = JumpingJacks()
+        let action = Action(type: .jumpingJacks, probability: 98.65)
+        jumpingJacks.didDectectAction(action: action)
+        return jumpingJacks
     }
 }
 #endif
