@@ -23,6 +23,7 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var noCameraPermissionView: UIView!
     @IBOutlet weak var noCameraPermissionLabel: UILabel!
     @IBOutlet weak var noCameraPermissionButton: UIButton!
+    @IBOutlet weak var startTrainingLabel: UILabel!
     
     private var timer: Timer?
     private var countDown: Double = 0.0
@@ -51,9 +52,8 @@ class WorkoutViewController: UIViewController {
             DispatchQueue.main.async {
                 if granted {
                     self?.onSetupView()
-                } else {
-                    
                 }
+                self?.noCameraPermissionView.isHidden = granted
             }
         }
         .store(in: &cancellables)
@@ -124,14 +124,12 @@ class WorkoutViewController: UIViewController {
         
         let pauseGesture = UITapGestureRecognizer(target: self, action: #selector(onChangeActivityState))
         view.addGestureRecognizer(pauseGesture)
-        
-        noCameraPermissionView.isHidden = true
     }
     
     private func updateCurrentActivity(action: Action) {
         if action.type == .none {
             actionQualityLabel.isHidden = true
-            currentActivityLabel.text = "\(LocalizableKey.resting.localized)"
+            currentActivityLabel.text = "\(LocalizableKey.unknownActivity.localized)"
         } else {
             actionQualityLabel.isHidden = false
             currentActivityLabel.text = viewModel.getActionName(action: action.type)
@@ -145,6 +143,7 @@ class WorkoutViewController: UIViewController {
         } else {
            onResumeActivity()
         }
+        startTrainingLabel.isHidden = isCounDownRunning
     }
     
     private func onResumeActivity() {

@@ -17,6 +17,7 @@
                 <outlet property="noCameraPermissionButton" destination="0sR-te-EHS" id="vf4-Dd-3jC"/>
                 <outlet property="noCameraPermissionLabel" destination="LEW-yo-PHx" id="Gd3-U5-NiR"/>
                 <outlet property="noCameraPermissionView" destination="voR-tR-Q9u" id="MTL-hG-knG"/>
+                <outlet property="startTrainingLabel" destination="Ncv-f0-Mgu" id="s0Q-Ra-5Db"/>
                 <outlet property="timerLabel" destination="BXL-o9-DSy" id="ObK-sm-JTp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="workoutInfoContentView" destination="i8U-yy-tWr" id="Za4-aQ-Bqo"/>
@@ -148,7 +149,13 @@
                         <constraint firstAttribute="trailing" secondItem="SzN-LL-dcQ" secondAttribute="trailing" constant="8" id="pFy-WV-6uQ"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voR-tR-Q9u">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pulsa la pantalla para iniciar el entrenamiento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ncv-f0-Mgu">
+                    <rect key="frame" x="36" y="438" width="342" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voR-tR-Q9u">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="Bfn-AC-Zog">
@@ -185,9 +192,11 @@
                 <constraint firstItem="i8U-yy-tWr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="Ktp-4Q-CdB"/>
                 <constraint firstItem="voR-tR-Q9u" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="c6g-V1-v0s"/>
                 <constraint firstItem="i8U-yy-tWr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="fcF-Zs-L6t"/>
+                <constraint firstItem="Ncv-f0-Mgu" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="nra-Bc-sQ1"/>
                 <constraint firstItem="voR-tR-Q9u" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="o4w-li-keh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="voR-tR-Q9u" secondAttribute="trailing" id="s7Y-y1-9rZ"/>
                 <constraint firstAttribute="bottom" secondItem="voR-tR-Q9u" secondAttribute="bottom" id="vIg-34-Lv0"/>
+                <constraint firstItem="Ncv-f0-Mgu" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xMD-rB-eRb"/>
             </constraints>
             <point key="canvasLocation" x="136.23188405797103" y="137.27678571428569"/>
         </view>

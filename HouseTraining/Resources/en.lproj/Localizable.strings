@@ -44,6 +44,7 @@
 //MARK: - WorkoutViewController
 "workoutviewcontroler_quality" = "Calidad";
 "workoutviewcontroler_resting" = "Descansando";
+"workoutviewcontroler_unknown_activity" = "Actividad desconocida";
 
 //MARK: - WorkoutSummary
 "workoutsummary_summary" = "Resumen";

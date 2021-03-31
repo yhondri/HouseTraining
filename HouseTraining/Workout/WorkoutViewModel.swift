@@ -114,8 +114,16 @@ class WorkoutViewModel: NSObject {
         switch action {
         case .jumpingJacks:
             return LocalizableKey.jumpingJacks.localized
+        case .highKneesRunInPlace:
+            return LocalizableKey.highKneesRunInPlace.localized
+        case .plank:
+            return LocalizableKey.plank.localized
+        case .sumoSquat:
+            return LocalizableKey.sumoSquat.localized
+        case .wallSit:
+            return LocalizableKey.wallSit.localized
         default:
-            return LocalizableKey.resting.localized
+            return LocalizableKey.unknownActivity.localized
         }
     }
     
