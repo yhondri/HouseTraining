@@ -103,12 +103,29 @@ struct BoxView: View {
         let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(seconds: Int(value))
         var resultString = ""
         if hours > 0 {
-            resultString = "\(hours):"
+            if minutes == 0 {
+                resultString = "\(hours)H"
+            } else {
+                resultString = "\(hours):"
+            }
         }
-        resultString += "\(minutes):\(seconds)"
+        
+        if minutes > 0 {
+            if seconds == 0 {
+                resultString += "\(minutes)"
+            } else {
+                resultString += "\(minutes):"
+            }
+        }
+        
         if seconds > 0 {
-            resultString += "\(seconds)"
+            if hours == 0 && minutes == 0 {
+                resultString += "\(seconds)s"
+            } else {
+                resultString += "\(seconds)"
+            }
         }
+        
         return resultString
     }
     

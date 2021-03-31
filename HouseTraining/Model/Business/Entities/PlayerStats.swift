@@ -29,71 +29,24 @@ enum ActionType: String, CaseIterable {
     case none = "None"
 }
 
-enum Scoring: Int {
-    case zero = 0
-    case one = 1
-    case three = 3
-    case five = 5
-    case fifteen = 15
+struct PlayerStatsConstants {
+    static let maxPoseObservations = 60
 }
 
 struct PlayerStats {
-    var totalScore = 0
-    var throwCount = 0
-    var topSpeed = 0.0
-    var avgSpeed = 0.0
-    var releaseAngle = 0.0
-    var avgReleaseAngle = 0.0
     private var poseObservations = [VNHumanBodyPoseObservation]()
     
     var throwPaths = [CGPath]()
-    
-    init() {
-        debugPrint("Init called")
-    }
-    
-    
-    mutating func reset() {
-        topSpeed = 0
-        avgSpeed = 0
-        totalScore = 0
-        throwCount = 0
-        releaseAngle = 0
-//        poseObservations = []
-    }
-
-    mutating func adjustMetrics(score: Scoring, speed: Double, releaseAngle: Double, throwType: ActionType) {
-        throwCount += 1
-        totalScore += score.rawValue
-        avgSpeed = (avgSpeed * Double(throwCount - 1) + speed) / Double(throwCount)
-        avgReleaseAngle = (avgReleaseAngle * Double(throwCount - 1) + releaseAngle) / Double(throwCount)
-        if speed > topSpeed {
-            topSpeed = speed
-        }
-    }
 
     mutating func storePath(_ path: CGPath) {
         throwPaths.append(path)
     }
 
     mutating func storeObservation(_ observation: VNHumanBodyPoseObservation) {
-        if poseObservations.count >= GameConstants.maxPoseObservations {
+        if poseObservations.count >= PlayerStatsConstants.maxPoseObservations {
             poseObservations.removeFirst()
         }
         poseObservations.append(observation)
-    }
-
-    mutating func getReleaseAngle() -> Double {
-        if !poseObservations.isEmpty {
-            let observationCount = poseObservations.count
-            let postReleaseObservationCount = GameConstants.trajectoryLength + GameConstants.maxTrajectoryInFlightPoseObservations
-            let keyFrameForReleaseAngle = observationCount > postReleaseObservationCount ? observationCount - postReleaseObservationCount : 0
-            let observation = poseObservations[keyFrameForReleaseAngle]
-            let (rightElbow, rightWrist) = armJoints(for: observation)
-            // Release angle is computed by measuring the angle forearm (elbow to wrist) makes with the horizontal
-               releaseAngle = rightElbow.angleFromHorizontal(to: rightWrist)
-        }
-        return releaseAngle
     }
 
     mutating func getAction() -> Action {
@@ -153,21 +106,8 @@ func resetMultiArray(_ predictionWindow: MLMultiArray, with value: Double = 0.0)
     pointer.initialize(repeating: value)
 }
 
-struct GameConstants {
-    static let maxThrows = 8
-    static let newGameTimer = 5
-    static let boardLength = 1.22
-    static let trajectoryLength = 15
-    // minimumObjectSize is calculated as (radius of object to be detected / buffer width)
-    static let minimumObjectSize = Float(6.0 / 1920)
-    static let maxPoseObservations = 60
-    static let noObservationFrameLimit = 20
-    static let maxDistanceWithCurrentTrajectory: CGFloat = 250
-    static let maxTrajectoryInFlightPoseObservations = 10
-}
 
 // MARK: - Errors
-
 enum AppError: Error {
     case captureSessionSetup(reason: String)
     case createRequestError(reason: String)
@@ -203,22 +143,6 @@ enum AppError: Error {
     }
 }
 
-//TODO: Set confidence global const variable.
-func armJoints(for observation: VNHumanBodyPoseObservation) -> (CGPoint, CGPoint) {
-    var rightElbow = CGPoint(x: 0, y: 0)
-    var rightWrist = CGPoint(x: 0, y: 0)
-
-    if let point = try? observation.recognizedPoint(.rightElbow), point.confidence > 0.1 {
-        rightElbow = point.location
-    }
-
-    if let point = try? observation.recognizedPoint(.rightWrist), point.confidence > 0.1 {
-        rightWrist = point.location
-    }
-    
-    return (rightElbow, rightWrist)
-}
-
 func getBodyJointsFor(observation: VNHumanBodyPoseObservation) -> ([VNHumanBodyPoseObservation.JointName: CGPoint]) {
     var joints = [VNHumanBodyPoseObservation.JointName: CGPoint]()
     guard let identifiedPoints = try? observation.recognizedPoints(VNHumanBodyPoseObservation.JointsGroupName.all) else {
@@ -230,68 +154,4 @@ func getBodyJointsFor(observation: VNHumanBodyPoseObservation) -> ([VNHumanBodyP
     }
     
     return joints
-}
-
-// MARK: - Helper extensions
-
-extension CGPoint {
-    func distance(to point: CGPoint) -> CGFloat {
-        return hypot(x - point.x, y - point.y)
-    }
-    
-    func angleFromHorizontal(to point: CGPoint) -> Double {
-        let angle = atan2(point.y - y, point.x - x)
-        let deg = abs(angle * (180.0 / CGFloat.pi))
-        return Double(round(100 * deg) / 100)
-    }
-}
-
-extension CGAffineTransform {
-    static var verticalFlip = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
-    static var horizontalFlip = CGAffineTransform(rotationAngle: CGFloat.pi/2).translatedBy(x: 0, y: -1)    
-}
-
-extension UIBezierPath {
-    convenience init(cornersOfRect borderRect: CGRect, cornerSize: CGSize, cornerRadius: CGFloat) {
-        self.init()
-        let cornerSizeH = cornerSize.width
-        let cornerSizeV = cornerSize.height
-        // top-left
-        move(to: CGPoint(x: borderRect.minX, y: borderRect.minY + cornerSizeV + cornerRadius))
-        addLine(to: CGPoint(x: borderRect.minX, y: borderRect.minY + cornerRadius))
-        addArc(withCenter: CGPoint(x: borderRect.minX + cornerRadius, y: borderRect.minY + cornerRadius),
-               radius: cornerRadius,
-               startAngle: CGFloat.pi,
-               endAngle: -CGFloat.pi / 2,
-               clockwise: true)
-        addLine(to: CGPoint(x: borderRect.minX + cornerSizeH + cornerRadius, y: borderRect.minY))
-        // top-right
-        move(to: CGPoint(x: borderRect.maxX - cornerSizeH - cornerRadius, y: borderRect.minY))
-        addLine(to: CGPoint(x: borderRect.maxX - cornerRadius, y: borderRect.minY))
-        addArc(withCenter: CGPoint(x: borderRect.maxX - cornerRadius, y: borderRect.minY + cornerRadius),
-               radius: cornerRadius,
-               startAngle: -CGFloat.pi / 2,
-               endAngle: 0,
-               clockwise: true)
-        addLine(to: CGPoint(x: borderRect.maxX, y: borderRect.minY + cornerSizeV + cornerRadius))
-        // bottom-right
-        move(to: CGPoint(x: borderRect.maxX, y: borderRect.maxY - cornerSizeV - cornerRadius))
-        addLine(to: CGPoint(x: borderRect.maxX, y: borderRect.maxY - cornerRadius))
-        addArc(withCenter: CGPoint(x: borderRect.maxX - cornerRadius, y: borderRect.maxY - cornerRadius),
-               radius: cornerRadius,
-               startAngle: 0,
-               endAngle: CGFloat.pi / 2,
-               clockwise: true)
-        addLine(to: CGPoint(x: borderRect.maxX - cornerSizeH - cornerRadius, y: borderRect.maxY))
-        // bottom-left
-        move(to: CGPoint(x: borderRect.minX + cornerSizeH + cornerRadius, y: borderRect.maxY))
-        addLine(to: CGPoint(x: borderRect.minX + cornerRadius, y: borderRect.maxY))
-        addArc(withCenter: CGPoint(x: borderRect.minX + cornerRadius,
-                                   y: borderRect.maxY - cornerRadius),
-               radius: cornerRadius,
-               startAngle: CGFloat.pi / 2,
-               endAngle: CGFloat.pi,
-               clockwise: true)
-        addLine(to: CGPoint(x: borderRect.minX, y: borderRect.maxY - cornerSizeV - cornerRadius))
-    }
 }

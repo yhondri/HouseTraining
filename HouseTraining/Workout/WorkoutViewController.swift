@@ -212,11 +212,11 @@ class WorkoutViewController: UIViewController {
     }
     
     private func updateHumanBodyPose(reconizedPointsObservation: VNHumanBodyPoseObservation) {
-        let box = humanBoundingBox(for: reconizedPointsObservation)
-        let boxView = playerBoundingBox
+//        let box = humanBoundingBox(for: reconizedPointsObservation)
+//        let boxView = playerBoundingBox
         DispatchQueue.main.async {
-            let inset: CGFloat = -20.0
-            let viewRect = VisionHelper.viewRectForVisionRect(box, cameraFeedView: self.cameraFeedView).insetBy(dx: inset, dy: inset)
+//            let inset: CGFloat = -20.0
+//            let viewRect = VisionHelper.viewRectForVisionRect(box, cameraFeedView: self.cameraFeedView).insetBy(dx: inset, dy: inset)
 //            self.updateBoundingBox(boxView, withRect: viewRect)
             
             // Fetch body joints from the observation and overlay them on the player.
@@ -302,38 +302,4 @@ extension WorkoutViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                         
         viewModel.cameraViewController(self, didReceiveBuffer: sampleBuffer)
     }
-}
-
-
-struct WorkoutViewControllerRepresentable: UIViewControllerRepresentable {
-    typealias UIViewControllerType = WorkoutViewController
-    var workoutEntity: WorkoutEntity?
-    var exerciseEntity: ExerciseEntity?
-    
-    init(workoutEntity: WorkoutEntity? = nil, exerciseEntity: ExerciseEntity? = nil) {
-        self.workoutEntity = workoutEntity
-        self.exerciseEntity = exerciseEntity
-    }
-    
-    func makeUIViewController(context: Context) -> WorkoutViewController {
-        var actions: [ActionType]
-        if let workoutExercises = workoutEntity?.exercises?.allObjects as? [WorkoutExerciseEntity] {
-            actions = workoutExercises.compactMap {  workoutEntity  -> ActionType? in
-                guard let action = workoutEntity.exercise?.actionType,  let actionType = ActionType(rawValue: action) else {
-                    return nil
-                }
-                return actionType
-            }
-        } else if let actionTypeString = exerciseEntity?.actionType,
-                  let actionType = ActionType(rawValue: actionTypeString) {
-            actions = [actionType]
-        } else {
-            fatalError("No puedes inicializar este módulo sin una acción válida")
-        }
-        
-        let viewModel = WorkoutViewModel(actions: actions)
-        return WorkoutViewController(viewModel: viewModel)
-    }
-    
-    func updateUIViewController(_ uiViewController: WorkoutViewController, context: Context) {}
 }
