@@ -217,7 +217,7 @@ class WorkoutViewController: UIViewController {
         DispatchQueue.main.async {
             let inset: CGFloat = -20.0
             let viewRect = VisionHelper.viewRectForVisionRect(box, cameraFeedView: self.cameraFeedView).insetBy(dx: inset, dy: inset)
-            self.updateBoundingBox(boxView, withRect: viewRect)
+//            self.updateBoundingBox(boxView, withRect: viewRect)
             
             // Fetch body joints from the observation and overlay them on the player.
             let joints = getBodyJointsFor(observation: reconizedPointsObservation)

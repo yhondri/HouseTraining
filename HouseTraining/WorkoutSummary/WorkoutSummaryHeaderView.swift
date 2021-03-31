@@ -70,19 +70,25 @@ struct BoxView: View {
                 Spacer(minLength: 5)
                 Text(title)
                     .font(.subheadline)
-                if let value = NumberFormatter.twoFractionDigits.string(from: NSNumber(value: value)) {
-                    if isTimeValue {
-                    Text("\(value)s")
+                if isTimeValue {
+                    Text(getStringFromValue(value))
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.itemTextColor)
-                    } else {
+                } else {
+                    if let value = NumberFormatter.twoFractionDigits.string(from: NSNumber(value: value)) {
                         Text("\(value)")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(.itemTextColor)
                     }
-               }
+                    else {
+                        Text("--")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.itemTextColor)
+                    }
+                }
                 Spacer(minLength: 5)
             }
             
@@ -92,6 +98,23 @@ struct BoxView: View {
         .background(Color.itemBackgroundColor)
         .cornerRadius(12)
     }
+    
+    private func getStringFromValue(_ value: Double) -> String {
+        let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(seconds: Int(value))
+        var resultString = ""
+        if hours > 0 {
+            resultString = "\(hours):"
+        }
+        resultString += "\(minutes):\(seconds)"
+        if seconds > 0 {
+            resultString += "\(seconds)"
+        }
+        return resultString
+    }
+    
+    private func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+      }
 }
 
 struct WorkoutSummaryHeaderView_Previews: PreviewProvider {

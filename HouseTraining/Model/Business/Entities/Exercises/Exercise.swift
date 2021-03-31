@@ -11,7 +11,7 @@ class Exercise: NSObject {
     static let exerciseTime = 30 //seconds
     private(set) var id: Int64
     private let minProbability: Double = 50.0
-    private(set) var score: Double = 0.0
+    private(set) var totalScore: Double = 0.0
     private var numberOfActionDetected = 0
     var actionType: ActionType
     var actionName: String
@@ -21,8 +21,12 @@ class Exercise: NSObject {
         if numberOfActionDetected == 0 {
             return "0%"
         } else {
-            return "\((score/Double(numberOfActionDetected)).getWithTwoDecimals())%"
+            return "\(averageScore.getWithTwoDecimals())%"
         }
+    }
+    
+    var averageScore: Double {
+        totalScore/Double(numberOfActionDetected)
     }
     
     var position: Int = 0
@@ -57,7 +61,7 @@ class Exercise: NSObject {
         numberOfActionDetected += 1
         
         if action.probability >= minProbability {
-            score += action.probability
+            totalScore += action.probability
         }
     }
     

@@ -210,11 +210,7 @@ class WorkoutViewModel: NSObject {
     }
     
     func getSummaryData() -> WorkoutSummary {
-         WorkoutSummary(duration: 30,
-                                            successRate: 95,
-                                            heartRate: 123,
-                                            caloriesBurned: 222,
-                                            exercises: exercises)
+        WorkoutSummary(duration: initialCountDown*Double(exercises.count), exercises: exercises)
     }
 }
 

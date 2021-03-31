@@ -9,22 +9,25 @@ import UIKit
 
 struct WorkoutSummary {
     let duration: Double
-    let successRate: Double
     let heartRate: Double
     let caloriesBurned: Double
     let exercises: [Exercise]
+    var successRate: Double {
+        exercises.lazy.map { $0.averageScore }.reduce(0, +)/Double(exercises.count)
+    }
     
     init(duration: Double,
-         successRate: Double = 0.0,
          heartRate: Double = 0.0,
          caloriesBurned: Double = 0.0,
          exercises: [Exercise]) {
         self.duration = duration
-        self.successRate = successRate
+
         self.heartRate = heartRate
         self.caloriesBurned = caloriesBurned
         self.exercises = exercises
     }
+    
+    
 }
 
 #if DEBUG
@@ -32,7 +35,6 @@ extension WorkoutSummary {
     static func getPreview() -> WorkoutSummary {
         let exercises = [JumpingJacks.getPreview()]
         return WorkoutSummary(duration: 30,
-                              successRate: 98,
                               heartRate: 156,
                               caloriesBurned: 222,
                               exercises: exercises)
