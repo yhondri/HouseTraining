@@ -13,7 +13,11 @@ struct WorkoutSummary {
     let caloriesBurned: Double
     let exercises: [Exercise]
     var successRate: Double {
-        exercises.lazy.map { $0.averageScore }.reduce(0, +)/Double(exercises.count)
+        let sum = exercises.lazy.map { $0.averageScore }.reduce(0, +)
+        if sum == 0 {
+            return 0
+        }
+        return sum/Double(exercises.count)
     }
     
     init(duration: Double,

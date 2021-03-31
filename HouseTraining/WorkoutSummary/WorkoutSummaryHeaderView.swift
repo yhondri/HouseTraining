@@ -100,6 +100,9 @@ struct BoxView: View {
     }
     
     private func getStringFromValue(_ value: Double) -> String {
+        if value == 0 {
+            return "--"
+        }
         let (hours, minutes, seconds) = secondsToHoursMinutesSeconds(seconds: Int(value))
         var resultString = ""
         if hours > 0 {

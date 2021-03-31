@@ -26,7 +26,10 @@ class Exercise: NSObject {
     }
     
     var averageScore: Double {
-        totalScore/Double(numberOfActionDetected)
+        if totalScore == 0 {
+            return 0
+        }
+        return totalScore/Double(numberOfActionDetected)
     }
     
     var position: Int = 0
