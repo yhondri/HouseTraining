@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -72,7 +72,6 @@
 		569F5D23256A86A6008644F0 /* Plank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D22256A86A6008644F0 /* Plank.swift */; };
 		569F5D28256A86EB008644F0 /* SumoSquat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D27256A86EB008644F0 /* SumoSquat.swift */; };
 		569F5D30256A8719008644F0 /* WallSit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D2F256A8719008644F0 /* WallSit.swift */; };
-		569F5D3D256A929F008644F0 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 569F5D3C256A929F008644F0 /* Introspect */; };
 		569F5D42256A9519008644F0 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D41256A9519008644F0 /* AppView.swift */; };
 		569F5D47256A9581008644F0 /* HouseTrainingApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569F5D46256A9581008644F0 /* HouseTrainingApplication.swift */; };
 		56A1506D2534631F00F7F9D0 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A1506C2534631F00F7F9D0 /* AppUtility.swift */; };
@@ -200,7 +199,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				569F5D3D256A929F008644F0 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +518,6 @@
 			);
 			name = HouseTraining;
 			packageProductDependencies = (
-				569F5D3C256A929F008644F0 /* Introspect */,
 			);
 			productName = HouseTraining;
 			productReference = 567ADCAC24C0A1F000A23864 /* HouseTraining.app */;
@@ -595,7 +592,6 @@
 			);
 			mainGroup = 567ADCA324C0A1F000A23864;
 			packageReferences = (
-				569F5D3B256A929F008644F0 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 567ADCAD24C0A1F000A23864 /* Products */;
 			projectDirPath = "";
@@ -1058,25 +1054,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		569F5D3B256A929F008644F0 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		569F5D3C256A929F008644F0 /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 569F5D3B256A929F008644F0 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		567ADCB824C0A1F000A23864 /* HouseTraining.xcdatamodeld */ = {
