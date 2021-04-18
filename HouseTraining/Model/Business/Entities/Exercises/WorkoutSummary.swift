@@ -34,7 +34,7 @@ struct WorkoutSummary {
     
 }
 
-#if DEBUG
+//#if DEBUG
 extension WorkoutSummary {
     static func getPreview() -> WorkoutSummary {
         let exercises = [JumpingJacks.getPreview()]
@@ -44,4 +44,4 @@ extension WorkoutSummary {
                               exercises: exercises)
     }
 }
-#endif
+//#endif

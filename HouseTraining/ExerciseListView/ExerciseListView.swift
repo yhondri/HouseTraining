@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Introspect
 
 struct ExerciseListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext

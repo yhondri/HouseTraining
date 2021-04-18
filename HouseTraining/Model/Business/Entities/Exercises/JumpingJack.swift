@@ -18,7 +18,7 @@ class JumpingJacks: Exercise {
 }
 
 
-#if DEBUG
+//#if DEBUG
 extension JumpingJacks {
     static func getPreview() -> JumpingJacks {
         let jumpingJacks = JumpingJacks()
@@ -27,4 +27,4 @@ extension JumpingJacks {
         return jumpingJacks
     }
 }
-#endif
+//#endif
