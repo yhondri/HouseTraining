@@ -81,3 +81,17 @@ extension UIView {
         self.layer.insertSublayer(gradient, at: 0)
     }
 }
+
+
+// Code from https://gist.github.com/mspvirajpatel/3ccff1d1a415691033b8df96e60dc398
+extension UIView {
+    func fadeTransition(_ duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name:
+                                                            CAMediaTimingFunctionName.easeInEaseOut)
+        animation.type = CATransitionType.fade
+        animation.duration = duration
+        
+        layer.add(animation, forKey: CATransitionType.fade.rawValue)
+    }
+}

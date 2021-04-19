@@ -11,6 +11,19 @@ import Vision
 import Combine
 import SwiftUI
 
+extension UIView {
+
+    /// Flip view horizontally.
+    func flipX() {
+        transform = CGAffineTransform(scaleX: -transform.a, y: transform.d)
+    }
+
+    /// Flip view vertically.
+    func flipY() {
+        transform = CGAffineTransform(scaleX: transform.a, y: -transform.d)
+    }
+ }
+
 class WorkoutViewController: UIViewController {
     
     @IBOutlet weak var timerLabel: UILabel!
@@ -24,7 +37,14 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var noCameraPermissionLabel: UILabel!
     @IBOutlet weak var noCameraPermissionButton: UIButton!
     @IBOutlet weak var startTrainingLabel: UILabel!
+    @IBOutlet weak var resumeCountDownLabel: UILabel!
+    @IBOutlet weak var resumeCountDownMessageLabel: UILabel!
+    @IBOutlet weak var resumeCountDownCardView: UIView!
+    @IBOutlet weak var resumeCountDownContentView: UIView!
+    @IBOutlet weak var resumeCountDownButton: UIButton!
     
+    private var resumeTimer: Timer?
+
     private var timer: Timer?
     private var countDown: Double = 0.0
     private var isCounDownRunning = false
@@ -34,9 +54,15 @@ class WorkoutViewController: UIViewController {
     private let viewModel: WorkoutViewModel
     //Views
     private let playerBoundingBox = BoundingBoxView()
-    private let jointSegmentView = JointSegmentView()
-    private var cancellables = [AnyCancellable]()
+    private let jointSegmentView: JointSegmentView = {
+        let newView = JointSegmentView()
+        newView.flipX()
+        return newView
+    }()
     
+    private var cancellables = [AnyCancellable]()
+    private var didStartRoutine: Bool = false
+
     init(viewModel: WorkoutViewModel) {
         self.viewModel = viewModel
         super.init(nibName: "WorkoutViewController", bundle: nil)
@@ -94,6 +120,8 @@ class WorkoutViewController: UIViewController {
     }
     
     private func onSetupView() {
+        showPauseView()
+        
         viewModel.playerRequest.sink { result in
             self.updateHumanBodyPose(reconizedPointsObservation: result)
         }
@@ -123,7 +151,15 @@ class WorkoutViewController: UIViewController {
         view.sendSubviewToBack(cameraFeedView)
         
         let pauseGesture = UITapGestureRecognizer(target: self, action: #selector(onChangeActivityState))
-        view.addGestureRecognizer(pauseGesture)
+        cameraFeedView.addGestureRecognizer(pauseGesture)
+        
+        //ResumeView
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 80, weight: .bold, scale: .large)
+        let largeBoldDoc = UIImage(systemName: "play.fill", withConfiguration: largeConfig)
+        resumeCountDownButton.setImage(largeBoldDoc, for: .normal)
+        resumeCountDownButton.contentMode = .center
+        resumeCountDownCardView.layer.cornerRadius = 12
+        resumeCountDownCardView.layer.masksToBounds = true
     }
     
     private func updateCurrentActivity(action: Action) {
@@ -171,12 +207,11 @@ class WorkoutViewController: UIViewController {
         timer = nil
         isCounDownRunning = false
     }
-    
-    var didStartRoutine: Bool = false
-    
+        
     @objc private func pauseActivity() {
         invalidateTimer()
         viewModel.currentCountDown = countDown
+        showPauseView()
     }
     
     @objc private func updateCountDown() {
@@ -211,14 +246,7 @@ class WorkoutViewController: UIViewController {
     }
     
     private func updateHumanBodyPose(reconizedPointsObservation: VNHumanBodyPoseObservation) {
-//        let box = humanBoundingBox(for: reconizedPointsObservation)
-//        let boxView = playerBoundingBox
         DispatchQueue.main.async {
-//            let inset: CGFloat = -20.0
-//            let viewRect = VisionHelper.viewRectForVisionRect(box, cameraFeedView: self.cameraFeedView).insetBy(dx: inset, dy: inset)
-//            self.updateBoundingBox(boxView, withRect: viewRect)
-            
-            // Fetch body joints from the observation and overlay them on the player.
             let joints = getBodyJointsFor(observation: reconizedPointsObservation)
             self.jointSegmentView.joints = joints
             
@@ -231,6 +259,77 @@ class WorkoutViewController: UIViewController {
         guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
         UIApplication.shared.open(url)
     }
+    
+    
+    //MARK: - ResumeCountDown
+    private var resumeCountDown: Int = 0
+    private let resumeCountDownInitialValue = 7
+    
+    private func showPauseView() {
+        resumeCountDown = resumeCountDownInitialValue
+        resumeCountDownLabel.text = "\(resumeCountDown)"
+        resumeCountDownLabel.isHidden = true
+        resumeCountDownContentView.isHidden = false
+        resumeCountDownButton.isHidden = false
+        resumeCountDownMessageLabel.text = "Cuando empiece la cuenta atrás aléjate hasta una distancia donde la cámara te capture completamente"
+    }
+    
+    @IBAction func onResume(_ sender: Any) {
+        resumeCountDownLabel.isHidden = false
+        resumeCountDownButton.isHidden = true
+        resumeCountDownMessageLabel.text = "Ya casi estamos, ¿ready?"
+        startResumeCountDown()
+    }
+    
+    private func startResumeCountDown() {
+        resumeTimer = Timer.scheduledTimer(timeInterval: 1.0,
+                                     target: self,
+                                     selector: #selector(updateResumeCountDown),
+                                     userInfo: nil, repeats: true)
+        
+        playSound()
+    }
+    
+    @objc private func updateResumeCountDown() {
+        resumeCountDown -= 1
+        
+        if resumeCountDown == 0 {
+            resumeCountDownContentView.isHidden = true
+            invalidateResumeTimer()
+            onChangeActivityState()
+        }
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            self.resumeCountDownLabel.text = "\(self.resumeCountDown)"
+            self.resumeCountDownLabel.transform = CGAffineTransform(scaleX: 2.0, y: 2.0)
+        }, completion: { done in
+            UIView.animate(withDuration: 0.25, animations: {
+                self.resumeCountDownLabel.transform = .identity
+            }, completion: nil)
+        })
+        
+    }
+    
+    private func invalidateResumeTimer() {
+        resumeTimer?.invalidate()
+        resumeTimer = nil
+    }
+    
+    var audioPlayer : AVAudioPlayer?
+
+    
+    private func playSound() {
+        guard let audioURL = Bundle(for: type(of: self)).url(forResource: "count_down", withExtension: "m4a") else { return }
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioURL)
+            guard let audioPlayer = audioPlayer else { return }
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        } catch let error as NSError {
+            debugPrint(error)
+        }
+    }
+    
 }
 
 // MARK: - BoundingBox
@@ -271,26 +370,26 @@ extension WorkoutViewController {
         viewModel.cameraFeedSession!.startRunning()
     }
     
-    func humanBoundingBox(for observation: VNRecognizedPointsObservation) -> CGRect {
-        var box = CGRect.zero
-        var normalizedBoundingBox = CGRect.null
-        // Process body points only if the confidence is high.
-        guard observation.confidence > viewModel.bodyPoseDetectionMinConfidence,
-              let points = try? observation.recognizedPoints(forGroupKey: .all) else {
-            return box
-        }
-        
-        // Only use point if human pose joint was detected reliably.
-        for (_, point) in points where point.confidence > viewModel.bodyPoseRecognizedPointMinConfidence {
-            normalizedBoundingBox = normalizedBoundingBox.union(CGRect(origin: point.location, size: .zero))
-        }
-        
-        if !normalizedBoundingBox.isNull {
-            box = normalizedBoundingBox
-        }
-        
-        return box
-    }
+//    func humanBoundingBox(for observation: VNRecognizedPointsObservation) -> CGRect {
+//        var box = CGRect.zero
+//        var normalizedBoundingBox = CGRect.null
+//        // Process body points only if the confidence is high.
+//        guard observation.confidence > viewModel.bodyPoseDetectionMinConfidence,
+//              let points = try? observation.recognizedPoints(forGroupKey: .all) else {
+//            return box
+//        }
+//
+//        // Only use point if human pose joint was detected reliably.
+//        for (_, point) in points where point.confidence > viewModel.bodyPoseRecognizedPointMinConfidence {
+//            normalizedBoundingBox = normalizedBoundingBox.union(CGRect(origin: point.location, size: .zero))
+//        }
+//
+//        if !normalizedBoundingBox.isNull {
+//            box = normalizedBoundingBox
+//        }
+//
+//        return box
+//    }
 }
 
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate

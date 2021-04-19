@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 import SwiftUI
+import AVFoundation
 
 //@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let viewController = WorkoutViewController(viewModel: viewModel)
 //        window?.rootViewController = UINavigationController(rootViewController: viewController)
 //        window?.makeKeyAndVisible()
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch let error as NSError {
+            debugPrint(error)
+        }
+        
         return true
     }
     

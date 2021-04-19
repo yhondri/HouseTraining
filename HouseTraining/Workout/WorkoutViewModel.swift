@@ -130,7 +130,7 @@ class WorkoutViewModel: NSObject {
     func setupAVSession(avcaptureVideoDataOutputSampleBufferDelegate: AVCaptureVideoDataOutputSampleBufferDelegate) throws {
         // Create device discovery session for a wide angle camera
         let wideAngle = AVCaptureDevice.DeviceType.builtInWideAngleCamera
-        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [wideAngle], mediaType: .video, position: .unspecified)
+        let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [wideAngle], mediaType: .video, position: .front)
         
         // Select a video device, make an input
         guard let videoDevice = discoverySession.devices.first else {

@@ -108,14 +108,3 @@ class JointSegmentView: UIView, AnimatedTransitioning {
         jointSegmentLayer.path = jointSegmentPath.cgPath
     }
 }
-
-extension UIBezierPath {
-    func rotateAroundCenter(angle: CGFloat) {
-        let center = CGPoint(x: self.bounds.midX, y: self.bounds.midY)
-        var transform = CGAffineTransform.identity
-        transform = transform.translatedBy(x: center.x, y: center.y)
-        transform = transform.rotated(by: angle)
-        transform = transform.translatedBy(x: -center.x, y: -center.y)
-        self.apply(transform)
-    }
-}

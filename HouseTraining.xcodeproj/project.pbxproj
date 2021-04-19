@@ -14,6 +14,7 @@
 		56006507258BBCF200C59056 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56006506258BBCF200C59056 /* Date+Extension.swift */; };
 		560D59A9258BB2970044AB48 /* ExerciseEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56532DE92572CDCE008F341A /* ExerciseEntity+CoreDataClass.swift */; };
 		560D59AA258BB2970044AB48 /* ExerciseEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56532DEA2572CDCE008F341A /* ExerciseEntity+CoreDataProperties.swift */; };
+		56267277262E0D6D00FD6ECD /* count_down.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 56267276262E0D6D00FD6ECD /* count_down.m4a */; };
 		5629306D25867EFD00801AA6 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5629306C25867EFD00801AA6 /* UIView+Extension.swift */; };
 		562FF4DB25756D7800ABA4D1 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FF4DA25756D7800ABA4D1 /* BarChartView.swift */; };
 		562FF4ED2575710B00ABA4D1 /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FF4EC2575710B00ABA4D1 /* ChartGridView.swift */; };
@@ -110,6 +111,7 @@
 		560064E4258BBAD100C59056 /* ExerciseRecordEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExerciseRecordEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		560064FD258BBC2000C59056 /* CoreDataPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataPublisher.swift; sourceTree = "<group>"; };
 		56006506258BBCF200C59056 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		56267276262E0D6D00FD6ECD /* count_down.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = count_down.m4a; sourceTree = "<group>"; };
 		5629306C25867EFD00801AA6 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		562FF4DA25756D7800ABA4D1 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		562FF4EC2575710B00ABA4D1 /* ChartGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				567ADCBB24C0A1F100A23864 /* Assets.xcassets */,
 				569F5D0A256A77D6008644F0 /* HouseTrainingActionClassifier.mlmodel */,
 				5696418C24C88979009E2A81 /* JacksActionClassifier.mlmodel */,
+				56267276262E0D6D00FD6ECD /* count_down.m4a */,
 				567ADCBD24C0A1F100A23864 /* LaunchScreen.storyboard */,
 				5643AD2F2549DFD000945EFA /* Localizable.strings */,
 				567ADCC024C0A1F100A23864 /* Info.plist */,
@@ -609,6 +612,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56267277262E0D6D00FD6ECD /* count_down.m4a in Resources */,
 				56415DF6251A4D1F00B688DE /* WorkoutViewController.xib in Resources */,
 				5643AD2D2549DFD000945EFA /* Localizable.strings in Resources */,
 				567ADCBF24C0A1F100A23864 /* LaunchScreen.storyboard in Resources */,
@@ -898,6 +902,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UY69P266SE;
 				INFOPLIST_FILE = HouseTraining/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -918,6 +923,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = UY69P266SE;
 				INFOPLIST_FILE = HouseTraining/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
