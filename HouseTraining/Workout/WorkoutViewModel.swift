@@ -14,6 +14,7 @@ import Combine
 class WorkoutViewModel: NSObject {
     let videoDataOutputQueue: DispatchQueue
     let playerRequest = PassthroughSubject<VNHumanBodyPoseObservation, Never>()
+    let playerFaceRequest = PassthroughSubject<VNFaceObservation, Never>()
     let userActionRequest = PassthroughSubject<Action, Never>()
     let isCameraAuthorizationGranted = PassthroughSubject<Bool, Never>()
 
@@ -23,6 +24,9 @@ class WorkoutViewModel: NSObject {
 
     //Vision
     private let detectPlayerRequest = VNDetectHumanBodyPoseRequest()
+    private let detectPlayerFaceRequest = VNDetectFaceRectanglesRequest()
+
+    
     //VNConfidence
     let bodyPoseDetectionMinConfidence: VNConfidence = 0.6
     let bodyPoseRecognizedPointMinConfidence: VNConfidence = 0.1
@@ -230,8 +234,12 @@ extension WorkoutViewModel {
                                                   orientation: orientation, options: [:])
         
         do {
-            try visionHandler.perform([detectPlayerRequest])
+            try visionHandler.perform([detectPlayerRequest, detectPlayerFaceRequest])
             
+            if let faceObservation = detectPlayerFaceRequest.results?.first as? VNFaceObservation {
+                playerFaceRequest.send(faceObservation)
+            }
+
             if let observation = detectPlayerRequest.results?.first {
                 playerRequest.send(observation)
                 

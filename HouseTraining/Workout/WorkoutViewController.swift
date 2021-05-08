@@ -53,7 +53,7 @@ class WorkoutViewController: UIViewController {
     private(set) var cameraFeedView: CameraFeedView!
     private let viewModel: WorkoutViewModel
     //Views
-    private let playerBoundingBox = BoundingBoxView()
+//    private let playerBoundingBox = BoundingBoxView()
     private let jointSegmentView: JointSegmentView = {
         let newView = JointSegmentView()
         newView.flipX()
@@ -132,10 +132,15 @@ class WorkoutViewController: UIViewController {
         }
         .store(in: &cancellables)
         
+        view.addSubview(jointSegmentView)
+        viewModel.playerFaceRequest.receive(on: DispatchQueue.main).sink { action in
+            self.jointSegmentView.setupBlurFace(faceObservation: action)
+        }
+        .store(in: &cancellables)
+        
         do {
             try viewModel.setupAVSession(avcaptureVideoDataOutputSampleBufferDelegate: self)
             setupCameraFeedSession()
-            setUIElements()
         } catch {
             debugPrint("Show error, session couldn't be started ", error)
         }
@@ -152,7 +157,7 @@ class WorkoutViewController: UIViewController {
         
         let pauseGesture = UITapGestureRecognizer(target: self, action: #selector(onChangeActivityState))
         cameraFeedView.addGestureRecognizer(pauseGesture)
-        
+
         //ResumeView
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 80, weight: .bold, scale: .large)
         let largeBoldDoc = UIImage(systemName: "play.fill", withConfiguration: largeConfig)
@@ -246,10 +251,20 @@ class WorkoutViewController: UIViewController {
     }
     
     private func updateHumanBodyPose(reconizedPointsObservation: VNHumanBodyPoseObservation) {
+        guard isCounDownRunning else {
+            DispatchQueue.main.async {
+                self.jointSegmentView.isHidden = true
+            }
+            return
+        }
+        
+
         DispatchQueue.main.async {
+            self.jointSegmentView.isHidden = false
+            
             let joints = getBodyJointsFor(observation: reconizedPointsObservation)
             self.jointSegmentView.joints = joints
-            
+
             let normalizedFrame = CGRect(x: 0, y: 0, width: 1, height: 1)
             self.jointSegmentView.frame = VisionHelper.viewRectForVisionRect(normalizedFrame, cameraFeedView: self.cameraFeedView)
         }
@@ -329,27 +344,8 @@ class WorkoutViewController: UIViewController {
             debugPrint(error)
         }
     }
-    
 }
 
-// MARK: - BoundingBox
-extension WorkoutViewController {
-    func setUIElements() {
-        playerBoundingBox.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        playerBoundingBox.backgroundOpacity = 0
-        view.addSubview(playerBoundingBox)
-        view.addSubview(jointSegmentView)
-    }
-
-    func updateBoundingBox(_ view: UIView, withRect rect: CGRect?) {
-        // Update the frame for player bounding box
-        view.frame = rect ?? .zero
-        
-        if let view = view as? AnimatedTransitioning {
-            view.perform(transition: (rect == nil ? .fadeOut : .fadeIn), duration: 0.1)
-        }
-    }
-}
 
 // MARK: - Camera setup
 extension WorkoutViewController {

@@ -15,7 +15,7 @@ class JointSegmentView: UIView, AnimatedTransitioning {
     private let jointSegmentWidth: CGFloat = 2.0
     private let jointSegmentLayer = CAShapeLayer()
     private var jointSegmentPath = UIBezierPath()
-    
+        
     let jointsOfInterest: [VNHumanBodyPoseObservation.JointName] = [.rightWrist,
                                                                     .rightElbow,
                                                                     .rightShoulder,
@@ -48,12 +48,34 @@ class JointSegmentView: UIView, AnimatedTransitioning {
         jointSegmentLayer.lineCap = .round
         jointSegmentLayer.lineWidth = jointSegmentWidth
         jointSegmentLayer.fillColor = UIColor.clear.cgColor
-        jointSegmentLayer.strokeColor = #colorLiteral(red: 0.6078431373, green: 0.9882352941, blue: 0, alpha: 1).cgColor
+        jointSegmentLayer.strokeColor = UIColor.charBarTopColor?.cgColor
         layer.addSublayer(jointSegmentLayer)
         let jointColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor
         jointLayer.strokeColor = jointColor
         jointLayer.fillColor = jointColor
         layer.addSublayer(jointLayer)
+    }
+    
+    private var pixelateFace: UIVisualEffectView?
+    
+    func setupBlurFace(faceObservation: VNFaceObservation) {
+        if let pixelateFace = pixelateFace {
+            pixelateFace.removeFromSuperview()
+        }
+        
+        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -self.frame.height)
+        let translate = CGAffineTransform.identity.scaledBy(x: self.frame.width, y: self.frame.height)
+        
+        // The coordinates are normalized to the dimensions of the processed image, with the origin at the image's lower-left corner.
+        let facebounds = faceObservation.boundingBox.applying(translate).applying(transform)
+        
+        let blurEffect = UIBlurEffect(style: .light)
+        pixelateFace = UIVisualEffectView(effect: blurEffect)
+        pixelateFace?.frame = facebounds
+        
+//        faceMask = UIView(frame: facebounds)
+//        pixelateFace?.backgroundColor = .red
+        addSubview(pixelateFace!)
     }
 
     private func updatePathLayer() {
@@ -64,9 +86,11 @@ class JointSegmentView: UIView, AnimatedTransitioning {
         var rightShoulderPoint: CGPoint = .zero
         var leftShoulderPoint: CGPoint = .zero
 
+        var index = 0
+        
         // Add all joints and segments
-        for index in 0 ..< jointsOfInterest.count {
-            if let nextJoint = joints[jointsOfInterest[index]] {
+        for jointOfInterest in jointsOfInterest {
+            if let nextJoint = joints[jointOfInterest] {
                 let nextJointScaled = nextJoint
                     .applying(CGAffineTransform.verticalFlip)
                     .applying(scaleToBounds)
@@ -84,7 +108,7 @@ class JointSegmentView: UIView, AnimatedTransitioning {
                         jointSegmentPath.addLine(to: nextJointScaled)
                     }
                     
-                    if jointsOfInterest[index] == .rightShoulder {
+                    if jointOfInterest == .rightShoulder {
                         rightShoulderPoint = nextJointScaled
                     }
                 } else {
@@ -99,6 +123,8 @@ class JointSegmentView: UIView, AnimatedTransitioning {
                     }
                 }
             }
+            
+            index += 1
         }
         
         jointSegmentPath.move(to: leftShoulderPoint)
