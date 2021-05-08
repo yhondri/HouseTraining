@@ -44,7 +44,6 @@ class WorkoutViewController: UIViewController {
     @IBOutlet weak var resumeCountDownButton: UIButton!
     
     private var resumeTimer: Timer?
-
     private var timer: Timer?
     private var countDown: Double = 0.0
     private var isCounDownRunning = false
@@ -53,7 +52,6 @@ class WorkoutViewController: UIViewController {
     private(set) var cameraFeedView: CameraFeedView!
     private let viewModel: WorkoutViewModel
     //Views
-//    private let playerBoundingBox = BoundingBoxView()
     private let jointSegmentView: JointSegmentView = {
         let newView = JointSegmentView()
         newView.flipX()
@@ -133,10 +131,10 @@ class WorkoutViewController: UIViewController {
         .store(in: &cancellables)
         
         view.addSubview(jointSegmentView)
-        viewModel.playerFaceRequest.receive(on: DispatchQueue.main).sink { action in
-            self.jointSegmentView.setupBlurFace(faceObservation: action)
-        }
-        .store(in: &cancellables)
+//        viewModel.playerFaceRequest.receive(on: DispatchQueue.main).sink { action in
+//            self.jointSegmentView.setupBlurFace(faceObservation: action)
+//        }
+//        .store(in: &cancellables)
         
         do {
             try viewModel.setupAVSession(avcaptureVideoDataOutputSampleBufferDelegate: self)
@@ -365,27 +363,6 @@ extension WorkoutViewController {
         
         viewModel.cameraFeedSession!.startRunning()
     }
-    
-//    func humanBoundingBox(for observation: VNRecognizedPointsObservation) -> CGRect {
-//        var box = CGRect.zero
-//        var normalizedBoundingBox = CGRect.null
-//        // Process body points only if the confidence is high.
-//        guard observation.confidence > viewModel.bodyPoseDetectionMinConfidence,
-//              let points = try? observation.recognizedPoints(forGroupKey: .all) else {
-//            return box
-//        }
-//
-//        // Only use point if human pose joint was detected reliably.
-//        for (_, point) in points where point.confidence > viewModel.bodyPoseRecognizedPointMinConfidence {
-//            normalizedBoundingBox = normalizedBoundingBox.union(CGRect(origin: point.location, size: .zero))
-//        }
-//
-//        if !normalizedBoundingBox.isNull {
-//            box = normalizedBoundingBox
-//        }
-//
-//        return box
-//    }
 }
 
 // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate

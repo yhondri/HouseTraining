@@ -31,7 +31,6 @@
 		56483913256C3C4400F7005B /* CreateRoutineStep1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56483912256C3C4400F7005B /* CreateRoutineStep1View.swift */; };
 		5648391F256C3EAE00F7005B /* CreateRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */; };
 		5649350F255015DC000F8A5F /* JumpingJack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649350E255015DC000F8A5F /* JumpingJack.swift */; };
-		5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649352525501C05000F8A5F /* BoundingBoxView.swift */; };
 		5649352B25501C1D000F8A5F /* AnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649352A25501C1D000F8A5F /* AnimatedTransitioning.swift */; };
 		5649353C25507699000F8A5F /* WorkoutSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5649353B25507699000F8A5F /* WorkoutSummaryView.swift */; };
 		564935422550775F000F8A5F /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564935412550775F000F8A5F /* Color+Extension.swift */; };
@@ -130,7 +129,6 @@
 		56483912256C3C4400F7005B /* CreateRoutineStep1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineStep1View.swift; sourceTree = "<group>"; };
 		5648391E256C3EAE00F7005B /* CreateRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRoutineViewModel.swift; sourceTree = "<group>"; };
 		5649350E255015DC000F8A5F /* JumpingJack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JumpingJack.swift; sourceTree = "<group>"; };
-		5649352525501C05000F8A5F /* BoundingBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		5649352A25501C1D000F8A5F /* AnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedTransitioning.swift; sourceTree = "<group>"; };
 		5649353B25507699000F8A5F /* WorkoutSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryView.swift; sourceTree = "<group>"; };
 		564935412550775F000F8A5F /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
@@ -252,7 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				567ADCF324C0A7F000A23864 /* CameraFeedView.swift */,
-				5649352525501C05000F8A5F /* BoundingBoxView.swift */,
 				56A6FA30251CF9080027CBDB /* JointSegmentView.swift */,
 				56415DFD251A4F1B00B688DE /* WorkoutViewModel.swift */,
 				56415DF3251A4D1F00B688DE /* WorkoutViewController.swift */,
@@ -680,7 +677,6 @@
 				56866916259B944A0011E0F6 /* SafariView.swift in Sources */,
 				5643AD512549E15900945EFA /* LocalizableKey.swift in Sources */,
 				56C98A4F261482BD0034787D /* CGAffineTransform+Extension.swift in Sources */,
-				5649352625501C05000F8A5F /* BoundingBoxView.swift in Sources */,
 				5649355A255079F4000F8A5F /* Double+Extension.swift in Sources */,
 				56C98A4526147FC90034787D /* PlayerActionClassifierOutput.swift in Sources */,
 				562FF4DB25756D7800ABA4D1 /* BarChartView.swift in Sources */,

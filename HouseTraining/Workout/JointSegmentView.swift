@@ -55,28 +55,6 @@ class JointSegmentView: UIView, AnimatedTransitioning {
         jointLayer.fillColor = jointColor
         layer.addSublayer(jointLayer)
     }
-    
-    private var pixelateFace: UIVisualEffectView?
-    
-    func setupBlurFace(faceObservation: VNFaceObservation) {
-        if let pixelateFace = pixelateFace {
-            pixelateFace.removeFromSuperview()
-        }
-        
-        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -self.frame.height)
-        let translate = CGAffineTransform.identity.scaledBy(x: self.frame.width, y: self.frame.height)
-        
-        // The coordinates are normalized to the dimensions of the processed image, with the origin at the image's lower-left corner.
-        let facebounds = faceObservation.boundingBox.applying(translate).applying(transform)
-        
-        let blurEffect = UIBlurEffect(style: .light)
-        pixelateFace = UIVisualEffectView(effect: blurEffect)
-        pixelateFace?.frame = facebounds
-        
-//        faceMask = UIView(frame: facebounds)
-//        pixelateFace?.backgroundColor = .red
-        addSubview(pixelateFace!)
-    }
 
     private func updatePathLayer() {
         let scaleToBounds = CGAffineTransform(scaleX: bounds.width, y: bounds.height)
