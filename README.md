@@ -6,6 +6,37 @@
 <img src= "https://github.com/yhondri/HouseTraining/blob/master/Exercises.png" width="400" >
 </p>
 
+
+## English
+
+HouseTraining is an iOS app that I developed for my Final degree project of Software Engineer in  Facultad de Informática of Complutense University of Madrid.
+The applicacion only can be run in real device (because it needs acces to the camera) and it use Artificial Intelligence like Deep learning and Neuronal Networks. 
+
+## Caracteristics
+
+- [x] Deep learning
+- [x] Neuronal Networks
+- [x] ResNet
+- [x] iOS
+- [x] Swift
+- [x] SwiftUI
+- [x] UIKit
+- [x] Create ML
+- [x] Vision
+
+## Requirements
+
+- iOS 14.0+
+- Xcode 12.0+
+- Apple developer account
+
+## Installation
+1. Connect your iOS device to your Mac.
+2. Select the device from the device menu. You can find it in the top toolbar of Xcode.
+3. Run the app. Tap on the Run button (looks like a play music button). 
+
+## Español
+
 HouseTraining es una aplicación desarrollada para el Trabajo de Fin de Grado del Grado de Ingeniería del Software en la Facultad de Informática de la Universidad Complutense de Madrid.
 
 La aplicación se ha desarollado para dispositivos iOS (sólo compatible con iPhone) utilizando tecnologías de Inteligencia Artificial como el Aprendizaje Profundo/Redes Neuronales. 
